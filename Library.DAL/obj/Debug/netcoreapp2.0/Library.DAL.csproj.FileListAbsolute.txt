@@ -1,0 +1,13 @@
+c:\users\anuitex-43\source\repos\AngularTrainee\Library.DAL\bin\Debug\netcoreapp2.0\Library.Entities.dll
+c:\users\anuitex-43\source\repos\AngularTrainee\Library.DAL\obj\Debug\netcoreapp2.0\Library.DAL.csprojResolveAssemblyReference.cache
+c:\users\anuitex-43\source\repos\AngularTrainee\Library.DAL\obj\Debug\netcoreapp2.0\Library.DAL.csproj.CoreCompileInputs.cache
+c:\users\anuitex-43\source\repos\AngularTrainee\Library.DAL\obj\Debug\netcoreapp2.0\Library.DAL.AssemblyInfoInputs.cache
+c:\users\anuitex-43\source\repos\AngularTrainee\Library.DAL\obj\Debug\netcoreapp2.0\Library.DAL.AssemblyInfo.cs
+c:\users\anuitex-43\source\repos\AngularTrainee\Library.DAL\bin\Debug\netcoreapp2.0\Library.DAL.deps.json
+c:\users\anuitex-43\source\repos\AngularTrainee\Library.DAL\bin\Debug\netcoreapp2.0\Library.DAL.dll
+c:\users\anuitex-43\source\repos\AngularTrainee\Library.DAL\bin\Debug\netcoreapp2.0\Library.Entities.pdb
+c:\users\anuitex-43\source\repos\AngularTrainee\Library.DAL\bin\Debug\netcoreapp2.0\Library.DAL.pdb
+c:\users\anuitex-43\source\repos\AngularTrainee\Library.DAL\obj\Debug\netcoreapp2.0\Library.DAL.dll
+c:\users\anuitex-43\source\repos\AngularTrainee\Library.DAL\obj\Debug\netcoreapp2.0\Library.DAL.pdb
+c:\users\anuitex-43\source\repos\AngularTrainee\Library.DAL\bin\Debug\netcoreapp2.0\Library.Shared.dll
+c:\users\anuitex-43\source\repos\AngularTrainee\Library.DAL\bin\Debug\netcoreapp2.0\Library.Shared.pdb

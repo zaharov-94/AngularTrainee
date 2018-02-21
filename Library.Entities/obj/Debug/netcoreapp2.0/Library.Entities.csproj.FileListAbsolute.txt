@@ -1,0 +1,11 @@
+c:\users\anuitex-43\source\repos\AngularTrainee\Library.Entities\bin\Debug\netcoreapp2.0\Library.Entities.deps.json
+c:\users\anuitex-43\source\repos\AngularTrainee\Library.Entities\bin\Debug\netcoreapp2.0\Library.Entities.dll
+c:\users\anuitex-43\source\repos\AngularTrainee\Library.Entities\obj\Debug\netcoreapp2.0\Library.Entities.csproj.CoreCompileInputs.cache
+c:\users\anuitex-43\source\repos\AngularTrainee\Library.Entities\obj\Debug\netcoreapp2.0\Library.Entities.AssemblyInfoInputs.cache
+c:\users\anuitex-43\source\repos\AngularTrainee\Library.Entities\obj\Debug\netcoreapp2.0\Library.Entities.AssemblyInfo.cs
+c:\users\anuitex-43\source\repos\AngularTrainee\Library.Entities\bin\Debug\netcoreapp2.0\Library.Entities.pdb
+c:\users\anuitex-43\source\repos\AngularTrainee\Library.Entities\obj\Debug\netcoreapp2.0\Library.Entities.dll
+c:\users\anuitex-43\source\repos\AngularTrainee\Library.Entities\obj\Debug\netcoreapp2.0\Library.Entities.pdb
+c:\users\anuitex-43\source\repos\AngularTrainee\Library.Entities\bin\Debug\netcoreapp2.0\Library.Shared.dll
+c:\users\anuitex-43\source\repos\AngularTrainee\Library.Entities\bin\Debug\netcoreapp2.0\Library.Shared.pdb
+c:\users\anuitex-43\source\repos\AngularTrainee\Library.Entities\obj\Debug\netcoreapp2.0\Library.Entities.csprojResolveAssemblyReference.cache

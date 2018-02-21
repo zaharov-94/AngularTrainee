@@ -1,0 +1,17 @@
+c:\users\anuitex-43\source\repos\AngularTrainee\Library.BLL\obj\Debug\netcoreapp2.0\Library.BLL.csprojResolveAssemblyReference.cache
+c:\users\anuitex-43\source\repos\AngularTrainee\Library.BLL\obj\Debug\netcoreapp2.0\Library.BLL.csproj.CoreCompileInputs.cache
+c:\users\anuitex-43\source\repos\AngularTrainee\Library.BLL\obj\Debug\netcoreapp2.0\Library.BLL.AssemblyInfoInputs.cache
+c:\users\anuitex-43\source\repos\AngularTrainee\Library.BLL\obj\Debug\netcoreapp2.0\Library.BLL.AssemblyInfo.cs
+c:\users\anuitex-43\source\repos\AngularTrainee\Library.BLL\bin\Debug\netcoreapp2.0\Library.BLL.deps.json
+c:\users\anuitex-43\source\repos\AngularTrainee\Library.BLL\bin\Debug\netcoreapp2.0\Library.BLL.dll
+c:\users\anuitex-43\source\repos\AngularTrainee\Library.BLL\bin\Debug\netcoreapp2.0\Library.BLL.pdb
+c:\users\anuitex-43\source\repos\AngularTrainee\Library.BLL\bin\Debug\netcoreapp2.0\Library.DAL.dll
+c:\users\anuitex-43\source\repos\AngularTrainee\Library.BLL\bin\Debug\netcoreapp2.0\Library.Entities.dll
+c:\users\anuitex-43\source\repos\AngularTrainee\Library.BLL\bin\Debug\netcoreapp2.0\Library.ViewModels.dll
+c:\users\anuitex-43\source\repos\AngularTrainee\Library.BLL\bin\Debug\netcoreapp2.0\Library.DAL.pdb
+c:\users\anuitex-43\source\repos\AngularTrainee\Library.BLL\bin\Debug\netcoreapp2.0\Library.Entities.pdb
+c:\users\anuitex-43\source\repos\AngularTrainee\Library.BLL\bin\Debug\netcoreapp2.0\Library.ViewModels.pdb
+c:\users\anuitex-43\source\repos\AngularTrainee\Library.BLL\obj\Debug\netcoreapp2.0\Library.BLL.dll
+c:\users\anuitex-43\source\repos\AngularTrainee\Library.BLL\obj\Debug\netcoreapp2.0\Library.BLL.pdb
+c:\users\anuitex-43\source\repos\AngularTrainee\Library.BLL\bin\Debug\netcoreapp2.0\Library.Shared.dll
+c:\users\anuitex-43\source\repos\AngularTrainee\Library.BLL\bin\Debug\netcoreapp2.0\Library.Shared.pdb

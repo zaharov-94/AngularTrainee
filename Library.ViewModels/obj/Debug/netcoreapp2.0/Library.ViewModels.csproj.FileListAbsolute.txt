@@ -1,0 +1,11 @@
+c:\users\anuitex-43\source\repos\AngularTrainee\Library.ViewModels\bin\Debug\netcoreapp2.0\Library.ViewModels.deps.json
+c:\users\anuitex-43\source\repos\AngularTrainee\Library.ViewModels\bin\Debug\netcoreapp2.0\Library.ViewModels.dll
+c:\users\anuitex-43\source\repos\AngularTrainee\Library.ViewModels\bin\Debug\netcoreapp2.0\Library.ViewModels.pdb
+c:\users\anuitex-43\source\repos\AngularTrainee\Library.ViewModels\obj\Debug\netcoreapp2.0\Library.ViewModels.csprojResolveAssemblyReference.cache
+c:\users\anuitex-43\source\repos\AngularTrainee\Library.ViewModels\obj\Debug\netcoreapp2.0\Library.ViewModels.csproj.CoreCompileInputs.cache
+c:\users\anuitex-43\source\repos\AngularTrainee\Library.ViewModels\obj\Debug\netcoreapp2.0\Library.ViewModels.AssemblyInfoInputs.cache
+c:\users\anuitex-43\source\repos\AngularTrainee\Library.ViewModels\obj\Debug\netcoreapp2.0\Library.ViewModels.AssemblyInfo.cs
+c:\users\anuitex-43\source\repos\AngularTrainee\Library.ViewModels\obj\Debug\netcoreapp2.0\Library.ViewModels.dll
+c:\users\anuitex-43\source\repos\AngularTrainee\Library.ViewModels\obj\Debug\netcoreapp2.0\Library.ViewModels.pdb
+c:\users\anuitex-43\source\repos\AngularTrainee\Library.ViewModels\bin\Debug\netcoreapp2.0\Library.Shared.dll
+c:\users\anuitex-43\source\repos\AngularTrainee\Library.ViewModels\bin\Debug\netcoreapp2.0\Library.Shared.pdb
