@@ -1,0 +1,27 @@
+<h2>List of books</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <td>Название</td>
+            <td>Автор</td>
+            <td>Год</td>
+            <td></td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let p of books">
+            <td>{{p?.name}}</td>
+            <td>{{p?.author}}</td>
+            <td>{{p?.yearOfPublishing}}</td>
+            <td>
+                <a [routerLink]="['edit', p.id]" class="btn btn-sm btn-primary">Изменить</a>
+                <button (click)="delete(p.id)" class="btn btn-sm btn-danger">Удалить</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<br />
+<div>
+    <a routerLink="create" class="btn btn-sm btn-success">Добавить</a>
+</div>
+<div id="grid"></div>

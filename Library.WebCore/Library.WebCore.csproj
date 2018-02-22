@@ -7,10 +7,13 @@
 
   <ItemGroup>
     <None Remove="src\app\app.service.ts" />
+    <None Remove="src\app\kendo\kendo.component.ts" />
+    <None Remove="src\app\kendo\products.ts" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\" />
+    <None Include="wwwroot\bootstrap.min.css" />
+    <None Include="wwwroot\kendo.all.css" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,6 +33,8 @@
 
   <ItemGroup>
     <TypeScriptCompile Include="src\app\app.service.ts" />
+    <TypeScriptCompile Include="src\app\kendo\kendo.component.ts" />
+    <TypeScriptCompile Include="src\app\kendo\products.ts" />
   </ItemGroup>
 
 </Project>

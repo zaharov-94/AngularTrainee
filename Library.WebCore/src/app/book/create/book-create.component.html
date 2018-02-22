@@ -1,0 +1,8 @@
+﻿<div>
+    <h2>Добавление книги</h2>
+    <book-form [(book)]="book"></book-form>
+    <div class="form-group">
+        <input type="button" value="Сохранить" (click)="save()" class="btn btn-success" />
+        <a routerLink="/book" class="btn btn-warning">Отмена</a>
+    </div>
+</div>

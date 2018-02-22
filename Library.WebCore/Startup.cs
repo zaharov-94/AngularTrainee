@@ -3,10 +3,12 @@ using Library.DAL.Context;
 using Library.Entities.Entities.Identity;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System.IO;
 
 namespace Library.WebCore
 {
@@ -47,6 +49,11 @@ namespace Library.WebCore
             app.UseStaticFiles();
             app.UseAuthentication();
             app.UseMvc();
-        } 
+            app.Run(async (context) =>
+            {
+              context.Response.ContentType = "text/html";
+              await context.Response.SendFileAsync(Path.Combine(env.WebRootPath, "index.html"));
+            });
+    } 
     }
 }
