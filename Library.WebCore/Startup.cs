@@ -27,6 +27,9 @@ namespace Library.WebCore
                       options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddTransient<BookService>();
             services.AddTransient<BrochureService>();
+            services.AddTransient<PublicationHouseService>();
+            services.AddTransient<PublicationService>();
+            services.AddTransient<MagazineService>();
             services.AddIdentity<ApplicationUser, IdentityRole>()
                   .AddEntityFrameworkStores<ApplicationContext>();
             services.AddMvc();

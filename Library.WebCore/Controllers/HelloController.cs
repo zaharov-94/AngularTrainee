@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace hello_world
 {
-  [Route("api/[Controller]")]
+    [Route("api/[Controller]")]
     public class HelloController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
@@ -20,6 +20,11 @@ namespace hello_world
             _signInManager = signInManager;
             _bookService = bookService;
             IEnumerable<BookViewModel> brochureViewModel = _bookService.GetAllBook();
+            BookViewModel viewModel = _bookService.GetBookById(2);
+            viewModel.Id = 0;
+            viewModel.PublicationHouses.Clear();
+            viewModel.PublicationHouses.Add(new PublicationHouseViewModel {Id = 3, Address="dff", Name="ff" });
+            _bookService.Add(viewModel);
         }
 
         [HttpGet]

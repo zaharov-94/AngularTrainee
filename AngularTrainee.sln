@@ -3,17 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.WebCore", "Library.WebCore\Library.WebCore.csproj", "{C2F8380B-83D7-4B8B-8E55-A3C95BBC7781}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library.WebCore", "Library.WebCore\Library.WebCore.csproj", "{C2F8380B-83D7-4B8B-8E55-A3C95BBC7781}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.DAL", "Library.DAL\Library.DAL.csproj", "{5B13C767-2D3F-4782-AF2C-7F1441E86304}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library.DAL", "Library.DAL\Library.DAL.csproj", "{5B13C767-2D3F-4782-AF2C-7F1441E86304}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.BLL", "Library.BLL\Library.BLL.csproj", "{A688106B-3B09-4A6A-AACE-7C7BF6FEC3DF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library.BLL", "Library.BLL\Library.BLL.csproj", "{A688106B-3B09-4A6A-AACE-7C7BF6FEC3DF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.Entities", "Library.Entities\Library.Entities.csproj", "{08BDFCEF-AC3E-43DF-9EC7-22AA743F2F38}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library.Entities", "Library.Entities\Library.Entities.csproj", "{08BDFCEF-AC3E-43DF-9EC7-22AA743F2F38}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.ViewModels", "Library.ViewModels\Library.ViewModels.csproj", "{6F5F52CD-3200-459C-A3D6-DEBB7F87F3BF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library.ViewModels", "Library.ViewModels\Library.ViewModels.csproj", "{6F5F52CD-3200-459C-A3D6-DEBB7F87F3BF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.Shared", "Shared\Library.Shared.csproj", "{7DCD7B2B-52BC-48C6-9290-847C47F127A9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library.Shared", "Shared\Library.Shared.csproj", "{7DCD7B2B-52BC-48C6-9290-847C47F127A9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
