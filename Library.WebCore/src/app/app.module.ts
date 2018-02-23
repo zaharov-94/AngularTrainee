@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {HttpModule} from '@angular/http';
+import { HttpModule } from '@angular/http';
 import { Routes, RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GridModule } from '@progress/kendo-angular-grid';
@@ -39,6 +39,7 @@ const appRoutes: Routes = [
     BrowserModule,
     FormsModule,
     HttpClientModule,
+    HttpModule,
     RouterModule.forRoot(appRoutes),
     BrowserAnimationsModule, GridModule,
     DropDownsModule

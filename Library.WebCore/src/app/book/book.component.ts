@@ -3,8 +3,9 @@ import { BookDataService } from '../services/book.service';
 import { PublicationHouseDataService } from '../services/publicationHouse.service';
 import { Book } from '../models/book.model';
 import { PublicationHouse } from '../models/publicationHouse.model';
-//import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs/Observable';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Http } from '@angular/http';
 
 //import { GridDataResult } from '@progress/kendo-angular-grid';
 import { State, process } from '@progress/kendo-data-query';
@@ -37,7 +38,7 @@ export class BookComponent implements OnInit {
     this.bookDataService.getBooks().subscribe((data: Book[]) => this.books = data);
   }
   load1() {
-    this.publicationHouseDataService.getPublicationHouses().subscribe((data: PublicationHouse[]) => this.publicationHouses = data).unsubscribe();
+    this.publicationHouseDataService.getPublicationHouses().subscribe((data: PublicationHouse[]) => this.publicationHouses = data);
   }
   public removeHandler({ dataItem }) {
     this.bookDataService.deleteBook(dataItem.id).subscribe(data => this.load());;

@@ -1,6 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Book } from '../models/book.model';
+import { Observable } from 'rxjs/Observable';
+import { map } from 'rxjs/operators/map';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
+
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
 
 @Injectable()
 export class BookDataService {

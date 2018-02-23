@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Http } from '@angular/http';
 import { Magazine } from '../models/magazine.model';
+import { Observable } from 'rxjs/Observable';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class MagazineDataService {
@@ -11,7 +13,7 @@ export class MagazineDataService {
     }
 
     getMagazines() {
-        return this.http.get(this.url);
+      return this.http.get(this.url);
     }
 
     getMagazine(id: number) {

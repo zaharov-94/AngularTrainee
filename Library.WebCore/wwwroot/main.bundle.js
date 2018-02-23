@@ -79,20 +79,21 @@ var AppComponent = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__("../../../platform-browser/esm5/platform-browser.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_platform_browser_animations__ = __webpack_require__("../../../platform-browser/esm5/animations.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__progress_kendo_angular_grid__ = __webpack_require__("../../../../@progress/kendo-angular-grid/dist/es/main.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__progress_kendo_angular_dropdowns__ = __webpack_require__("../../../../@progress/kendo-angular-dropdowns/dist/es/main.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_component__ = __webpack_require__("../../../../../src/app/app.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_service__ = __webpack_require__("../../../../../src/app/app.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_forms__ = __webpack_require__("../../../forms/esm5/forms.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__angular_common_http__ = __webpack_require__("../../../common/esm5/http.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__navmenu_navmenu_component__ = __webpack_require__("../../../../../src/app/navmenu/navmenu.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__magazine_magazine_component__ = __webpack_require__("../../../../../src/app/magazine/magazine.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__services_magazine_service__ = __webpack_require__("../../../../../src/app/services/magazine.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__book_book_component__ = __webpack_require__("../../../../../src/app/book/book.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__services_book_service__ = __webpack_require__("../../../../../src/app/services/book.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__services_publicationHouse_service__ = __webpack_require__("../../../../../src/app/services/publicationHouse.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__("../../../http/esm5/http.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_platform_browser_animations__ = __webpack_require__("../../../platform-browser/esm5/animations.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__progress_kendo_angular_grid__ = __webpack_require__("../../../../@progress/kendo-angular-grid/dist/es/main.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__progress_kendo_angular_dropdowns__ = __webpack_require__("../../../../@progress/kendo-angular-dropdowns/dist/es/main.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_component__ = __webpack_require__("../../../../../src/app/app.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__app_service__ = __webpack_require__("../../../../../src/app/app.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__angular_forms__ = __webpack_require__("../../../forms/esm5/forms.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__angular_common_http__ = __webpack_require__("../../../common/esm5/http.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__navmenu_navmenu_component__ = __webpack_require__("../../../../../src/app/navmenu/navmenu.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__magazine_magazine_component__ = __webpack_require__("../../../../../src/app/magazine/magazine.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__services_magazine_service__ = __webpack_require__("../../../../../src/app/services/magazine.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__book_book_component__ = __webpack_require__("../../../../../src/app/book/book.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__services_book_service__ = __webpack_require__("../../../../../src/app/services/book.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__services_publicationHouse_service__ = __webpack_require__("../../../../../src/app/services/publicationHouse.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -115,11 +116,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+
 // определение маршрутов
 var appRoutes = [
     { path: '', redirectTo: 'book', pathMatch: 'full' },
-    { path: 'book', component: __WEBPACK_IMPORTED_MODULE_13__book_book_component__["a" /* BookComponent */] },
-    { path: 'magazine', component: __WEBPACK_IMPORTED_MODULE_11__magazine_magazine_component__["a" /* MagazineComponent */] }
+    { path: 'book', component: __WEBPACK_IMPORTED_MODULE_14__book_book_component__["a" /* BookComponent */] },
+    { path: 'magazine', component: __WEBPACK_IMPORTED_MODULE_12__magazine_magazine_component__["a" /* MagazineComponent */] }
 ];
 var AppModule = /** @class */ (function () {
     function AppModule() {
@@ -127,21 +129,22 @@ var AppModule = /** @class */ (function () {
     AppModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["J" /* NgModule */])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_6__app_component__["a" /* AppComponent */],
-                __WEBPACK_IMPORTED_MODULE_10__navmenu_navmenu_component__["a" /* NavMenuComponent */],
-                __WEBPACK_IMPORTED_MODULE_13__book_book_component__["a" /* BookComponent */],
-                __WEBPACK_IMPORTED_MODULE_11__magazine_magazine_component__["a" /* MagazineComponent */]
+                __WEBPACK_IMPORTED_MODULE_7__app_component__["a" /* AppComponent */],
+                __WEBPACK_IMPORTED_MODULE_11__navmenu_navmenu_component__["a" /* NavMenuComponent */],
+                __WEBPACK_IMPORTED_MODULE_14__book_book_component__["a" /* BookComponent */],
+                __WEBPACK_IMPORTED_MODULE_12__magazine_magazine_component__["a" /* MagazineComponent */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
-                __WEBPACK_IMPORTED_MODULE_8__angular_forms__["c" /* FormsModule */],
-                __WEBPACK_IMPORTED_MODULE_9__angular_common_http__["b" /* HttpClientModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* RouterModule */].forRoot(appRoutes),
-                __WEBPACK_IMPORTED_MODULE_3__angular_platform_browser_animations__["a" /* BrowserAnimationsModule */], __WEBPACK_IMPORTED_MODULE_4__progress_kendo_angular_grid__["a" /* GridModule */],
-                __WEBPACK_IMPORTED_MODULE_5__progress_kendo_angular_dropdowns__["d" /* DropDownsModule */]
+                __WEBPACK_IMPORTED_MODULE_9__angular_forms__["c" /* FormsModule */],
+                __WEBPACK_IMPORTED_MODULE_10__angular_common_http__["b" /* HttpClientModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* HttpModule */],
+                __WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* RouterModule */].forRoot(appRoutes),
+                __WEBPACK_IMPORTED_MODULE_4__angular_platform_browser_animations__["a" /* BrowserAnimationsModule */], __WEBPACK_IMPORTED_MODULE_5__progress_kendo_angular_grid__["a" /* GridModule */],
+                __WEBPACK_IMPORTED_MODULE_6__progress_kendo_angular_dropdowns__["d" /* DropDownsModule */]
             ],
-            providers: [__WEBPACK_IMPORTED_MODULE_7__app_service__["a" /* AppService */], __WEBPACK_IMPORTED_MODULE_14__services_book_service__["a" /* BookDataService */], __WEBPACK_IMPORTED_MODULE_12__services_magazine_service__["a" /* MagazineDataService */], __WEBPACK_IMPORTED_MODULE_15__services_publicationHouse_service__["a" /* PublicationHouseDataService */]],
-            bootstrap: [__WEBPACK_IMPORTED_MODULE_6__app_component__["a" /* AppComponent */]]
+            providers: [__WEBPACK_IMPORTED_MODULE_8__app_service__["a" /* AppService */], __WEBPACK_IMPORTED_MODULE_15__services_book_service__["a" /* BookDataService */], __WEBPACK_IMPORTED_MODULE_13__services_magazine_service__["a" /* MagazineDataService */], __WEBPACK_IMPORTED_MODULE_16__services_publicationHouse_service__["a" /* PublicationHouseDataService */]],
+            bootstrap: [__WEBPACK_IMPORTED_MODULE_7__app_component__["a" /* AppComponent */]]
         })
     ], AppModule);
     return AppModule;
@@ -499,7 +502,9 @@ var NavMenuComponent = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BookDataService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__("../../../common/esm5/http.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/esm5/http.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/map.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_catch__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/catch.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -511,13 +516,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
+
 var BookDataService = /** @class */ (function () {
     function BookDataService(http) {
         this.http = http;
         this.url = "/api/books";
     }
     BookDataService.prototype.getBooks = function () {
-        return this.http.get(this.url);
+        return this.http.get(this.url)
+            .map(function (response) { return response.json(); });
     };
     BookDataService.prototype.getBook = function (id) {
         return this.http.get(this.url + '/' + id);
@@ -533,7 +541,7 @@ var BookDataService = /** @class */ (function () {
     };
     BookDataService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */]])
     ], BookDataService);
     return BookDataService;
 }());
@@ -548,7 +556,7 @@ var BookDataService = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MagazineDataService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__("../../../common/esm5/http.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/esm5/http.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -566,7 +574,8 @@ var MagazineDataService = /** @class */ (function () {
         this.url = "/api/magazines";
     }
     MagazineDataService.prototype.getMagazines = function () {
-        return this.http.get(this.url);
+        return this.http.get(this.url)
+            .map(function (response) { return response.json(); });
     };
     MagazineDataService.prototype.getMagazine = function (id) {
         return this.http.get(this.url + '/' + id);
@@ -582,7 +591,7 @@ var MagazineDataService = /** @class */ (function () {
     };
     MagazineDataService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */]])
     ], MagazineDataService);
     return MagazineDataService;
 }());
