@@ -21,7 +21,8 @@ namespace Library.BLL.Services
 
         public IEnumerable<BookViewModel> GetAllBook()
         {
-            return Mapper.Map<IEnumerable<Book>, IEnumerable<BookViewModel>>(_unitOfWork.Book.GetAll());
+            IEnumerable<BookViewModel> list = Mapper.Map<IEnumerable<Book>, IEnumerable<BookViewModel>>(_unitOfWork.Book.GetAll());
+            return list;
         }
 
         public IEnumerable<PublicationHouseViewModel> GetAllPublicationHouses()

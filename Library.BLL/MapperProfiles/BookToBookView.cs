@@ -14,7 +14,7 @@ namespace Library.BLL.MapperProfiles
         {
             CreateMap<Book, BookViewModel>()
                     .ForMember(dest => dest.PublicationHouses, opt => opt.MapFrom(src => src.PublicationHouseBooks.Select(x => x.PublicationHouse)));
-            CreateMap<PublicationHouse, PublicationHouseViewModel>();
+            //CreateMap<PublicationHouse, PublicationHouseViewModel>();
         }
     }
 }
