@@ -1,0 +1,47 @@
+<h2>Magazines</h2>
+<form novalidate #myForm="ngForm">
+
+  <kendo-grid 
+              [kendoGridBinding]="magazines"
+              [height]="500"
+              [pageable]="true"
+              [sortable]="true"
+              [navigable]="true"
+              [pageSize]="gridState.take" [skip]="gridState.skip" [sort]="gridState.sort"
+              (remove)="removeHandler($event)"
+              (dataStateChange)="onStateChange($event)"
+              (edit)="editHandler($event)"
+              (cancel)="cancelHandler($event)"
+              (save)="saveHandler($event)" 
+              (add)="addHandler($event)"
+              >
+    <ng-template kendoGridToolbarTemplate>
+      <button kendoGridAddCommand type="button">Add new</button>
+    </ng-template>
+    <kendo-grid-column field="name" title="Magazine Name">
+      <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+        <input [(ngModel)]="dataItem.name" kendoGridFocusable name="MagazineName" required class="k-textbox"  />
+      </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="number" editor="numeric" title="Number">
+      <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+        <input [(ngModel)]="dataItem.number" kendoGridFocusable name="Number" required min="0" 
+               max="999"  type="number" class="k-textbox" />
+      </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="yearOfPublishing" editor="numeric" title="Year of Publishing">
+      <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+        <input [(ngModel)]="dataItem.yearOfPublishing" kendoGridFocusable required min="1900"
+               max="2020" class="k-textbox" name="Year" type="number"/>
+      </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-command-column title="" width="220">
+      <ng-template kendoGridCellTemplate let-isNew="isNew">
+        <button kendoGridEditCommand type="button" class="k-primary">Edit</button>
+        <button kendoGridRemoveCommand type="button">Remove</button>
+        <button kendoGridSaveCommand type="button" [disabled]="myForm.invalid">{{ isNew ? 'Add' : 'Update' }}</button>
+        <button kendoGridCancelCommand type="button">{{ isNew ? 'Discard changes' : 'Cancel' }}</button>
+      </ng-template>
+    </kendo-grid-command-column>
+  </kendo-grid>
+</form>

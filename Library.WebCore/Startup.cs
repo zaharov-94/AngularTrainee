@@ -1,3 +1,5 @@
+using AutoMapper;
+using Library.BLL.MapperProfiles;
 using Library.BLL.Services;
 using Library.DAL.Context;
 using Library.Entities.Entities.Identity;
@@ -19,12 +21,19 @@ namespace Library.WebCore
         public Startup(IConfiguration configuration)
         {
           Configuration = configuration;
+          
         }
 
         public IConfiguration Configuration { get; }
 
         public void ConfigureServices(IServiceCollection services)
         {
+            Mapper.Initialize(cfg =>
+            {
+              cfg.AddProfile<BookToBookView>();
+              cfg.AddProfile<BookViewToBook>();
+              cfg.AddProfile<PublicationHouseToPublicationHouseView>();
+            });
             services.AddDbContext<ApplicationContext>(options =>
                       options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddTransient<BookService>();

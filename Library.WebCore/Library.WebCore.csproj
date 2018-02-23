@@ -7,8 +7,9 @@
 
   <ItemGroup>
     <None Remove="src\app\app.service.ts" />
-    <None Remove="src\app\kendo\kendo.component.ts" />
-    <None Remove="src\app\kendo\products.ts" />
+    <None Remove="src\app\book\book.component.ts" />
+    <None Remove="src\app\magazine\magazine.component.ts" />
+    <None Remove="src\app\models\publicationHouse.model.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -33,8 +34,9 @@
 
   <ItemGroup>
     <TypeScriptCompile Include="src\app\app.service.ts" />
-    <TypeScriptCompile Include="src\app\kendo\kendo.component.ts" />
-    <TypeScriptCompile Include="src\app\kendo\products.ts" />
+    <TypeScriptCompile Include="src\app\book\book.component.ts" />
+    <TypeScriptCompile Include="src\app\magazine\magazine.component.ts" />
+    <TypeScriptCompile Include="src\app\models\publicationHouse.model.ts" />
   </ItemGroup>
 
 </Project>
