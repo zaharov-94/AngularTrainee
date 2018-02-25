@@ -21,8 +21,8 @@ namespace Library.BLL.Services
         public IEnumerable<PublicationHouseViewModel> GetAll()
         {
             List<PublicationHouse> publicationHouseList = _unitOfWork.PublicationHouse.GetAll().ToList();
-            Mapper.Reset();
-            Mapper.Initialize(cfg => cfg.CreateMap<PublicationHouse, PublicationHouseViewModel>());
+            //Mapper.Reset();
+            //Mapper.Initialize(cfg => cfg.CreateMap<PublicationHouse, PublicationHouseViewModel>());
             return Mapper.Map<List<PublicationHouse>, IEnumerable<PublicationHouseViewModel>>(publicationHouseList);
         }
 
@@ -34,8 +34,8 @@ namespace Library.BLL.Services
         public PublicationHouseViewModel GetById(int id)
         {
             PublicationHouse publicationHouse = _unitOfWork.PublicationHouse.FindById(id);
-            Mapper.Reset();
-            Mapper.Initialize(cfg => cfg.CreateMap<PublicationHouse, PublicationHouseViewModel>());
+            //Mapper.Reset();
+            //Mapper.Initialize(cfg => cfg.CreateMap<PublicationHouse, PublicationHouseViewModel>());
             return Mapper.Map<PublicationHouse, PublicationHouseViewModel>(publicationHouse);
         }
 
@@ -50,8 +50,6 @@ namespace Library.BLL.Services
 
         private PublicationHouse ToPublicationHouse(PublicationHouseViewModel publicationHouseViewModel)
         {
-            Mapper.Reset();
-            Mapper.Initialize(cfg => cfg.CreateMap<PublicationHouseViewModel, PublicationHouse>());
             return Mapper.Map<PublicationHouseViewModel, PublicationHouse>(publicationHouseViewModel);
         }
 

@@ -13,8 +13,8 @@ namespace Library.BLL.MapperProfiles
         public BookToBookView()
         {
             CreateMap<Book, BookViewModel>()
-                    .ForMember(dest => dest.PublicationHouses, opt => opt.MapFrom(src => src.PublicationHouseBooks.Select(x => x.PublicationHouse)));
-            //CreateMap<PublicationHouse, PublicationHouseViewModel>();
+                    .ForMember(dest => dest.PublicationHouses, opt => opt.MapFrom(src => src.PublicationHouseBooks.Select(x => x.PublicationHouse))).ReverseMap();
+            CreateMap<PublicationHouse, PublicationHouseViewModel>().ReverseMap();
         }
     }
 }

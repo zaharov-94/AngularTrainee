@@ -5,7 +5,6 @@ import { Book } from '../models/book.model';
 import { PublicationHouse } from '../models/publicationHouse.model';
 import { Observable } from 'rxjs/Observable';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Http } from '@angular/http';
 
 //import { GridDataResult } from '@progress/kendo-angular-grid';
 import { State, process } from '@progress/kendo-data-query';
@@ -31,19 +30,20 @@ export class BookComponent implements OnInit {
 
   ngOnInit() {
     this.load();
-    //this.load1();
   }
 
   load() {
-    this.bookDataService.getBooks().subscribe((data: Book[]) => this.books = data);
-  }
-  load1() {
-    this.publicationHouseDataService.getPublicationHouses().subscribe((data: PublicationHouse[]) => this.publicationHouses = data);
+      this.bookDataService.getBooks().subscribe((data: Book[]) => this.books = data);
+      this.publicationHouseDataService.getPublicationHouses().subscribe((data: PublicationHouse[]) => this.publicationHouses = data);
   }
   public removeHandler({ dataItem }) {
     this.bookDataService.deleteBook(dataItem.id).subscribe(data => this.load());;
   }
-
+  public pubHouses(id: number): string[] {
+      return this.books.find(x => x.id === id).publicationHouses.map(function (pubHouse) {
+          return pubHouse.name;
+      });;
+  }
   public onStateChange(state: State) {
     this.gridState = state;
 

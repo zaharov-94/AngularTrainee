@@ -32,11 +32,13 @@
                max="2020" class="k-textbox" name="Year" type="number" />
       </ng-template>
     </kendo-grid-column>
-    <kendo-grid-column field="publicationHouse" editor="multiselect" title="Publication houses">
-      <ng-template kendoGridEditTemplate let-dataItem="dataItem">
-        <kendo-multiselect [data]="publicationHouses" [valueField]="'id'" [textField]="'name'" [valuePrimitive]="false" [(ngModel)]="dataItem.publicationHouses"></kendo-multiselect>
-        <!--<input [(ngModel)]="dataItem.publicationHouses" kendoGridFocusable required class="k-textbox" name="PublicationHouses" type="text" />-->
-      </ng-template>
+    <kendo-grid-column field="publicationHouses" editor="multiSelectEditor" title="Publication houses">
+        <ng-template kendoGridCellTemplate let-dataItem>
+            {{pubHouses(dataItem.id)}}
+        </ng-template>
+        <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+            <kendo-multiselect [data]="publicationHouses" [valueField]="'id'" [textField]="'name'" [(ngModel)]="dataItem.publicationHouses"></kendo-multiselect>
+        </ng-template>
     </kendo-grid-column>
     <kendo-grid-command-column title="" width="220">
       <ng-template kendoGridCellTemplate let-isNew="isNew">

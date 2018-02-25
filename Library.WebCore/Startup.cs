@@ -28,22 +28,25 @@ namespace Library.WebCore
 
         public void ConfigureServices(IServiceCollection services)
         {
+            
+            services.AddMvc();
+            Mapper.Reset();
             Mapper.Initialize(cfg =>
             {
-              cfg.AddProfile<BookToBookView>();
-              cfg.AddProfile<BookViewToBook>();
-              cfg.AddProfile<PublicationHouseToPublicationHouseView>();
+                cfg.AddProfile<BookToBookView>();
+                cfg.AddProfile<BookViewToBook>();
+                cfg.AddProfile<PublicationHouseToPublicationHouseView>();
+                cfg.AddProfile<PublicationHouseViewToPublicationHouse>();
             });
             services.AddDbContext<ApplicationContext>(options =>
                       options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddTransient<BookService>();
-            services.AddTransient<BrochureService>();
+            //services.AddTransient<BrochureService>();
             services.AddTransient<PublicationHouseService>();
-            services.AddTransient<PublicationService>();
-            services.AddTransient<MagazineService>();
+            //services.AddTransient<PublicationService>();
+            //services.AddTransient<MagazineService>();
             services.AddIdentity<ApplicationUser, IdentityRole>()
                   .AddEntityFrameworkStores<ApplicationContext>();
-            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
