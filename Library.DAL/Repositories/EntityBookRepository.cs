@@ -51,10 +51,8 @@ namespace Library.DAL.Repositories
         {
             try
             {
-                Mapper.Reset();
-                Mapper.Initialize(cfg => cfg.CreateMap<Book, Book>()
-                .ForMember(x=>x.PublicationHouseBooks, p=>p.UseValue(new List<PublicationHouseBook>())));
                 Book entity = Mapper.Map<Book, Book>(item);
+                entity.PublicationHouseBooks = new List<PublicationHouseBook>();
                 _context.Books.Add(entity);
                 _context.SaveChanges();
 
@@ -84,6 +82,7 @@ namespace Library.DAL.Repositories
 
                 foreach (var prop in item.PublicationHouseBooks)
                 {
+                    prop.BookId = item.Id;
                     prop.Book = _context.Books.Find(item.Id);
                     prop.PublicationHouse = _context.PublicationHouses.Find(prop.PublicationHouseId);
                     prop.Id = _context.Books.Find(item.Id).PublicationHouseBooks

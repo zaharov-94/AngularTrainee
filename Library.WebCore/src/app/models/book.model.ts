@@ -5,5 +5,5 @@ export class Book {
   public name: string;
   public author: string;
   public yearOfPublishing: string;
-  public publicationHouses: PublicationHouse[];
+  public publicationHouses?: PublicationHouse[];
 }

@@ -39,10 +39,13 @@ export class BookComponent implements OnInit {
   public removeHandler({ dataItem }) {
     this.bookDataService.deleteBook(dataItem.id).subscribe(data => this.load());;
   }
-  public pubHouses(id: number): string[] {
-      return this.books.find(x => x.id === id).publicationHouses.map(function (pubHouse) {
-          return pubHouse.name;
-      });;
+  public pubHouses(id?: number): string[] {
+      if (id != null) {
+          return this.books.find(x => x.id === id).publicationHouses.map(function (pubHouse) {
+              return pubHouse.name;
+          });;
+      }
+      return new Array<string>();
   }
   public onStateChange(state: State) {
     this.gridState = state;
@@ -51,9 +54,8 @@ export class BookComponent implements OnInit {
   }
 
   public addHandler({ sender }) {
-    this.closeEditor(sender);
-
-    sender.addRow(new Book());
+      this.closeEditor(sender);
+      sender.addRow(new Book());
   }
 
   public editHandler({ sender, rowIndex, dataItem }) {

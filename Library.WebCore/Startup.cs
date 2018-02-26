@@ -35,6 +35,7 @@ namespace Library.WebCore
             {
                 cfg.AddProfile<BookToBookView>();
                 cfg.AddProfile<BookViewToBook>();
+                cfg.AddProfile<BookToBook>();
                 cfg.AddProfile<PublicationHouseToPublicationHouseView>();
                 cfg.AddProfile<PublicationHouseViewToPublicationHouse>();
             });
