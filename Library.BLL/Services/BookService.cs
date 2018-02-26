@@ -19,27 +19,30 @@ namespace Library.BLL.Services
             _unitOfWork = new UnitOfWork(context);
         }
 
-        public IEnumerable<BookViewModel> GetAllBook()
+        public IEnumerable<BookViewModel> GetAll()
         {
-            IEnumerable<Book> list = _unitOfWork.Book.GetAll().ToList();
-            return Mapper.Map<IEnumerable<Book>, IEnumerable<BookViewModel>>(list);
-        }
-
-        public IEnumerable<PublicationHouseViewModel> GetAllPublicationHouses()
-        {
-            List<PublicationHouseViewModel> listViewModel = Mapper.Map<IEnumerable<PublicationHouse>, List<PublicationHouseViewModel>>(_unitOfWork.PublicationHouse.GetAll().ToList());
-            return listViewModel;
+            var list = _unitOfWork.PublicationHouseBook.GetAll().GroupBy(x => x.Book);
+            return Mapper.Map<IEnumerable<IGrouping<Book, PublicationHouseBook>>, IEnumerable<BookViewModel>>(list);
         }
 
         public void Add(BookViewModel bookViewModel)
         {
             Book book = Mapper.Map<BookViewModel, Book>(bookViewModel);
             _unitOfWork.Book.Add(book);
+
+            foreach(var item in bookViewModel.PublicationHouses)
+            {
+                PublicationHouseBook ph = new PublicationHouseBook();
+                ph.PublicationHouse = _unitOfWork.PublicationHouse.FindById(item.Id);
+                ph.Book = _unitOfWork.Book.GetAll().Last();
+                ph.Id = 0;
+                _unitOfWork.PublicationHouseBook.Add(ph);
+            }
         }
 
-        public BookViewModel GetBookById(int id)
+        public BookViewModel GetById(int id)
         {
-            return Mapper.Map<Book, BookViewModel>(_unitOfWork.Book.FindById(id));
+            return GetAll().Where(x => x.Id == id).Single();
         }
 
         public void Edit(BookViewModel bookViewModel)
@@ -48,7 +51,7 @@ namespace Library.BLL.Services
             _unitOfWork.Book.Update(book);
         }
 
-        public void DeleteBook(int id)
+        public void Delete(int id)
         {
             _unitOfWork.Book.Remove(id);
         }

@@ -119,7 +119,7 @@ namespace Library.DAL.Repositories
             if (!repositories.ContainsKey(type))
             {
                 var repositoryType = typeof(EntityRepository<>);
-                if (typeof(T) == typeof(Book))
+                if (typeof(T) == typeof(PublicationHouseBook))
                 {
                     repositoryType = typeof(EntityBookRepository<>);
                 }

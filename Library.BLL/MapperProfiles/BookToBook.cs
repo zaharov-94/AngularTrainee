@@ -12,8 +12,8 @@ namespace Library.BLL.MapperProfiles
     {
         public BookToBook()
         {
-            CreateMap<Book, Book>()
-            .ForMember(x=>x.PublicationHouseBooks, p=>p.UseValue(new List<PublicationHouseBook>()));
+            //CreateMap<Book, Book>()
+            //.ForMember(x=>x.PublicationHouseBooks, p=>p.UseValue(new List<PublicationHouseBook>()));
         }
     }
 }

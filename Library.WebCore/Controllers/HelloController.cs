@@ -19,12 +19,7 @@ namespace hello_world
             _userManager = userManager;
             _signInManager = signInManager;
             _bookService = bookService;
-            IEnumerable<BookViewModel> brochureViewModel = _bookService.GetAllBook();
-            BookViewModel viewModel = _bookService.GetBookById(2);
-            viewModel.Id = 0;
-            viewModel.PublicationHouses.Clear();
-            viewModel.PublicationHouses.Add(new PublicationHouseViewModel {Id = 3, Address="dff", Name="ff" });
-            _bookService.Add(viewModel);
+            
         }
 
         [HttpGet]

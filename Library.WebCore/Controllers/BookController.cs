@@ -19,13 +19,13 @@ namespace Library.WebCore.Controllers
     [HttpGet]
     public IEnumerable<BookViewModel> Get()
     {
-      return _bookService.GetAllBook();
+      return _bookService.GetAll();
     }
 
     [HttpGet("{id}")]
     public BookViewModel Get(int id)
     {
-      BookViewModel book = _bookService.GetBookById(id);
+      BookViewModel book = _bookService.GetById(id);
       return book;
     }
 
@@ -54,8 +54,8 @@ namespace Library.WebCore.Controllers
     [HttpDelete("{id}")]
     public IActionResult Delete(int id)
     {
-      BookViewModel book = _bookService.GetBookById(id);
-      _bookService.DeleteBook(id);
+      BookViewModel book = _bookService.GetById(id);
+      _bookService.Delete(id);
       return Ok(book);
     }
   }

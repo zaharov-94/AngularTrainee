@@ -14,6 +14,6 @@ namespace Library.Entities.Entities
         [Required]
         public int YearOfPublishing { get; set; }
 
-        public virtual ICollection<PublicationHouseBook> PublicationHouseBooks { get; set; }
+        //public virtual ICollection<PublicationHouseBook> PublicationHouseBooks { get; set; }
     }
 }

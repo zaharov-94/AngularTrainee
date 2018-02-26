@@ -10,6 +10,6 @@ namespace Library.Entities.Entities
         [Required]
         public string Address { get; set; }
 
-        public virtual ICollection<PublicationHouseBook> PublicationHouseBooks { get; set; }
+        //public virtual ICollection<PublicationHouseBook> PublicationHouseBooks { get; set; }
     }
 }

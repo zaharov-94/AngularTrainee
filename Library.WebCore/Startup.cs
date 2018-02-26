@@ -33,7 +33,7 @@ namespace Library.WebCore
             Mapper.Reset();
             Mapper.Initialize(cfg =>
             {
-                cfg.AddProfile<BookToBookView>();
+                cfg.AddProfile<GroupingBookToBookView>();
                 cfg.AddProfile<BookViewToBook>();
                 cfg.AddProfile<BookToBook>();
                 cfg.AddProfile<PublicationHouseToPublicationHouseView>();
