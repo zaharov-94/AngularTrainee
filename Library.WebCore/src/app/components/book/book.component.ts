@@ -1,8 +1,8 @@
 import { Component, OnInit, Inject  } from '@angular/core';
-import { BookDataService } from '../services/book.service';
-import { PublicationHouseDataService } from '../services/publicationHouse.service';
-import { Book } from '../models/book.model';
-import { PublicationHouse } from '../models/publicationHouse.model';
+import { BookDataService } from '../../services/book.service';
+import { PublicationHouseDataService } from '../../services/publicationHouse.service';
+import { Book } from '../../models/book.model';
+import { PublicationHouse } from '../../models/publicationHouse.model';
 import { Observable } from 'rxjs/Observable';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 

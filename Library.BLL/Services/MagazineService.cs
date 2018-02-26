@@ -20,8 +20,6 @@ namespace Library.BLL.Services
         public IEnumerable<MagazineViewModel> GetAll()
         {
             List<Magazine> magazinesList = _unitOfWork.Magazine.GetAll().ToList();
-            Mapper.Reset();
-            Mapper.Initialize(cfg => cfg.CreateMap<Magazine, MagazineViewModel>());
             return Mapper.Map<List<Magazine>, IEnumerable<MagazineViewModel>>(magazinesList);
         }
 
@@ -33,8 +31,6 @@ namespace Library.BLL.Services
         public MagazineViewModel GetById(int id)
         {
             Magazine magazine = _unitOfWork.Magazine.FindById(id);
-            Mapper.Reset();
-            Mapper.Initialize(cfg => cfg.CreateMap<Magazine, MagazineViewModel>());
             return Mapper.Map<Magazine, MagazineViewModel>(magazine);
         }
 
@@ -49,8 +45,6 @@ namespace Library.BLL.Services
 
         private Magazine ToMagazine(MagazineViewModel magazineViewModel)
         {
-            Mapper.Reset();
-            Mapper.Initialize(cfg => cfg.CreateMap<MagazineViewModel, Magazine>());
             return Mapper.Map<MagazineViewModel, Magazine>(magazineViewModel);
         }
     }

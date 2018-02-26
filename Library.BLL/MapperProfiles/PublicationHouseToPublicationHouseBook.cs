@@ -8,12 +8,12 @@ using System.Text;
 
 namespace Library.BLL.MapperProfiles
 {
-    public class BookViewToBook : Profile
+    public class PublicationHouseToPublicationHouseBook : Profile
     {
-        public BookViewToBook()
+        public PublicationHouseToPublicationHouseBook()
         {
             CreateMap<PublicationHouseViewModel, PublicationHouseBook>()
-                .ForMember(memb => memb.PublicationHouse, dest => dest.MapFrom(x => x));
+                .ForMember(memb => memb.PublicationHouse, dest => dest.MapFrom(x => x)).ReverseMap();
         }
     }
 }

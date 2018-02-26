@@ -14,7 +14,7 @@
                 (save)="saveHandler($event)"
                 (add)="addHandler($event)">
         <ng-template kendoGridToolbarTemplate>
-            <button kendoGridAddCommand type="button">Add new</button>
+            <button kendoGridAddCommand type="button" [primary]="true">Add new</button>
         </ng-template>
         <kendo-grid-column field="name" title="Book Title">
             <ng-template kendoGridEditTemplate let-dataItem="dataItem">
@@ -42,10 +42,10 @@
         </kendo-grid-column>
         <kendo-grid-command-column title="" width="220">
             <ng-template kendoGridCellTemplate let-isNew="isNew">
-                <button kendoGridEditCommand type="button" class="k-primary">Edit</button>
-                <button kendoGridRemoveCommand type="button">Remove</button>
-                <button kendoGridSaveCommand type="button" [disabled]="myForm.invalid">{{ isNew ? 'Add' : 'Update' }}</button>
-                <button kendoGridCancelCommand type="button">{{ isNew ? 'Discard changes' : 'Cancel' }}</button>
+                <button kendoGridEditCommand type="button" class="k-primary" [primary]="true">Edit</button>
+                <button kendoGridRemoveCommand type="button" [primary]="true">Remove</button>
+                <button kendoGridSaveCommand type="button" [disabled]="myForm.invalid" [primary]="true">{{ isNew ? 'Add' : 'Update' }}</button>
+                <button kendoGridCancelCommand type="button" [primary]="true">{{ isNew ? 'Discard changes' : 'Cancel' }}</button>
             </ng-template>
         </kendo-grid-command-column>
     </kendo-grid>

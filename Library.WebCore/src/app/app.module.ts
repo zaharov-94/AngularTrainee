@@ -4,27 +4,35 @@ import { Routes, RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GridModule } from '@progress/kendo-angular-grid';
 import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
-import { AppComponent } from './app.component';
-import { AppService } from './app.service';
+import { AppComponent } from './components/app.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
+import { NavMenuComponent } from './components/navmenu/navmenu.component';
 
-import { NavMenuComponent } from './navmenu/navmenu.component';
-
-import { MagazineComponent } from './magazine/magazine.component';
+import { MagazineComponent } from './components/magazine/magazine.component';
 import { MagazineDataService } from './services/magazine.service';
 
-import { BookComponent } from './book/book.component';
+import { BookComponent } from './components/book/book.component';
 import { BookDataService } from './services/book.service';
 
+import { PublicationHouseComponent } from './components/publicationHouse/publicationHouse.component';
 import { PublicationHouseDataService } from './services/publicationHouse.service';
+
+import { PublicationComponent } from './components/publication/publication.component';
+import { PublicationDataService } from './services/publication.service';
+
+import { BrochureComponent } from './components/brochure/brochure.component';
+import { BrochureDataService } from './services/brochure.service';
 
 // определение маршрутов
 const appRoutes: Routes = [
-  { path: '', redirectTo: 'book', pathMatch: 'full' },
+  { path: '', redirectTo: 'publication', pathMatch: 'full' },
   { path: 'book', component: BookComponent },
-  { path: 'magazine', component: MagazineComponent }
+  { path: 'brochure', component: BrochureComponent },
+  { path: 'magazine', component: MagazineComponent },
+  { path: 'publicationhouse', component: PublicationHouseComponent },
+  { path: 'publication', component: PublicationComponent }
 ];
 
 @NgModule({
@@ -32,7 +40,10 @@ const appRoutes: Routes = [
     AppComponent,
     NavMenuComponent,
     BookComponent,
-    MagazineComponent
+    MagazineComponent,
+    PublicationHouseComponent,
+    PublicationComponent,
+    BrochureComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +53,8 @@ const appRoutes: Routes = [
     BrowserAnimationsModule, GridModule,
     DropDownsModule
   ],
-  providers: [AppService, BookDataService, MagazineDataService, PublicationHouseDataService],
+  providers: [BookDataService, MagazineDataService, PublicationHouseDataService,
+      PublicationDataService, BrochureDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

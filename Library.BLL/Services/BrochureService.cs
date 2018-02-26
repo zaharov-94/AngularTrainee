@@ -23,8 +23,6 @@ namespace Library.BLL.Services
         public IEnumerable<BrochureViewModel> GetAll()
         {
             List<Brochure> brochuresList = _unitOfWork.Brochure.GetAll().ToList();
-            Mapper.Reset();
-            Mapper.Initialize(cfg => cfg.CreateMap<Brochure, BrochureViewModel>());
             return Mapper.Map<List<Brochure>, IEnumerable<BrochureViewModel>>(brochuresList);
         }
 
@@ -36,8 +34,6 @@ namespace Library.BLL.Services
         public BrochureViewModel GetById(int id)
         {
             Brochure brochure = _unitOfWork.Brochure.FindById(id);
-            Mapper.Reset();
-            Mapper.Initialize(cfg => cfg.CreateMap<Brochure, BrochureViewModel>());
             return Mapper.Map<Brochure, BrochureViewModel>(brochure);
         }
 
@@ -52,8 +48,6 @@ namespace Library.BLL.Services
         }
         private Brochure ToBrochure(BrochureViewModel brochureViewModel)
         {
-            Mapper.Reset();
-            Mapper.Initialize(cfg => cfg.CreateMap<BrochureViewModel, Brochure>());
             return Mapper.Map<BrochureViewModel, Brochure>(brochureViewModel);
         }
     }

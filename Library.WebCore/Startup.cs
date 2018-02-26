@@ -34,18 +34,15 @@ namespace Library.WebCore
             Mapper.Initialize(cfg =>
             {
                 cfg.AddProfile<GroupingBookToBookView>();
-                cfg.AddProfile<BookViewToBook>();
-                cfg.AddProfile<BookToBook>();
-                cfg.AddProfile<PublicationHouseToPublicationHouseView>();
-                cfg.AddProfile<PublicationHouseViewToPublicationHouse>();
+                cfg.AddProfile<PublicationHouseToPublicationHouseBook>();
             });
             services.AddDbContext<ApplicationContext>(options =>
                       options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddTransient<BookService>();
-            //services.AddTransient<BrochureService>();
+            services.AddTransient<BrochureService>();
             services.AddTransient<PublicationHouseService>();
-            //services.AddTransient<PublicationService>();
-            //services.AddTransient<MagazineService>();
+            services.AddTransient<PublicationService>();
+            services.AddTransient<MagazineService>();
             services.AddIdentity<ApplicationUser, IdentityRole>()
                   .AddEntityFrameworkStores<ApplicationContext>();
         }

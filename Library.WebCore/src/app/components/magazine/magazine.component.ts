@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject  } from '@angular/core';
-import { MagazineDataService } from '../services/magazine.service';
-import { Magazine } from '../models/magazine.model';
+import { MagazineDataService } from '../../services/magazine.service';
+import { Magazine } from '../../models/magazine.model';
 //import { Observable } from 'rxjs/Observable';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 

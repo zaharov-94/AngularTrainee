@@ -5,3 +5,9 @@ app-root > .k-icon.k-i-loading {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+.k-widget,
+.k-button,
+.ng-star-inserted,
+.k-textbox {
+    font-size: 1.2rem;
+}

@@ -3,12 +3,15 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <TypeScriptToolsVersion>2.5</TypeScriptToolsVersion>
+    <UserSecretsId>e2156f5e-dc70-47e5-9481-1cbf99b6ce27</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="src\app\app.service.ts" />
-    <None Remove="src\app\book\book.component.ts" />
-    <None Remove="src\app\magazine\magazine.component.ts" />
+    <None Remove="src\app\components\book\book.component.ts" />
+    <None Remove="src\app\components\magazine - Copy (2)\brochure.component.ts" />
+    <None Remove="src\app\components\magazine - Copy (3)\magazine.component.ts" />
+    <None Remove="src\app\components\magazine\magazine.component.ts" />
+    <None Remove="src\app\components\publicationHouse\publicationHouse.component.ts" />
     <None Remove="src\app\models\publicationHouse.model.ts" />
   </ItemGroup>
 
@@ -33,9 +36,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <TypeScriptCompile Include="src\app\app.service.ts" />
-    <TypeScriptCompile Include="src\app\book\book.component.ts" />
-    <TypeScriptCompile Include="src\app\magazine\magazine.component.ts" />
+    <TypeScriptCompile Include="src\app\components\book\book.component.ts" />
+    <TypeScriptCompile Include="src\app\components\brochure\brochure.component.ts" />
+    <TypeScriptCompile Include="src\app\components\publication\publication.component.ts" />
+    <TypeScriptCompile Include="src\app\components\publicationHouse\publicationHouse.component.ts" />
+    <TypeScriptCompile Include="src\app\components\magazine\magazine.component.ts" />
     <TypeScriptCompile Include="src\app\models\publicationHouse.model.ts" />
   </ItemGroup>
 

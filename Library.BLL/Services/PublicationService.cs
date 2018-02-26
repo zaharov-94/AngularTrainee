@@ -22,8 +22,6 @@ namespace Library.BLL.Services
         
         public IEnumerable<PublicationViewModel> GetAll()
         {
-            Mapper.Reset();
-            Mapper.Initialize(cfg => cfg.CreateMap<Publication, PublicationViewModel>());
             return Mapper.Map<IEnumerable<Publication>, IEnumerable<PublicationViewModel>>(GetAllPublications());
         }
 

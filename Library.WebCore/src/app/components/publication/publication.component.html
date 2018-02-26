@@ -1,0 +1,24 @@
+<h2>Publications</h2>
+<form novalidate #myForm="ngForm">
+
+  <kendo-grid 
+              [kendoGridBinding]="publications"
+              [height]="500"
+              [pageable]="true"
+              [sortable]="true"
+              [navigable]="true"
+              [pageSize]="gridState.take" [skip]="gridState.skip" [sort]="gridState.sort"
+              (dataStateChange)="onStateChange($event)"
+              >
+    <kendo-grid-column field="name" title="Publication Name">
+      <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+        <input [(ngModel)]="dataItem.name" kendoGridFocusable name="PublicationName" required class="k-textbox"  />
+      </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="type" title="Type publication">
+      <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+        <input [(ngModel)]="dataItem.type" kendoGridFocusable name="Type" required class="k-textbox" />
+      </ng-template>
+    </kendo-grid-column>
+  </kendo-grid>
+</form>
