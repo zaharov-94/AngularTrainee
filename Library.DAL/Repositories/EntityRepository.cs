@@ -33,6 +33,19 @@ namespace Library.DAL.Repositories
             }
         }
 
+        public virtual void Add(IEnumerable<T> items)
+        {
+            try
+            {
+                _dbSet.AddRange(items);
+                _context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                LogRegistrator.Write(ex);
+            }
+        }
+
         public virtual T FindById(int id)
         {
             try
@@ -75,6 +88,19 @@ namespace Library.DAL.Repositories
             try
             {
                 _dbSet.Remove(_dbSet.Find(id));
+                _context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                LogRegistrator.Write(ex);
+            }
+        }
+
+        public void Remove(IEnumerable<T> items)
+        {
+            try
+            {
+                _dbSet.RemoveRange(items);
                 _context.SaveChanges();
             }
             catch (Exception ex)

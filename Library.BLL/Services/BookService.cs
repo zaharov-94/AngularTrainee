@@ -58,20 +58,16 @@ namespace Library.BLL.Services
         {
             Book book = Mapper.Map<BookViewModel, Book>(bookViewModel);
             _unitOfWork.Book.Update(book);
-
+            
+            //Remove elements that are not exist in received model
             var listToRemove = _unitOfWork.PublicationHouseBook.Get(x => x.BookId == bookViewModel.Id)
-                .Except(ToPublicationHouseBook(bookViewModel), _publicationHouseComparer).Select(x=>x.Id);
-            foreach (var item in listToRemove)
-            {
-                _unitOfWork.PublicationHouseBook.Remove(item);
-            }
+                .Except(ToPublicationHouseBook(bookViewModel), _publicationHouseComparer);
+            _unitOfWork.PublicationHouseBook.Remove(listToRemove);
 
+            //Add elements that are exist in received model
             var listToAdd = ToPublicationHouseBook(bookViewModel)
                 .Except(_unitOfWork.PublicationHouseBook.Get(x => x.BookId == bookViewModel.Id), _publicationHouseComparer);
-            foreach (var item in listToAdd)
-            {
-                _unitOfWork.PublicationHouseBook.Add(item);
-            }
+            _unitOfWork.PublicationHouseBook.Add(listToAdd);
         }
 
         public void Delete(int id)
