@@ -40,7 +40,12 @@ namespace Library.BLL.Services
             _unitOfWork.Book.Add(book);
 
             bookViewModel.Id = book.Id;
-            AddRelationItems(bookViewModel);
+
+            var listToAdd = ToPublicationHouseBook(bookViewModel);
+            foreach (var item in listToAdd)
+            {
+                _unitOfWork.PublicationHouseBook.Add(item);
+            }
         }
 
         public BookViewModel GetById(int id)
@@ -88,18 +93,5 @@ namespace Library.BLL.Services
             }
             return publicationHouseBook;
         }
-
-        private void AddRelationItems(BookViewModel bookViewModel)
-        {
-            foreach (var item in bookViewModel.PublicationHouses)
-            {
-                PublicationHouseBook ph = new PublicationHouseBook();
-                ph.PublicationHouse = _unitOfWork.PublicationHouse.FindById(item.Id);
-                ph.Book = _unitOfWork.Book.FindById(bookViewModel.Id);
-                ph.Id = 0;
-                _unitOfWork.PublicationHouseBook.Add(ph);
-            }
-        }
-
     }
 }
