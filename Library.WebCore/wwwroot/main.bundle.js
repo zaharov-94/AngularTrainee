@@ -221,7 +221,7 @@ var BookComponent = /** @class */ (function () {
         ;
     };
     BookComponent.prototype.pubHouses = function (id) {
-        if (id != null) {
+        if ((id != null) && (this.books.find(function (x) { return x.id === id; }).publicationHouses != null)) {
             return this.books.find(function (x) { return x.id === id; }).publicationHouses.map(function (pubHouse) {
                 return pubHouse.name;
             });
@@ -248,6 +248,7 @@ var BookComponent = /** @class */ (function () {
     BookComponent.prototype.cancelHandler = function (_a) {
         var sender = _a.sender, rowIndex = _a.rowIndex;
         this.closeEditor(sender, rowIndex);
+        this.load();
     };
     BookComponent.prototype.saveHandler = function (_a) {
         var _this = this;
@@ -284,7 +285,7 @@ var BookComponent = /** @class */ (function () {
 /***/ "../../../../../src/app/components/brochure/brochure.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h2>Brochures</h2>\r\n<form novalidate #myForm=\"ngForm\">\r\n\r\n    <kendo-grid [kendoGridBinding]=\"brochures\"\r\n                [height]=\"500\"\r\n                [pageable]=\"true\"\r\n                [sortable]=\"true\"\r\n                [navigable]=\"true\"\r\n                [pageSize]=\"gridState.take\" [skip]=\"gridState.skip\" [sort]=\"gridState.sort\"\r\n                (remove)=\"removeHandler($event)\"\r\n                (dataStateChange)=\"onStateChange($event)\"\r\n                (edit)=\"editHandler($event)\"\r\n                (cancel)=\"cancelHandler($event)\"\r\n                (save)=\"saveHandler($event)\"\r\n                (add)=\"addHandler($event)\">\r\n        <ng-template kendoGridToolbarTemplate>\r\n            <button kendoGridAddCommand type=\"button\" [primary]=\"true\">Add new</button>\r\n        </ng-template>\r\n        <kendo-grid-column field=\"name\" title=\"Brochure Name\">\r\n            <ng-template kendoGridEditTemplate let-dataItem=\"dataItem\">\r\n                <input [(ngModel)]=\"dataItem.name\" kendoGridFocusable name=\"BrochureName\" required class=\"k-textbox\" />\r\n            </ng-template>\r\n        </kendo-grid-column>\r\n        <kendo-grid-column field=\"typeOfCover\" title=\"Cover type\">\r\n            <ng-template kendoGridEditTemplate let-dataItem=\"dataItem\">\r\n                <input [(ngModel)]=\"dataItem.typeOfCover\" kendoGridFocusable name=\"typeOfCover\" required class=\"k-textbox\" />\r\n            </ng-template>\r\n        </kendo-grid-column>\r\n        <kendo-grid-column field=\"numberOfPages\" editor=\"numeric\" title=\"Pages count\">\r\n            <ng-template kendoGridEditTemplate let-dataItem=\"dataItem\">\r\n                <input [(ngModel)]=\"dataItem.numberOfPages\" kendoGridFocusable name=\"Count pages\" required min=\"0\"\r\n                       max=\"999\" type=\"number\" class=\"k-textbox\" />\r\n            </ng-template>\r\n        </kendo-grid-column>\r\n        <kendo-grid-command-column title=\"\" width=\"220\">\r\n            <ng-template kendoGridCellTemplate let-isNew=\"isNew\">\r\n                <button kendoGridEditCommand type=\"button\" class=\"k-primary\" [primary]=\"true\">Edit</button>\r\n                <button kendoGridRemoveCommand type=\"button\" [primary]=\"true\">Remove</button>\r\n                <button kendoGridSaveCommand type=\"button\" [disabled]=\"myForm.invalid\" [primary]=\"true\">{{ isNew ? 'Add' : 'Update' }}</button>\r\n                <button kendoGridCancelCommand type=\"button\" [primary]=\"true\">{{ isNew ? 'Discard changes' : 'Cancel' }}</button>\r\n            </ng-template>\r\n        </kendo-grid-command-column>\r\n    </kendo-grid>\r\n</form>\r\n"
+module.exports = "<h2>Brochures</h2>\r\n<form novalidate #myForm=\"ngForm\">\r\n\r\n    <kendo-grid [kendoGridBinding]=\"brochures\"\r\n                [height]=\"500\"\r\n                [pageable]=\"true\"\r\n                [sortable]=\"true\"\r\n                [navigable]=\"true\"\r\n                [pageSize]=\"gridState.take\" [skip]=\"gridState.skip\" [sort]=\"gridState.sort\"\r\n                (remove)=\"removeHandler($event)\"\r\n                (dataStateChange)=\"onStateChange($event)\"\r\n                (edit)=\"editHandler($event)\"\r\n                (cancel)=\"cancelHandler($event)\"\r\n                (save)=\"saveHandler($event)\"\r\n                (add)=\"addHandler($event)\">\r\n        <ng-template kendoGridToolbarTemplate>\r\n            <button kendoGridAddCommand type=\"button\" [primary]=\"true\">Add new</button>\r\n        </ng-template>\r\n        <kendo-grid-column field=\"name\" title=\"Brochure Name\">\r\n            <ng-template kendoGridEditTemplate let-dataItem=\"dataItem\">\r\n                <input [(ngModel)]=\"dataItem.name\" kendoGridFocusable name=\"BrochureName\" required class=\"k-textbox\" />\r\n            </ng-template>\r\n        </kendo-grid-column>\r\n        <kendo-grid-column field=\"typeOfCorver\" editor=\"dropdown\" title=\"Cover type\">\r\n            <ng-template kendoGridCellTemplate let-dataItem>\r\n                {{dataItem.typeOfCover}}\r\n            </ng-template>\r\n            <ng-template kendoGridEditTemplate\r\n                         let-dataItem=\"dataItem\">\r\n                <kendo-dropdownlist [data]=\"typeCovers\"\r\n                                    [valuePrimitive]=\"true\"\r\n                                    [(value)]=\"dataItem.typeOfCover\">               \r\n                </kendo-dropdownlist>\r\n                <!--<kendo-popup [anchor]=\"ddl.element\"\r\n                             *ngIf=\"formGroup.get(column.field).invalid && !(isNew && formGroup.get(column.field).untouched)\"\r\n                             popupClass=\"k-widget k-tooltip k-tooltip-validation k-invalid-msg\">\r\n                    <span class=\"k-icon k-i-warning\"></span>\r\n                    Category is required\r\n                </kendo-popup>-->\r\n            </ng-template>\r\n        </kendo-grid-column>\r\n        <kendo-grid-column field=\"numberOfPages\" editor=\"numeric\" title=\"Pages count\">\r\n            <ng-template kendoGridEditTemplate let-dataItem=\"dataItem\">\r\n                <input [(ngModel)]=\"dataItem.numberOfPages\" kendoGridFocusable name=\"Count pages\" required min=\"0\"\r\n                       max=\"999\" type=\"number\" class=\"k-textbox\" />\r\n            </ng-template>\r\n        </kendo-grid-column>\r\n        <kendo-grid-command-column title=\"\" width=\"220\">\r\n            <ng-template kendoGridCellTemplate let-isNew=\"isNew\">\r\n                <button kendoGridEditCommand type=\"button\" class=\"k-primary\" [primary]=\"true\">Edit</button>\r\n                <button kendoGridRemoveCommand type=\"button\" [primary]=\"true\">Remove</button>\r\n                <button kendoGridSaveCommand type=\"button\" [disabled]=\"myForm.invalid\" [primary]=\"true\">{{ isNew ? 'Add' : 'Update' }}</button>\r\n                <button kendoGridCancelCommand type=\"button\" [primary]=\"true\">{{ isNew ? 'Discard changes' : 'Cancel' }}</button>\r\n            </ng-template>\r\n        </kendo-grid-command-column>\r\n    </kendo-grid>\r\n</form>\r\n"
 
 /***/ }),
 
@@ -324,6 +325,7 @@ var BrochureComponent = /** @class */ (function () {
     BrochureComponent.prototype.load = function () {
         var _this = this;
         this.brochureDataService.getBrochures().subscribe(function (data) { return _this.brochures = data; });
+        this.brochureDataService.getCoverTypes().subscribe(function (data) { return _this.typeCovers = data; });
     };
     BrochureComponent.prototype.removeHandler = function (_a) {
         var _this = this;
@@ -350,6 +352,7 @@ var BrochureComponent = /** @class */ (function () {
     BrochureComponent.prototype.cancelHandler = function (_a) {
         var sender = _a.sender, rowIndex = _a.rowIndex;
         this.closeEditor(sender, rowIndex);
+        this.load();
     };
     BrochureComponent.prototype.saveHandler = function (_a) {
         var _this = this;
@@ -452,6 +455,7 @@ var MagazineComponent = /** @class */ (function () {
     MagazineComponent.prototype.cancelHandler = function (_a) {
         var sender = _a.sender, rowIndex = _a.rowIndex;
         this.closeEditor(sender, rowIndex);
+        this.load();
     };
     MagazineComponent.prototype.saveHandler = function (_a) {
         var _this = this;
@@ -506,7 +510,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/navmenu/navmenu.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class='main-nav'>\r\n    <div class='navbar navbar-inverse'>\r\n        <div class='navbar-header'>\r\n            <button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse'>\r\n                <span class='sr-only'>Toggle navigation</span>\r\n                <span class='icon-bar'></span>\r\n                <span class='icon-bar'></span>\r\n                <span class='icon-bar'></span>\r\n            </button>\r\n            <a class='navbar-brand' [routerLink]=\"['/publication']\">Publications</a>\r\n        </div>\r\n        <div class='clearfix'></div>\r\n        <div class='navbar-collapse collapse'>\r\n          <ul class='nav navbar-nav'>\r\n            <li [routerLinkActive]=\"['link-active']\">\r\n              <a [routerLink]=\"['/book']\">\r\n                <span class='glyphicon glyphicon-book'></span> Books\r\n              </a>\r\n            </li>\r\n            <li [routerLinkActive]=\"['link-active']\">\r\n              <a [routerLink]=\"['/brochure']\">\r\n                <span class='glyphicon glyphicon-file'></span> Brochures\r\n              </a>\r\n            </li>\r\n            <li [routerLinkActive]=\"['link-active']\">\r\n              <a [routerLink]=\"['/magazine']\">\r\n                <span class='glyphicon glyphicon-modal-window'></span> Magazines\r\n              </a>\r\n            </li>\r\n            <li [routerLinkActive]=\"['link-active']\">\r\n              <a [routerLink]=\"['/publicationhouse']\">\r\n                <span class='glyphicon glyphicon-print'></span> Publication houses\r\n              </a>\r\n            </li>\r\n          </ul>\r\n        </div>\r\n    </div>\r\n</div>\r\n"
+module.exports = "<div class='main-nav'>\r\n    <div class='navbar navbar-inverse'>\r\n        <div class='navbar-header'>\r\n            <button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse'>\r\n                <span class='sr-only'>Toggle navigation</span>\r\n                <span class='icon-bar'></span>\r\n                <span class='icon-bar'></span>\r\n                <span class='icon-bar'></span>\r\n            </button>\r\n            <a class='navbar-brand' [routerLink]=\"['/publication']\">Publications</a>\r\n        </div>\r\n        <div class='clearfix'></div>\r\n        <div class='navbar-collapse collapse'>\r\n            <ul class='nav navbar-nav'>\r\n                <li [routerLinkActive]=\"['link-active']\">\r\n                    <a [routerLink]=\"['/book']\">\r\n                        <span class='glyphicon glyphicon-book'></span> Books\r\n                    </a>\r\n                </li>\r\n                <li [routerLinkActive]=\"['link-active']\">\r\n                    <a [routerLink]=\"['/brochure']\">\r\n                        <span class='glyphicon glyphicon-file'></span> Brochures\r\n                    </a>\r\n                </li>\r\n                <li [routerLinkActive]=\"['link-active']\">\r\n                    <a [routerLink]=\"['/magazine']\">\r\n                        <span class='glyphicon glyphicon-modal-window'></span> Magazines\r\n                    </a>\r\n                </li>\r\n                <li [routerLinkActive]=\"['link-active']\">\r\n                    <a [routerLink]=\"['/publicationhouse']\">\r\n                        <span class='glyphicon glyphicon-print'></span> Publication houses\r\n                    </a>\r\n                </li>\r\n                <li [routerLinkActive]=\"['link-active']\">\r\n                    <a [routerLink]=\"['/publication']\">\r\n                        All publications\r\n                    </a>\r\n                </li>\r\n            </ul>\r\n        </div>\r\n    </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -668,6 +672,7 @@ var PublicationHouseComponent = /** @class */ (function () {
     PublicationHouseComponent.prototype.cancelHandler = function (_a) {
         var sender = _a.sender, rowIndex = _a.rowIndex;
         this.closeEditor(sender, rowIndex);
+        this.load();
     };
     PublicationHouseComponent.prototype.saveHandler = function (_a) {
         var _this = this;
@@ -831,6 +836,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+//import { Observable } from 'rxjs/Observable';
 
 var BrochureDataService = /** @class */ (function () {
     function BrochureDataService(http) {
@@ -842,6 +848,9 @@ var BrochureDataService = /** @class */ (function () {
     };
     BrochureDataService.prototype.getBrochure = function (id) {
         return this.http.get(this.url + '/' + id);
+    };
+    BrochureDataService.prototype.getCoverTypes = function () {
+        return this.http.get("/api/covertypes");
     };
     BrochureDataService.prototype.createBrochure = function (brochure) {
         return this.http.post(this.url, brochure);

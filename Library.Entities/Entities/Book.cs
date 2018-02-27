@@ -13,7 +13,5 @@ namespace Library.Entities.Entities
         public string Author { get; set; }
         [Required]
         public int YearOfPublishing { get; set; }
-
-        //public virtual ICollection<PublicationHouseBook> PublicationHouseBooks { get; set; }
     }
 }

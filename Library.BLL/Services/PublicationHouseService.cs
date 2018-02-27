@@ -20,8 +20,8 @@ namespace Library.BLL.Services
 
         public IEnumerable<PublicationHouseViewModel> GetAll()
         {
-            List<PublicationHouse> publicationHouseList = _unitOfWork.PublicationHouse.GetAll().ToList();
-            return Mapper.Map<List<PublicationHouse>, IEnumerable<PublicationHouseViewModel>>(publicationHouseList);
+            IEnumerable<PublicationHouse> publicationHouseList = _unitOfWork.PublicationHouse.GetAll();
+            return Mapper.Map<IEnumerable<PublicationHouse>, IEnumerable<PublicationHouseViewModel>>(publicationHouseList);
         }
 
         public void Add(PublicationHouseViewModel publicationHouse)

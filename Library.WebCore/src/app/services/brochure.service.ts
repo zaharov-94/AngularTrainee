@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+//import { Http } from '@angular/http';
 import { Brochure } from '../models/brochure.model';
-import { Observable } from 'rxjs/Observable';
+//import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable()
@@ -19,7 +19,9 @@ export class BrochureDataService {
     getBrochure(id: number) {
         return this.http.get(this.url + '/' + id);
     }
-
+    getCoverTypes() {
+        return this.http.get("/api/covertypes");
+    }
     createBrochure(brochure: Brochure) {
         return this.http.post(this.url, brochure);
     }

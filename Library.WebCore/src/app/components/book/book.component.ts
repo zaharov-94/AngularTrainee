@@ -40,7 +40,7 @@ export class BookComponent implements OnInit {
     this.bookDataService.deleteBook(dataItem.id).subscribe(data => this.load());;
   }
   public pubHouses(id?: number): string[] {
-      if (id != null) {
+      if ((id != null) && (this.books.find(x => x.id === id).publicationHouses != null)){
           return this.books.find(x => x.id === id).publicationHouses.map(function (pubHouse) {
               return pubHouse.name;
           });;
@@ -67,7 +67,8 @@ export class BookComponent implements OnInit {
   }
 
   public cancelHandler({ sender, rowIndex }) {
-    this.closeEditor(sender, rowIndex);
+      this.closeEditor(sender, rowIndex);
+      this.load();
   }
 
   public saveHandler({ sender, rowIndex, dataItem, isNew }) {

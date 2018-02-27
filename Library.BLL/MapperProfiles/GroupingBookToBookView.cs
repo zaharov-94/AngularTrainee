@@ -18,6 +18,8 @@ namespace Library.BLL.MapperProfiles
                 .ForMember(dest => dest.Author, opt => opt.MapFrom(src => src.Select(y => y.Book.Author).First()))
                 .ForMember(dest => dest.YearOfPublishing, opt => opt.MapFrom(src => src.Select(y => y.Book.YearOfPublishing).First()))
                 .ForMember(dest => dest.PublicationHouses, opt => opt.MapFrom(src => src.Select(y => y.PublicationHouse)));
+            CreateMap<Book, BookViewModel>()
+                .ForMember(dest => dest.PublicationHouses, opt => opt.Ignore());
         }
     }
 }

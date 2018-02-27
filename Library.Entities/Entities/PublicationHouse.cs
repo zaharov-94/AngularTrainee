@@ -9,7 +9,5 @@ namespace Library.Entities.Entities
         public string Name { get; set; }
         [Required]
         public string Address { get; set; }
-
-        //public virtual ICollection<PublicationHouseBook> PublicationHouseBooks { get; set; }
     }
 }

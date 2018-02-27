@@ -59,7 +59,8 @@ export class PublicationHouseComponent implements OnInit {
   }
 
   public cancelHandler({ sender, rowIndex }) {
-    this.closeEditor(sender, rowIndex);
+      this.closeEditor(sender, rowIndex);
+      this.load();
   }
 
   public saveHandler({ sender, rowIndex, dataItem, isNew }) {

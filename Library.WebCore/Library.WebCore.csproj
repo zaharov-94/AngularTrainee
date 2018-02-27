@@ -13,6 +13,7 @@
     <None Remove="src\app\components\magazine\magazine.component.ts" />
     <None Remove="src\app\components\publicationHouse\publicationHouse.component.ts" />
     <None Remove="src\app\models\publicationHouse.model.ts" />
+    <None Remove="src\app\services\account.service.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -24,6 +25,7 @@
     <PackageReference Include="Microsoft.AspNet.Identity.Owin" Version="2.2.1" />
     <PackageReference Include="Microsoft.AspNet.WebApi.Owin" Version="5.2.4" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.1" />
     <PackageReference Include="Microsoft.Owin" Version="4.0.0" />
@@ -42,6 +44,7 @@
     <TypeScriptCompile Include="src\app\components\publicationHouse\publicationHouse.component.ts" />
     <TypeScriptCompile Include="src\app\components\magazine\magazine.component.ts" />
     <TypeScriptCompile Include="src\app\models\publicationHouse.model.ts" />
+    <TypeScriptCompile Include="src\app\services\account.service.ts" />
   </ItemGroup>
 
 </Project>

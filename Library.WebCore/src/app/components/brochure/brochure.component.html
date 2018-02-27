@@ -21,9 +21,22 @@
                 <input [(ngModel)]="dataItem.name" kendoGridFocusable name="BrochureName" required class="k-textbox" />
             </ng-template>
         </kendo-grid-column>
-        <kendo-grid-column field="typeOfCover" title="Cover type">
-            <ng-template kendoGridEditTemplate let-dataItem="dataItem">
-                <input [(ngModel)]="dataItem.typeOfCover" kendoGridFocusable name="typeOfCover" required class="k-textbox" />
+        <kendo-grid-column field="typeOfCorver" editor="dropdown" title="Cover type">
+            <ng-template kendoGridCellTemplate let-dataItem>
+                {{dataItem.typeOfCover}}
+            </ng-template>
+            <ng-template kendoGridEditTemplate
+                         let-dataItem="dataItem">
+                <kendo-dropdownlist [data]="typeCovers"
+                                    [valuePrimitive]="true"
+                                    [(value)]="dataItem.typeOfCover">               
+                </kendo-dropdownlist>
+                <!--<kendo-popup [anchor]="ddl.element"
+                             *ngIf="formGroup.get(column.field).invalid && !(isNew && formGroup.get(column.field).untouched)"
+                             popupClass="k-widget k-tooltip k-tooltip-validation k-invalid-msg">
+                    <span class="k-icon k-i-warning"></span>
+                    Category is required
+                </kendo-popup>-->
             </ng-template>
         </kendo-grid-column>
         <kendo-grid-column field="numberOfPages" editor="numeric" title="Pages count">
