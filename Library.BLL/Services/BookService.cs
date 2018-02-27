@@ -54,24 +54,19 @@ namespace Library.BLL.Services
             Book book = Mapper.Map<BookViewModel, Book>(bookViewModel);
             _unitOfWork.Book.Update(book);
 
-            var listToRemove = _unitOfWork.PublicationHouseBook.Get(x => x.BookId == bookViewModel.Id).Except(ToPublicationHouseBook(bookViewModel), _publicationHouseComparer).Select(x=>x.Id);
+            var listToRemove = _unitOfWork.PublicationHouseBook.Get(x => x.BookId == bookViewModel.Id)
+                .Except(ToPublicationHouseBook(bookViewModel), _publicationHouseComparer).Select(x=>x.Id);
             foreach (var item in listToRemove)
             {
                 _unitOfWork.PublicationHouseBook.Remove(item);
             }
-            var listToAdd = ToPublicationHouseBook(bookViewModel).Except(_unitOfWork.PublicationHouseBook.Get(x => x.BookId == bookViewModel.Id), _publicationHouseComparer);
+
+            var listToAdd = ToPublicationHouseBook(bookViewModel)
+                .Except(_unitOfWork.PublicationHouseBook.Get(x => x.BookId == bookViewModel.Id), _publicationHouseComparer);
             foreach (var item in listToAdd)
             {
                 _unitOfWork.PublicationHouseBook.Add(item);
             }
-            //var listToRemove = _unitOfWork.PublicationHouseBook.Get(x => x.BookId == bookViewModel.Id).Select(x=>x.Id);
-
-            //foreach(var item in listToRemove)
-            //{
-            //    _unitOfWork.PublicationHouseBook.Remove(item);
-            //}
-
-            //AddRelationItems(bookViewModel);
         }
 
         public void Delete(int id)
@@ -89,11 +84,21 @@ namespace Library.BLL.Services
                 ph.Book = _unitOfWork.Book.FindById(bookViewModel.Id);
                 ph.PublicationHouseId = ph.PublicationHouse.Id;
                 ph.BookId = bookViewModel.Id;
-                //ph.Id = 0;
                 publicationHouseBook.Add(ph);
-                //_unitOfWork.PublicationHouseBook.Add(ph);
             }
             return publicationHouseBook;
+        }
+
+        private void AddRelationItems(BookViewModel bookViewModel)
+        {
+            foreach (var item in bookViewModel.PublicationHouses)
+            {
+                PublicationHouseBook ph = new PublicationHouseBook();
+                ph.PublicationHouse = _unitOfWork.PublicationHouse.FindById(item.Id);
+                ph.Book = _unitOfWork.Book.FindById(bookViewModel.Id);
+                ph.Id = 0;
+                _unitOfWork.PublicationHouseBook.Add(ph);
+            }
         }
 
     }
