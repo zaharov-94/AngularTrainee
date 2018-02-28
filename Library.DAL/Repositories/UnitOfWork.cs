@@ -1,7 +1,6 @@
 ﻿using Library.DAL.Abstract;
 using Library.DAL.Context;
 using Library.Entities.Entities;
-using Library.Entities.Entities.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;

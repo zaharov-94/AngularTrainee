@@ -2,7 +2,6 @@ using AutoMapper;
 using Library.BLL.MapperProfiles;
 using Library.BLL.Services;
 using Library.DAL.Context;
-using Library.Entities.Entities.Identity;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -43,7 +42,7 @@ namespace Library.WebCore
             services.AddTransient<PublicationHouseService>();
             services.AddTransient<PublicationService>();
             services.AddTransient<MagazineService>();
-            services.AddIdentity<ApplicationUser, IdentityRole>()
+            services.AddIdentity<IdentityUser, IdentityRole>()
                   .AddEntityFrameworkStores<ApplicationContext>();
         }
 

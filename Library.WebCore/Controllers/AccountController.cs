@@ -5,7 +5,7 @@ using System.Net;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
-using Library.Entities.Entities.Identity;
+using Library.DAL.Context;
 using Library.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -13,19 +13,20 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
+using Shared.Enums;
 
 namespace Library.WebCore.Controllers
 {
     [Route("api/account")]
     public class AccountController : Controller
     {
-        private readonly UserManager<ApplicationUser> _userManager;
-        private readonly IPasswordHasher<ApplicationUser> _passwordHasher;
+        private readonly UserManager<IdentityUser> _userManager;
+        private readonly IPasswordHasher<IdentityUser> _passwordHasher;
         private readonly IConfigurationRoot _configurationRoot;
         private readonly ILogger<AccountController> _logger;
 
-        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, RoleManager<ApplicationUser> roleManager,
-            IPasswordHasher<ApplicationUser> passwordHasher, IConfigurationRoot configurationRoot, ILogger<AccountController> logger)
+        public AccountController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager,
+            IPasswordHasher<IdentityUser> passwordHasher, IConfigurationRoot configurationRoot, ILogger<AccountController> logger)
         {
             _userManager = userManager;
             _logger = logger;
@@ -42,22 +43,26 @@ namespace Library.WebCore.Controllers
             {
                 return BadRequest(ModelState);
             }
-            var user = new ApplicationUser()
+            var user = new IdentityUser()
             {
                 UserName = model.Email,
                 Email = model.Email
             };
-            var result = await _userManager.CreateAsync(user, model.Password);
-
-            if (result.Succeeded)
+            var resultAddUser = await _userManager.CreateAsync(user, model.Password);
+            var resultAddRole = await _userManager.AddToRoleAsync(user, Role.User.ToString());
+            if (resultAddUser.Succeeded && resultAddRole.Succeeded)
             {
-                return Ok(result);
+                return Ok(resultAddUser);
             }
-            foreach (var error in result.Errors)
+            foreach (var error in resultAddUser.Errors)
             {
                 ModelState.AddModelError("error", error.Description);
             }
-            return BadRequest(result.Errors);
+            foreach (var error in resultAddRole.Errors)
+            {
+                ModelState.AddModelError("error", error.Description);
+            }
+            return BadRequest(resultAddUser.Errors);
         }
 
         [HttpPost]
