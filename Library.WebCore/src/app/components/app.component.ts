@@ -1,11 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Http } from '@angular/http';
+import { Router } from '@angular/router';
 
+import { CookieService } from 'ngx-cookie-service';
+
+import { AccountService } from '../services/account.service';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+    selector: 'app-root',
+    templateUrl: './app.component.html'
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+    constructor(private router: Router, private cookie: CookieService) {
+        AccountService.isLoggedIn = this.cookie.get("isLoggedIn") === "true";
+        AccountService.isAdmin = this.cookie.get("isAdmin") === "true";
+        AccountService.userName = this.cookie.get("userName");
+    }
+
+    ngOnInit() {
+    }
 }

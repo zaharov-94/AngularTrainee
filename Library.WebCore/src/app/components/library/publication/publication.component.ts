@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject  } from '@angular/core';
-import { PublicationDataService } from '../../services/publication.service';
-import { Publication } from '../../models/publication.model';
+import { PublicationDataService } from '../../../services/publication.service';
+import { Publication } from '../../../models/publication.model';
 //import { Observable } from 'rxjs/Observable';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 

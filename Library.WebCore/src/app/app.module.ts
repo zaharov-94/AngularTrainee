@@ -1,60 +1,38 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { GridModule } from '@progress/kendo-angular-grid';
-import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
-import { AppComponent } from './components/app.component';
-import { FormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpModule, JsonpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { NavMenuComponent } from './components/navmenu/navmenu.component';
+import { CookieService } from 'ngx-cookie-service';
 
-import { MagazineComponent } from './components/magazine/magazine.component';
-import { MagazineDataService } from './services/magazine.service';
+import { routing } from './app.routing';
 
-import { BookComponent } from './components/book/book.component';
-import { BookDataService } from './services/book.service';
+import { AppComponent } from './components/app.component';
 
-import { PublicationHouseComponent } from './components/publicationHouse/publicationHouse.component';
-import { PublicationHouseDataService } from './services/publicationHouse.service';
+import { AuthModule } from './components/authorization/auth.module';
+import { LibraryModule } from './components/library/library.module';
 
-import { PublicationComponent } from './components/publication/publication.component';
-import { PublicationDataService } from './services/publication.service';
-
-import { BrochureComponent } from './components/brochure/brochure.component';
-import { BrochureDataService } from './services/brochure.service';
-
-// определение маршрутов
-const appRoutes: Routes = [
-  { path: '', redirectTo: 'publication', pathMatch: 'full' },
-  { path: 'book', component: BookComponent },
-  { path: 'brochure', component: BrochureComponent },
-  { path: 'magazine', component: MagazineComponent },
-  { path: 'publicationhouse', component: PublicationHouseComponent },
-  { path: 'publication', component: PublicationComponent }
-];
+import { AccountService } from './services/account.service';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    NavMenuComponent,
-    BookComponent,
-    MagazineComponent,
-    PublicationHouseComponent,
-    PublicationComponent,
-    BrochureComponent
-  ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    HttpClientModule,
-    RouterModule.forRoot(appRoutes),
-    BrowserAnimationsModule, GridModule,
-    DropDownsModule
-  ],
-  providers: [BookDataService, MagazineDataService, PublicationHouseDataService,
-      PublicationDataService, BrochureDataService],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent
+    ],
+    imports: [
+        routing,
+        BrowserModule,
+        BrowserAnimationsModule,
+        HttpModule,
+        HttpClientModule,
+        JsonpModule,
+        AuthModule,
+        LibraryModule
+    ],
+    providers: [
+        AccountService,
+        CookieService
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

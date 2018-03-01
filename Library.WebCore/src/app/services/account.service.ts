@@ -1,69 +1,54 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers, RequestOptions } from '@angular/http';
-
-import { Register } from '../models/register.model';
+import { Response, Headers, RequestOptions } from '@angular/http';
+import { HttpClient } from "@angular/common/http";
+import { CookieService } from 'ngx-cookie-service';
 
 import { Observable } from 'rxjs/Rx';
 import { BehaviorSubject } from 'rxjs/Rx';
 
-// Add the RxJS Observable operators we need in this app.
-import '../../rxjs-operators';
+import { ErrorService } from './error.service';
+
+import { Login } from '../models/login.model';
+import { Register } from '../models/register.model';
 
 @Injectable()
+export class AccountService extends ErrorService {
+    public static isLoggedIn: boolean = false;
+    public static isAdmin: boolean = null;
+    public static userName: string = null;
 
-export class UserService {
-
-    private baseUrl = "/api/account";
-
-    // Observable navItem source
-    private _authNavStatusSource = new BehaviorSubject<boolean>(false);
-    // Observable navItem stream
-    authNavStatus$ = this._authNavStatusSource.asObservable();
-
-    private loggedIn = false;
-
-    constructor(private http: Http) {
-        this.loggedIn = !!localStorage.getItem('auth_token');
-        // ?? not sure if this the best way to broadcast the status but seems to resolve issue on page refresh where auth status is lost in
-        // header component resulting in authed user nav links disappearing despite the fact user is still logged in
-        this._authNavStatusSource.next(this.loggedIn);
+    constructor(private http: HttpClient, private cookie: CookieService) {
+        super();
     }
 
-    register(email: string, password: string, firstName: string, lastName: string, location: string): Observable<any> {
-        let body = JSON.stringify({ email, password, firstName, lastName, location });
-        let headers = new Headers({ 'Content-Type': 'application/json' });
-        let options = new RequestOptions({ headers: headers });
-
-        return this.http.post(this.baseUrl + "/accounts", body, options)
-            .map(res => true);
-    }
-
-    login(userName, password) {
-        let headers = new Headers();
-        headers.append('Content-Type', 'application/json');
-
-        return this.http
-            .post(
-            this.baseUrl + '/auth/login',
-            JSON.stringify({ userName, password }), { headers }
-            )
-            .map(res => res.json())
+    public login(data: Login): Observable<boolean> {
+        return this.http.post('api/auth/login', data)
             .map(res => {
-                localStorage.setItem('auth_token', res.auth_token);
-                this.loggedIn = true;
-                this._authNavStatusSource.next(true);
+                AccountService.isLoggedIn = true;
+                AccountService.isAdmin = <boolean>res;
+                AccountService.userName = data.email;
+                this.cookie.deleteAll();
+                this.cookie.set("isLoggedIn", String(AccountService.isLoggedIn), 100, "path");
+                this.cookie.set("isAdmin", String(AccountService.isAdmin), 100, "path");
+                this.cookie.set("userName", String(AccountService.userName), 100, "path");
                 return true;
-            });
+            })
+            .catch(this.handleError);
     }
 
-    logout() {
-        localStorage.removeItem('auth_token');
-        this.loggedIn = false;
-        this._authNavStatusSource.next(false);
+    public register(data: Register): Observable<boolean> {
+        return this.http.post('api/auth/register', data)
+            .map(x => x as boolean)
+            .catch(this.handleError);
     }
 
-    isLoggedIn() {
-        return this.loggedIn;
+    public logout(): Observable<boolean> {
+        this.http.get('api/auth/logout').subscribe();
+        AccountService.isAdmin = null;
+        AccountService.isLoggedIn = false;
+        //this.cookie.delete("isLoggedIn");
+        //this.cookie.delete("isAdmin");
+        this.cookie.deleteAll();
+        return new Observable<boolean>();
     }
 }
-

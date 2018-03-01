@@ -8,7 +8,7 @@ namespace Library.ViewModels
         public string Email { get; set; }
 
         [Required]
-        public int Year { get; set; }
+        public string Name { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
@@ -16,6 +16,6 @@ namespace Library.ViewModels
 
         [Required]
         [DataType(DataType.Password)]
-        public string PasswordConfirm { get; set; }
+        public string ConfirmPassword { get; set; }
     }
 }

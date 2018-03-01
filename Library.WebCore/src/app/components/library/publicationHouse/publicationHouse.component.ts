@@ -1,20 +1,22 @@
 import { Component, OnInit, Inject  } from '@angular/core';
-import { MagazineDataService } from '../../services/magazine.service';
-import { Magazine } from '../../models/magazine.model';
+import { PublicationHouseDataService } from '../../../services/publicationHouse.service';
+import { PublicationHouse } from '../../../models/publicationHouse.model';
 //import { Observable } from 'rxjs/Observable';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AccountService } from '../../../services/account.service';
 
 //import { GridDataResult } from '@progress/kendo-angular-grid';
 import { State, process } from '@progress/kendo-data-query';
 
 import { map } from 'rxjs/operators/map';
 @Component({
-  templateUrl: './magazine.component.html'
+  templateUrl: './publicationHouse.component.html'
 })
-export class MagazineComponent implements OnInit {
-  public magazines: Magazine[];
+export class PublicationHouseComponent implements OnInit {
+  public publicationHouses: PublicationHouse[];
   private editedRowIndex: number;
-  private editedItem: Magazine;
+  private editedItem: PublicationHouse;
+  public isAdmin: boolean;
 
   //public view: Observable<GridDataResult>;
   public gridState: State = {
@@ -23,18 +25,19 @@ export class MagazineComponent implements OnInit {
     take: 10
   };
 
-  constructor(private magazineDataService: MagazineDataService) { }
+  constructor(private publicationHouseDataService: PublicationHouseDataService) { }
 
   ngOnInit() {
-    this.load();
+      this.load();
+      this.isAdmin = AccountService.isAdmin;
   }
 
   load() {
-    this.magazineDataService.getMagazines().subscribe((data: Magazine[]) => this.magazines = data);
+    this.publicationHouseDataService.getPublicationHouses().subscribe((data: PublicationHouse[]) => this.publicationHouses = data);
   }
 
   public removeHandler({ dataItem }) {
-    this.magazineDataService.deleteMagazine(dataItem.id).subscribe(data => this.load());;
+    this.publicationHouseDataService.deletePublicationHouse(dataItem.id).subscribe(data => this.load());;
   }
 
   public onStateChange(state: State) {
@@ -46,7 +49,7 @@ export class MagazineComponent implements OnInit {
   public addHandler({ sender }) {
     this.closeEditor(sender);
 
-    sender.addRow(new Magazine());
+    sender.addRow(new PublicationHouse());
   }
 
   public editHandler({ sender, rowIndex, dataItem }) {
@@ -64,8 +67,8 @@ export class MagazineComponent implements OnInit {
   }
 
   public saveHandler({ sender, rowIndex, dataItem, isNew }) {
-    if (isNew) { this.magazineDataService.createMagazine(dataItem).subscribe(data => this.load()); }
-    if (!isNew) { this.magazineDataService.updateMagazine(dataItem).subscribe(data => this.load()); }
+    if (isNew) { this.publicationHouseDataService.createPublicationHouse(dataItem).subscribe(data => this.load()); }
+    if (!isNew) { this.publicationHouseDataService.updatePublicationHouse(dataItem).subscribe(data => this.load()); }
     sender.closeRow(rowIndex);
 
     this.editedRowIndex = undefined;

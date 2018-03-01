@@ -1,8 +1,9 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { BrochureDataService } from '../../services/brochure.service';
-import { Brochure } from '../../models/brochure.model';
+import { BrochureDataService } from '../../../services/brochure.service';
+import { Brochure } from '../../../models/brochure.model';
 //import { Observable } from 'rxjs/Observable';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AccountService } from '../../../services/account.service';
 
 //import { GridDataResult } from '@progress/kendo-angular-grid';
 import { State, process } from '@progress/kendo-data-query';
@@ -16,6 +17,7 @@ export class BrochureComponent implements OnInit {
     public typeCovers: string[];
     private editedRowIndex: number;
     private editedItem: Brochure;
+    public isAdmin: boolean;
 
     //public view: Observable<GridDataResult>;
     public gridState: State = {
@@ -28,6 +30,7 @@ export class BrochureComponent implements OnInit {
 
     ngOnInit() {
         this.load();
+        this.isAdmin = AccountService.isAdmin;
     }
 
     load() {

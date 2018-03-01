@@ -13,7 +13,7 @@
                 (cancel)="cancelHandler($event)"
                 (save)="saveHandler($event)"
                 (add)="addHandler($event)">
-        <ng-template kendoGridToolbarTemplate>
+        <ng-template kendoGridToolbarTemplate *ngIf="isAdmin">
             <button kendoGridAddCommand type="button" [primary]="true">Add new</button>
         </ng-template>
         <kendo-grid-column field="name" title="Book Title">
@@ -40,7 +40,7 @@
                 <kendo-multiselect [data]="publicationHouses" [valueField]="'id'" [textField]="'name'"  [(value)]="dataItem.publicationHouses"></kendo-multiselect>
             </ng-template>
         </kendo-grid-column>
-        <kendo-grid-command-column title="" width="220">
+        <kendo-grid-command-column title="" width="220" *ngIf="isAdmin">
             <ng-template kendoGridCellTemplate let-isNew="isNew">
                 <button kendoGridEditCommand type="button" class="k-primary" [primary]="true">Edit</button>
                 <button kendoGridRemoveCommand type="button" [primary]="true">Remove</button>

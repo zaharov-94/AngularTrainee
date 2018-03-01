@@ -7,36 +7,44 @@
                 <span class='icon-bar'></span>
                 <span class='icon-bar'></span>
             </button>
-            <a class='navbar-brand' [routerLink]="['/publication']">Publications</a>
+            <div class="row">
+                <div class="col-lg-7 col-md-7"><p class="navbar-brand">Hello, {{userName}}</p></div>
+                <div class="col-lg-5 col-md-5">
+                    <a class='navbar-brand' [routerLink]="['/account/login']">
+                        <span class='glyphicon glyphicon-log-out'></span> LogOut
+                    </a>
+                </div>
+            </div>
         </div>
         <div class='clearfix'></div>
         <div class='navbar-collapse collapse'>
             <ul class='nav navbar-nav'>
                 <li [routerLinkActive]="['link-active']">
-                    <a [routerLink]="['/book']">
+                    <a [routerLink]="['book']">
                         <span class='glyphicon glyphicon-book'></span> Books
                     </a>
                 </li>
                 <li [routerLinkActive]="['link-active']">
-                    <a [routerLink]="['/brochure']">
+                    <a [routerLink]="['brochure']">
                         <span class='glyphicon glyphicon-file'></span> Brochures
                     </a>
                 </li>
                 <li [routerLinkActive]="['link-active']">
-                    <a [routerLink]="['/magazine']">
+                    <a [routerLink]="['magazine']">
                         <span class='glyphicon glyphicon-modal-window'></span> Magazines
                     </a>
                 </li>
                 <li [routerLinkActive]="['link-active']">
-                    <a [routerLink]="['/publicationhouse']">
+                    <a [routerLink]="['publicationhouse']">
                         <span class='glyphicon glyphicon-print'></span> Publication houses
                     </a>
                 </li>
                 <li [routerLinkActive]="['link-active']">
-                    <a [routerLink]="['/publication']">
+                    <a [routerLink]="['publication']">
                         All publications
                     </a>
                 </li>
+
             </ul>
         </div>
     </div>

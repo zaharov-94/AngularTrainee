@@ -13,7 +13,8 @@
           "Library.Entities": "1.0.0",
           "Library.ViewModels": "1.0.0",
           "Microsoft.AspNet.Identity.Core": "2.2.1",
-          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "2.0.1"
+          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "2.0.1",
+          "Microsoft.IdentityModel.Tokens": "5.1.4.0"
         },
         "runtime": {
           "Library.BLL.dll": {}
@@ -856,6 +857,11 @@
         "runtime": {
           "Library.ViewModels.dll": {}
         }
+      },
+      "Microsoft.IdentityModel.Tokens/5.1.4.0": {
+        "runtime": {
+          "Microsoft.IdentityModel.Tokens.dll": {}
+        }
       }
     }
   },
@@ -1526,6 +1532,11 @@
     },
     "Library.ViewModels/1.0.0": {
       "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.IdentityModel.Tokens/5.1.4.0": {
+      "type": "reference",
       "serviceable": false,
       "sha512": ""
     }

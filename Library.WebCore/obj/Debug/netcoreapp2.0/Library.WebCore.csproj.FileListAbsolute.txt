@@ -17,6 +17,6 @@ c:\users\anuitex-43\source\repos\AngularTrainee\Library.WebCore\bin\Debug\netcor
 c:\users\anuitex-43\source\repos\AngularTrainee\Library.WebCore\bin\Debug\netcoreapp2.0\Library.Entities.pdb
 c:\users\anuitex-43\source\repos\AngularTrainee\Library.WebCore\bin\Debug\netcoreapp2.0\Library.Shared.dll
 c:\users\anuitex-43\source\repos\AngularTrainee\Library.WebCore\bin\Debug\netcoreapp2.0\Library.Shared.pdb
-C:\Users\Anuitex-43\source\repos\AngularTrainee\Library.WebCore\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs
 C:\Users\Anuitex-43\source\repos\AngularTrainee\Library.WebCore\bin\Debug\netcoreapp2.0\Library.WebCore.runtimeconfig.json
 C:\Users\Anuitex-43\source\repos\AngularTrainee\Library.WebCore\bin\Debug\netcoreapp2.0\Library.WebCore.runtimeconfig.dev.json
+C:\Users\Anuitex-43\source\repos\AngularTrainee\Library.WebCore\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs

@@ -10,13 +10,24 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="src\app\components\book\book.component.ts" />
+    <None Remove="src\app\app.routing.ts" />
+    <None Remove="src\app\auth.guard.ts" />
+    <None Remove="src\app\components\authorization\account.routing.ts" />
+    <None Remove="src\app\components\authorization\auth.module.ts" />
+    <None Remove="src\app\components\authorization\login\login.component.ts" />
+    <None Remove="src\app\components\authorization\register\register.component.ts" />
+    <None Remove="src\app\components\authorization\root\root.component.ts" />
+    <None Remove="src\app\components\library\book\book.component.ts" />
+    <None Remove="src\app\components\library\library.module.ts" />
+    <None Remove="src\app\components\library\root\library.routing.ts" />
+    <None Remove="src\app\components\library\root\root.component.ts" />
     <None Remove="src\app\components\magazine - Copy (2)\brochure.component.ts" />
     <None Remove="src\app\components\magazine - Copy (3)\magazine.component.ts" />
-    <None Remove="src\app\components\magazine\magazine.component.ts" />
-    <None Remove="src\app\components\publicationHouse\publicationHouse.component.ts" />
+    <None Remove="src\app\components\library\magazine\magazine.component.ts" />
+    <None Remove="src\app\components\library\publicationHouse\publicationHouse.component.ts" />
     <None Remove="src\app\models\publicationHouse.model.ts" />
     <None Remove="src\app\services\account.service.ts" />
+    <None Remove="src\app\services\error.service.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -25,13 +36,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNet.Identity.Owin" Version="2.2.1" />
-    <PackageReference Include="Microsoft.AspNet.WebApi.Owin" Version="5.2.4" />
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.2.1" />
+    <PackageReference Include="Microsoft.AspNetCore" Version="2.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.0.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.1" />
-    <PackageReference Include="Microsoft.Owin" Version="4.0.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.2" />
   </ItemGroup>
 
   <ItemGroup>
@@ -41,13 +54,24 @@
   </ItemGroup>
 
   <ItemGroup>
-    <TypeScriptCompile Include="src\app\components\book\book.component.ts" />
-    <TypeScriptCompile Include="src\app\components\brochure\brochure.component.ts" />
-    <TypeScriptCompile Include="src\app\components\publication\publication.component.ts" />
-    <TypeScriptCompile Include="src\app\components\publicationHouse\publicationHouse.component.ts" />
-    <TypeScriptCompile Include="src\app\components\magazine\magazine.component.ts" />
+    <TypeScriptCompile Include="src\app\app.routing.ts" />
+    <TypeScriptCompile Include="src\app\auth.guard.ts" />
+    <TypeScriptCompile Include="src\app\components\authorization\account.routing.ts" />
+    <TypeScriptCompile Include="src\app\components\authorization\auth.module.ts" />
+    <TypeScriptCompile Include="src\app\components\authorization\login\login.component.ts" />
+    <TypeScriptCompile Include="src\app\components\authorization\register\register.component.ts" />
+    <TypeScriptCompile Include="src\app\components\authorization\root\root.component.ts" />
+    <TypeScriptCompile Include="src\app\components\library\book\book.component.ts" />
+    <TypeScriptCompile Include="src\app\components\library\brochure\brochure.component.ts" />
+    <TypeScriptCompile Include="src\app\components\library\library.module.ts" />
+    <TypeScriptCompile Include="src\app\components\library\publication\publication.component.ts" />
+    <TypeScriptCompile Include="src\app\components\library\publicationHouse\publicationHouse.component.ts" />
+    <TypeScriptCompile Include="src\app\components\library\magazine\magazine.component.ts" />
+    <TypeScriptCompile Include="src\app\components\library\library.routing.ts" />
+    <TypeScriptCompile Include="src\app\components\library\root\root.component.ts" />
     <TypeScriptCompile Include="src\app\models\publicationHouse.model.ts" />
     <TypeScriptCompile Include="src\app\services\account.service.ts" />
+    <TypeScriptCompile Include="src\app\services\error.service.ts" />
   </ItemGroup>
 
 </Project>

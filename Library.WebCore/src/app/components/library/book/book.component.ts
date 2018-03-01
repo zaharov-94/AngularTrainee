@@ -1,10 +1,11 @@
 import { Component, OnInit, Inject  } from '@angular/core';
-import { BookDataService } from '../../services/book.service';
-import { PublicationHouseDataService } from '../../services/publicationHouse.service';
-import { Book } from '../../models/book.model';
-import { PublicationHouse } from '../../models/publicationHouse.model';
+import { BookDataService } from '../../../services/book.service';
+import { PublicationHouseDataService } from '../../../services/publicationHouse.service';
+import { Book } from '../../../models/book.model';
+import { PublicationHouse } from '../../../models/publicationHouse.model';
 import { Observable } from 'rxjs/Observable';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AccountService } from '../../../services/account.service';
 
 //import { GridDataResult } from '@progress/kendo-angular-grid';
 import { State, process } from '@progress/kendo-data-query';
@@ -18,6 +19,7 @@ export class BookComponent implements OnInit {
   public publicationHouses: PublicationHouse[];
   private editedRowIndex: number;
   private editedItem: Book;
+  public isAdmin: boolean;
 
   //public view: Observable<GridDataResult>;
   public gridState: State = {
@@ -29,7 +31,8 @@ export class BookComponent implements OnInit {
   constructor(private bookDataService: BookDataService, private publicationHouseDataService: PublicationHouseDataService) { }
 
   ngOnInit() {
-    this.load();
+      this.load();
+      this.isAdmin = AccountService.isAdmin;
   }
 
   load() {

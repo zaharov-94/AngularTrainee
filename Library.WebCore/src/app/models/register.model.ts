@@ -1,6 +1,6 @@
 export class Register {
     email: string;  
-    year: number;
+    name: string;
     password: string;
     passwordConfirm: string;
 }
