@@ -1,16 +1,13 @@
-import { Component, OnInit, Inject  } from '@angular/core';
+import { Component, OnInit  } from '@angular/core';
 import { BookDataService } from '../../../services/book.service';
 import { PublicationHouseDataService } from '../../../services/publicationHouse.service';
 import { Book } from '../../../models/book.model';
 import { PublicationHouse } from '../../../models/publicationHouse.model';
-import { Observable } from 'rxjs/Observable';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AccountService } from '../../../services/account.service';
 
-import { GridDataResult } from '@progress/kendo-angular-grid';
-import { State, process } from '@progress/kendo-data-query';
+import { State } from '@progress/kendo-data-query';
 
-import { map } from 'rxjs/operators/map';
 @Component({
   templateUrl: './book.component.html'
 })
@@ -21,7 +18,6 @@ export class BookComponent implements OnInit {
   private editedItem: Book;
   public isAdmin: boolean;
 
-  public view: Observable<GridDataResult>;
   public gridState: State = {
     sort: [],
     skip: 0,

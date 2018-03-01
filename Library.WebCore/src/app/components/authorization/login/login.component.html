@@ -11,7 +11,7 @@
         <input id="password" type="password" required name="password" class="form-control" placeholder="Password" ngModel>
     </div>
     <div class="form-group">
-        <button type="submit" class="btn btn-lg btn-primary btn-block" [disabled]="f.invalid || isRequesting">Login</button>
+        <button type="submit" class="btn btn-lg btn-primary btn-block" [disabled]="f.invalid || isRequesting">Login  <span class='glyphicon glyphicon-log-in'></span></button>
         <a [routerLink]="['/account/register']"> Don`t have account?</a>
     </div>
     <div *ngIf="errors" class="alert alert-danger" role="alert">
