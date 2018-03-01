@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-//import { Http } from '@angular/http';
 import { Brochure } from '../models/brochure.model';
-//import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable()
@@ -12,24 +11,24 @@ export class BrochureDataService {
     constructor(private http: HttpClient) {
     }
 
-    getBrochures() {
-      return this.http.get(this.url);
+    getBrochures(): Observable<Brochure[]> {
+        return this.http.get(this.url).map((data) => { return <Brochure[]>data });
     }
 
-    getBrochure(id: number) {
-        return this.http.get(this.url + '/' + id);
+    getBrochure(id: number): Observable<Brochure> {
+        return this.http.get(this.url + '/' + id).map((data) => { return <Brochure>data });
     }
-    getCoverTypes() {
-        return this.http.get("/api/covertypes");
+    getCoverTypes(): Observable<string[]>{
+        return this.http.get("/api/covertypes").map((data) => { return <string[]>data });
     }
-    createBrochure(brochure: Brochure) {
-        return this.http.post(this.url, brochure);
+    createBrochure(brochure: Brochure): Observable<Boolean> {
+        return this.http.post(this.url, brochure).map(data => data as boolean);
     }
-    updateBrochure(brochure: Brochure) {
+    updateBrochure(brochure: Brochure): Observable<Boolean>  {
 
-        return this.http.put(this.url + '/' + brochure.id, brochure);
+        return this.http.put(this.url + '/' + brochure.id, brochure).map(data => data as boolean);
     }
-    deleteBrochure(id: number) {
-      return this.http.delete(this.url + '/' + id);
+    deleteBrochure(id: number): Observable<Boolean> {
+        return this.http.delete(this.url + '/' + id).map(data => data as boolean);
     }
 }

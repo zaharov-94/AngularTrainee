@@ -12,7 +12,7 @@ export class PublicationDataService {
     constructor(private http: HttpClient) {
     }
 
-    getPublications() {
-      return this.http.get(this.url);
+    getPublications(): Observable<Publication[]> {
+        return this.http.get(this.url).map((data) => { return <Publication[]>data });
     }
 }

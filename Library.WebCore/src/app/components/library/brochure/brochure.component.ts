@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { BrochureDataService } from '../../../services/brochure.service';
 import { Brochure } from '../../../models/brochure.model';
-//import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs/Observable';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AccountService } from '../../../services/account.service';
 

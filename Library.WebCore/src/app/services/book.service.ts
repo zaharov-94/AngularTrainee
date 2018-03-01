@@ -16,22 +16,22 @@ export class BookDataService {
     constructor(private http: HttpClient) {
     }
 
-    getBooks() {
-      return this.http.get(this.url);
+    getBooks(): Observable<Book[]>{
+        return this.http.get(this.url).map((data) => { return <Book[]>data });
     }
 
-    getBook(id: number) {
-        return this.http.get(this.url + '/' + id);
+    getBook(id: number): Observable<Book> {
+        return this.http.get(this.url + '/' + id).map((data) => { return <Book>data });
     }
 
-    createBook(book: Book) {
-        return this.http.post(this.url, book);
+    createBook(book: Book): Observable<Boolean> {
+        return this.http.post(this.url, book).map(data => data as boolean);
     }
-    updateBook(book: Book) {
+    updateBook(book: Book): Observable<Boolean> {
 
-        return this.http.put(this.url + '/' + book.id, book);
+        return this.http.put(this.url + '/' + book.id, book).map(data => data as boolean);
     }
-    deleteBook(id: number) {
-        return this.http.delete(this.url + '/' + id);
+    deleteBook(id: number): Observable<Boolean> {
+        return this.http.delete(this.url + '/' + id).map(data => data as boolean);
     }
 }

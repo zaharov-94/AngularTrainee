@@ -12,22 +12,22 @@ export class MagazineDataService {
     constructor(private http: HttpClient) {
     }
 
-    getMagazines() {
-      return this.http.get(this.url);
+    getMagazines(): Observable<Magazine[]> {
+        return this.http.get(this.url).map((data) => { return <Magazine[]>data });
     }
 
-    getMagazine(id: number) {
-        return this.http.get(this.url + '/' + id);
+    getMagazine(id: number): Observable<Magazine> {
+        return this.http.get(this.url + '/' + id).map((data) => { return <Magazine>data });
     }
 
-    createMagazine(magazine: Magazine) {
-        return this.http.post(this.url, magazine);
+    createMagazine(magazine: Magazine): Observable<Boolean> {
+        return this.http.post(this.url, magazine).map(data => data as boolean);
     }
-    updateMagazine(magazine: Magazine) {
+    updateMagazine(magazine: Magazine): Observable<Boolean> {
 
-      return this.http.put(this.url + '/' + magazine.id, magazine);
+        return this.http.put(this.url + '/' + magazine.id, magazine).map(data => data as boolean);
     }
-    deleteMagazine(id: number) {
-      return this.http.delete(this.url + '/' + id);
+    deleteMagazine(id: number): Observable<Boolean> {
+        return this.http.delete(this.url + '/' + id).map(data => data as boolean);
     }
 }

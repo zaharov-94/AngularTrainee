@@ -1,11 +1,11 @@
 import { Component, OnInit, Inject  } from '@angular/core';
 import { MagazineDataService } from '../../../services/magazine.service';
 import { Magazine } from '../../../models/magazine.model';
-//import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs/Observable';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AccountService } from '../../../services/account.service';
 
-//import { GridDataResult } from '@progress/kendo-angular-grid';
+import { GridDataResult } from '@progress/kendo-angular-grid';
 import { State, process } from '@progress/kendo-data-query';
 
 import { map } from 'rxjs/operators/map';
@@ -18,7 +18,7 @@ export class MagazineComponent implements OnInit {
   private editedItem: Magazine;
   public isAdmin: boolean;
 
-  //public view: Observable<GridDataResult>;
+  public view: Observable<GridDataResult>;
   public gridState: State = {
     sort: [],
     skip: 0,

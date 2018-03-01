@@ -519,7 +519,6 @@ let BookComponent = class BookComponent {
     constructor(bookDataService, publicationHouseDataService) {
         this.bookDataService = bookDataService;
         this.publicationHouseDataService = publicationHouseDataService;
-        //public view: Observable<GridDataResult>;
         this.gridState = {
             sort: [],
             skip: 0,
@@ -865,7 +864,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 let MagazineComponent = class MagazineComponent {
     constructor(magazineDataService) {
         this.magazineDataService = magazineDataService;
-        //public view: Observable<GridDataResult>;
         this.gridState = {
             sort: [],
             skip: 0,
@@ -1350,8 +1348,6 @@ let AccountService = AccountService_1 = class AccountService extends __WEBPACK_I
         this.http.get('api/auth/logout').subscribe();
         AccountService_1.isAdmin = null;
         AccountService_1.isLoggedIn = false;
-        //this.cookie.delete("isLoggedIn");
-        //this.cookie.delete("isAdmin");
         this.cookie.deleteAll();
         return new __WEBPACK_IMPORTED_MODULE_3_rxjs_Rx__["a" /* Observable */]();
     }
@@ -1397,19 +1393,19 @@ let BookDataService = class BookDataService {
         this.url = "/api/books";
     }
     getBooks() {
-        return this.http.get(this.url);
+        return this.http.get(this.url).map((data) => { return data; });
     }
     getBook(id) {
-        return this.http.get(this.url + '/' + id);
+        return this.http.get(this.url + '/' + id).map((data) => { return data; });
     }
     createBook(book) {
-        return this.http.post(this.url, book);
+        return this.http.post(this.url, book).map(data => data);
     }
     updateBook(book) {
-        return this.http.put(this.url + '/' + book.id, book);
+        return this.http.put(this.url + '/' + book.id, book).map(data => data);
     }
     deleteBook(id) {
-        return this.http.delete(this.url + '/' + id);
+        return this.http.delete(this.url + '/' + id).map(data => data);
     }
 };
 BookDataService = __decorate([
@@ -1438,7 +1434,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-//import { Observable } from 'rxjs/Observable';
 
 let BrochureDataService = class BrochureDataService {
     constructor(http) {
@@ -1446,22 +1441,22 @@ let BrochureDataService = class BrochureDataService {
         this.url = "/api/brochures";
     }
     getBrochures() {
-        return this.http.get(this.url);
+        return this.http.get(this.url).map((data) => { return data; });
     }
     getBrochure(id) {
-        return this.http.get(this.url + '/' + id);
+        return this.http.get(this.url + '/' + id).map((data) => { return data; });
     }
     getCoverTypes() {
-        return this.http.get("/api/covertypes");
+        return this.http.get("/api/covertypes").map((data) => { return data; });
     }
     createBrochure(brochure) {
-        return this.http.post(this.url, brochure);
+        return this.http.post(this.url, brochure).map(data => data);
     }
     updateBrochure(brochure) {
-        return this.http.put(this.url + '/' + brochure.id, brochure);
+        return this.http.put(this.url + '/' + brochure.id, brochure).map(data => data);
     }
     deleteBrochure(id) {
-        return this.http.delete(this.url + '/' + id);
+        return this.http.delete(this.url + '/' + id).map(data => data);
     }
 };
 BrochureDataService = __decorate([
@@ -1528,19 +1523,19 @@ let MagazineDataService = class MagazineDataService {
         this.url = "/api/magazines";
     }
     getMagazines() {
-        return this.http.get(this.url);
+        return this.http.get(this.url).map((data) => { return data; });
     }
     getMagazine(id) {
-        return this.http.get(this.url + '/' + id);
+        return this.http.get(this.url + '/' + id).map((data) => { return data; });
     }
     createMagazine(magazine) {
-        return this.http.post(this.url, magazine);
+        return this.http.post(this.url, magazine).map(data => data);
     }
     updateMagazine(magazine) {
-        return this.http.put(this.url + '/' + magazine.id, magazine);
+        return this.http.put(this.url + '/' + magazine.id, magazine).map(data => data);
     }
     deleteMagazine(id) {
-        return this.http.delete(this.url + '/' + id);
+        return this.http.delete(this.url + '/' + id).map(data => data);
     }
 };
 MagazineDataService = __decorate([
@@ -1576,7 +1571,7 @@ let PublicationDataService = class PublicationDataService {
         this.url = "/api/publications";
     }
     getPublications() {
-        return this.http.get(this.url);
+        return this.http.get(this.url).map((data) => { return data; });
     }
 };
 PublicationDataService = __decorate([
@@ -1612,19 +1607,19 @@ let PublicationHouseDataService = class PublicationHouseDataService {
         this.url = "/api/publicationHouses";
     }
     getPublicationHouses() {
-        return this.http.get(this.url);
+        return this.http.get(this.url).map((data) => { return data; });
     }
     getPublicationHouse(id) {
-        return this.http.get(this.url + '/' + id);
+        return this.http.get(this.url + '/' + id).map((data) => { return data; });
     }
     createPublicationHouse(publicationHouse) {
-        return this.http.post(this.url, publicationHouse);
+        return this.http.post(this.url, publicationHouse).map(data => data);
     }
     updatePublicationHouse(publicationHouse) {
-        return this.http.put(this.url + '/' + publicationHouse.id, publicationHouse);
+        return this.http.put(this.url + '/' + publicationHouse.id, publicationHouse).map(data => data);
     }
     deletePublicationHouse(id) {
-        return this.http.delete(this.url + '/' + id);
+        return this.http.delete(this.url + '/' + id).map(data => data);
     }
 };
 PublicationHouseDataService = __decorate([
