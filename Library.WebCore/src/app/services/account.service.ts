@@ -8,8 +8,8 @@ import { BehaviorSubject } from 'rxjs/Rx';
 
 import { ErrorService } from './error.service';
 
-import { Login } from '../models/login.model';
-import { Register } from '../models/register.model';
+import { PostLoginViewModel } from '../models/postLoginViewModel';
+import { PostRegisterViewModel } from '../models/postRegisterViewModel';
 
 @Injectable()
 export class AccountService extends ErrorService {
@@ -21,7 +21,7 @@ export class AccountService extends ErrorService {
         super();
     }
 
-    public login(data: Login): Observable<boolean> {
+    public login(data: PostLoginViewModel): Observable<boolean> {
         return this.http.post('api/auth/login', data)
             .map(res => {
                 AccountService.isLoggedIn = true;
@@ -36,7 +36,7 @@ export class AccountService extends ErrorService {
             .catch(this.handleError);
     }
 
-    public register(data: Register): Observable<boolean> {
+    public register(data: PostRegisterViewModel): Observable<boolean> {
         return this.http.post('api/auth/register', data)
             .map(x => x as boolean)
             .catch(this.handleError);

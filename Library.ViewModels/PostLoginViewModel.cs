@@ -2,7 +2,7 @@
 
 namespace Library.ViewModels
 {
-    public class LoginViewModel
+    public class PostLoginViewModel
     {
         [Required]
         public string Email { get; set; }

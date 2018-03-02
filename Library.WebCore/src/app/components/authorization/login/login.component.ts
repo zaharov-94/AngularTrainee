@@ -2,7 +2,7 @@ import { Subscription } from 'rxjs';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { Login } from '../../../models/login.model';
+import { PostLoginViewModel } from '../../../models/postLoginViewModel';
 
 import { AccountService } from '../../../services/account.service';
 
@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     errors: string;
     isRequesting: boolean = false;
     submitted: boolean = false;
-    loginModel: Login = { email: undefined, password: undefined };
+    loginModel: PostLoginViewModel = { email: undefined, password: undefined };
 
     constructor(private accountService: AccountService, private router: Router, private activatedRoute: ActivatedRoute) {
     }
@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         this.subscription.unsubscribe();
     }
 
-    login({ value, valid }: { value: Login, valid: boolean }) {
+    login({ value, valid }: { value: PostLoginViewModel, valid: boolean }) {
         this.submitted = true;
         this.isRequesting = true;
         this.errors = '';

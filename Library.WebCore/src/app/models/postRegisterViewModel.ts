@@ -1,4 +1,4 @@
-export class Register {
+export class PostRegisterViewModel {
     email: string;  
     name: string;
     password: string;

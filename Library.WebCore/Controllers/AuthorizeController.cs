@@ -23,7 +23,7 @@ namespace Library.WebCore.Controllers
         [AllowAnonymous]
         [HttpPost]
         [Route("register")]
-        public async Task<IActionResult> Register([FromBody] RegisterViewModel model)
+        public async Task<IActionResult> Register([FromBody] PostRegisterViewModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -46,7 +46,7 @@ namespace Library.WebCore.Controllers
 
         [HttpPost]
         [Route("login")]
-        public async Task<IActionResult> Login([FromBody] LoginViewModel model)
+        public async Task<IActionResult> Login([FromBody] PostLoginViewModel model)
         {
             if (!ModelState.IsValid)
             {

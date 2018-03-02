@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { Register } from '../../../models/register.model';
+import { PostRegisterViewModel } from '../../../models/postRegisterViewModel';
 
 import { AccountService } from '../../../services/account.service';
 
@@ -25,7 +25,7 @@ export class RegisterComponent implements OnInit {
         AccountService.isLoggedIn = false;
     }
 
-    register({ value, valid }: { value: Register, valid: boolean }) {
+    register({ value, valid }: { value: PostRegisterViewModel, valid: boolean }) {
         this.submitted = true;
         this.isRequesting = true;
         this.errors = '';
