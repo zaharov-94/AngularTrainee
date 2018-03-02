@@ -23,7 +23,7 @@ namespace Library.WebCore.Controllers
         [HttpGet]
         public GetBookViewModel Get()
         {
-            return _bookService.GetAll();
+            return _bookService.GetAll(); //this is test
         }
 
         [HttpGet("{id}")]
