@@ -335,7 +335,7 @@ let LoginComponent = class LoginComponent {
         this.loginModel = { email: undefined, password: undefined };
     }
     ngOnInit() {
-        //this.accountService.logout();
+        this.accountService.logout();
         __WEBPACK_IMPORTED_MODULE_2__services_account_service__["a" /* AccountService */].isAdmin = null;
         __WEBPACK_IMPORTED_MODULE_2__services_account_service__["a" /* AccountService */].isLoggedIn = false;
         this.subscription = this.activatedRoute.queryParams.subscribe((param) => {
@@ -576,15 +576,18 @@ let BookComponent = class BookComponent {
         this.load();
     }
     saveHandler({ sender, rowIndex, dataItem, isNew }) {
-        if (isNew) {
-            this.bookDataService.createBook(dataItem).subscribe(data => this.load());
+        debugger;
+        if ((dataItem.publicationHouses != null) && (dataItem.publicationHouses.length !== 0)) {
+            if (isNew) {
+                this.bookDataService.createBook(dataItem).subscribe(data => this.load());
+            }
+            if (!isNew) {
+                this.bookDataService.updateBook(dataItem).subscribe(data => this.load());
+            }
+            sender.closeRow(rowIndex);
+            this.editedRowIndex = undefined;
+            this.editedItem = undefined;
         }
-        if (!isNew) {
-            this.bookDataService.updateBook(dataItem).subscribe(data => this.load());
-        }
-        sender.closeRow(rowIndex);
-        this.editedRowIndex = undefined;
-        this.editedItem = undefined;
     }
     closeEditor(grid, rowIndex = this.editedRowIndex) {
         grid.closeRow(rowIndex);

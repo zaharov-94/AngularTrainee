@@ -1,13 +1,9 @@
 ﻿using Library.DAL.Context;
 using Library.DAL.Repositories;
 using Library.Entities.Entities;
-using Library.ViewModels;
-using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
-using System.ComponentModel.DataAnnotations;
-using System;
 using Library.ViewModels.BookViewModel;
 
 namespace Library.BLL.Services
@@ -29,9 +25,9 @@ namespace Library.BLL.Services
         {
             var list = _unitOfWork.PublicationHouseBook.GetAll().GroupBy(x => x.Book);
             IEnumerable<GetBookViewItem> books = Mapper.Map<IEnumerable<IGrouping<Book, PublicationHouseBook>>, IEnumerable<GetBookViewItem>>(list);
-            IEnumerable<GetBookViewItem> booksWithoutPublisher = Mapper.Map<IEnumerable<Book>, IEnumerable<GetBookViewItem>>(_unitOfWork.Book.GetAll());
+            //IEnumerable<GetBookViewItem> booksWithoutPublisher = Mapper.Map<IEnumerable<Book>, IEnumerable<GetBookViewItem>>(_unitOfWork.Book.GetAll());
+            //books = books.Concat(booksWithoutPublisher.Except(books, _bookComparer));
 
-            books = books.Concat(booksWithoutPublisher.Except(books, _bookComparer));
             return Mapper.Map<IEnumerable<GetBookViewItem>, GetBookViewModel>(books);
         }
 

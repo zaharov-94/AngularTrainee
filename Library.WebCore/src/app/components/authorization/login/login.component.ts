@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        //this.accountService.logout();
+        this.accountService.logout();
         AccountService.isAdmin = null;
         AccountService.isLoggedIn = false;
 

@@ -1,3 +1,4 @@
+
 import { Component, OnInit } from '@angular/core';
 import { BookDataService } from '../../../services/book.service';
 import { PublicationHouseDataService } from '../../../services/publicationHouse.service';
@@ -74,12 +75,14 @@ export class BookComponent implements OnInit {
     }
 
     public saveHandler({ sender, rowIndex, dataItem, isNew }) {
-        if (isNew) { this.bookDataService.createBook(dataItem).subscribe(data => this.load()); }
-        if (!isNew) { this.bookDataService.updateBook(dataItem).subscribe(data => this.load()); }
-        sender.closeRow(rowIndex);
-
-        this.editedRowIndex = undefined;
-        this.editedItem = undefined;
+        debugger;
+        if ((dataItem.publicationHouses != null)&&(dataItem.publicationHouses.length!==0)){
+            if (isNew) { this.bookDataService.createBook(dataItem).subscribe(data => this.load()); }
+            if (!isNew) { this.bookDataService.updateBook(dataItem).subscribe(data => this.load()); }
+            sender.closeRow(rowIndex);
+            this.editedRowIndex = undefined;
+            this.editedItem = undefined;
+        }
     }
 
     private closeEditor(grid, rowIndex = this.editedRowIndex) {
