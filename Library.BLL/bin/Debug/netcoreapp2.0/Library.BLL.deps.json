@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.0",
-    "signature": "9d4c9a33dcfc692bf7f3b41f09819c41243c37c9"
+    "signature": "165fe0c866b7bbbf0449875e8c8972ca458bece1"
   },
   "compilationOptions": {},
   "targets": {
@@ -12,7 +12,6 @@
           "Library.DAL": "1.0.0",
           "Library.Entities": "1.0.0",
           "Library.ViewModels": "1.0.0",
-          "Microsoft.AspNet.Identity.Core": "2.2.1",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "2.0.1",
           "Microsoft.IdentityModel.Tokens": "5.1.4.0"
         },
@@ -35,11 +34,6 @@
         },
         "runtime": {
           "lib/netstandard1.3/AutoMapper.dll": {}
-        }
-      },
-      "Microsoft.AspNet.Identity.Core/2.2.1": {
-        "runtime": {
-          "lib/net45/Microsoft.AspNet.Identity.Core.dll": {}
         }
       },
       "Microsoft.AspNetCore.Authentication/2.0.1": {
@@ -877,13 +871,6 @@
       "sha512": "sha512-eGKcnJdoF5rYMWPUaSPtlWdvua9xw4hnQN5kM/X4AXLGKghrtPIaMv+RYoA3sj0kyZ3X6wZ1Qj67F+u0pCCPaw==",
       "path": "automapper/6.2.2",
       "hashPath": "automapper.6.2.2.nupkg.sha512"
-    },
-    "Microsoft.AspNet.Identity.Core/2.2.1": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-jjurNglpmcv0SLBd4Fmar8ZoJ2yqfTf6iuP3p8wVH7Nvanfo8l3qTBzq3qRQz2BQlb6iXJiDWPjcnIImVz512g==",
-      "path": "microsoft.aspnet.identity.core/2.2.1",
-      "hashPath": "microsoft.aspnet.identity.core.2.2.1.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Authentication/2.0.1": {
       "type": "package",

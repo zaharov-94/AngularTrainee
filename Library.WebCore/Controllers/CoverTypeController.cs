@@ -5,7 +5,7 @@ using System;
 
 namespace Library.WebCore.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize]
     [Route("api/covertypes")]
     public class CoverTypeController : Controller
     {

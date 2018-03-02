@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.0",
-    "signature": "237785e46ddd8e9ad7b77384fb45ee8c77674f9e"
+    "signature": "e1b71dbe6b24ea795a31d5efaa012b513717ab48"
   },
   "compilationOptions": {
     "defines": [
@@ -191,14 +191,6 @@
         },
         "compile": {
           "lib/netstandard1.3/Microsoft.AI.ServerTelemetryChannel.dll": {}
-        }
-      },
-      "Microsoft.AspNet.Identity.Core/2.2.1": {
-        "runtime": {
-          "lib/net45/Microsoft.AspNet.Identity.Core.dll": {}
-        },
-        "compile": {
-          "lib/net45/Microsoft.AspNet.Identity.Core.dll": {}
         }
       },
       "Microsoft.AspNetCore/2.0.1": {
@@ -4278,7 +4270,6 @@
           "Library.DAL": "1.0.0",
           "Library.Entities": "1.0.0",
           "Library.ViewModels": "1.0.0",
-          "Microsoft.AspNet.Identity.Core": "2.2.1",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "2.0.1"
         },
         "runtime": {
@@ -4567,13 +4558,6 @@
       "sha512": "sha512-JCC+UltE34WYGJeUfPvMM3muB3eR00gP+7ZURTutymnMA4aSZYHvf+jf5xnBK1Kwlw9FOoYl/240XyZc/kdBfQ==",
       "path": "microsoft.applicationinsights.windowsserver.telemetrychannel/2.5.1",
       "hashPath": "microsoft.applicationinsights.windowsserver.telemetrychannel.2.5.1.nupkg.sha512"
-    },
-    "Microsoft.AspNet.Identity.Core/2.2.1": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-jjurNglpmcv0SLBd4Fmar8ZoJ2yqfTf6iuP3p8wVH7Nvanfo8l3qTBzq3qRQz2BQlb6iXJiDWPjcnIImVz512g==",
-      "path": "microsoft.aspnet.identity.core/2.2.1",
-      "hashPath": "microsoft.aspnet.identity.core.2.2.1.nupkg.sha512"
     },
     "Microsoft.AspNetCore/2.0.1": {
       "type": "package",
