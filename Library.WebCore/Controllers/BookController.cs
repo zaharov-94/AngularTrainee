@@ -1,13 +1,8 @@
 using Library.BLL.Services;
 using Library.DAL.Context;
-using Library.ViewModels;
 using Library.ViewModels.BookViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Library.WebCore.Controllers
 {
@@ -23,13 +18,13 @@ namespace Library.WebCore.Controllers
         [HttpGet]
         public GetBookViewModel Get()
         {
-            return _bookService.GetAll(); //this is not test
+            return _bookService.GetAll();
         }
 
         [HttpGet("{id}")]
         public GetBookViewItem Get(int id)
         {
-            GetBookViewItem book = _bookService.GetById(id);//this is test
+            GetBookViewItem book = _bookService.GetById(id);
             return book;
         }
         [Authorize(Roles="Admin")]
