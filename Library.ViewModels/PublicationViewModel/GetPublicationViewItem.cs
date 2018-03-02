@@ -1,6 +1,6 @@
-﻿namespace Library.ViewModels
+﻿namespace Library.ViewModels.PublicationViewModel
 {
-    public class PublicationViewModel
+    public class GetPublicationViewItem
     {
 
         public string Name { get; set; }

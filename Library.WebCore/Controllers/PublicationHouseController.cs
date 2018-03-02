@@ -1,62 +1,64 @@
 using Library.BLL.Services;
-using Library.ViewModels;
+using Library.DAL.Context;
+using Library.ViewModels.PublicationHouseViewModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Library.WebCore.Controllers
 {
-  [Route("api/publicationHouses")]
-  public class PublicationHouseController : Controller
-  {
-    PublicationHouseService _publicationHouseService;
-    public PublicationHouseController(PublicationHouseService publicationHouseService)
+    [Authorize]
+    [Route("api/publicationHouses")]
+    public class PublicationHouseController : Controller
     {
-      _publicationHouseService = publicationHouseService;
-    }
-    [HttpGet]
-    public IEnumerable<PublicationHouseViewModel> Get()
-    {
-      return _publicationHouseService.GetAll();
-    }
+        PublicationHouseService _publicationHouseService;
+        public PublicationHouseController(ApplicationContext applicationContext)
+        {
+            _publicationHouseService = new PublicationHouseService(applicationContext);
+        }
+        [HttpGet]
+        public GetPublicationHouseViewModel Get()
+        {
+            return _publicationHouseService.GetAll();
+        }
 
-    [HttpGet("{id}")]
-    public PublicationHouseViewModel Get(int id)
-    {
-      PublicationHouseViewModel publicationHouse = _publicationHouseService.GetById(id);
-      return publicationHouse;
-    }
+        [HttpGet("{id}")]
+        public GetPublicationHouseViewItem Get(int id)
+        {
+            GetPublicationHouseViewItem publicationHouse = _publicationHouseService.GetById(id);
+            return publicationHouse;
+        }
 
-    [HttpPost]
-    public IActionResult Post([FromBody]PublicationHouseViewModel publicationHouse)
-    {
-      if (ModelState.IsValid)
-      {
-        _publicationHouseService.Add(publicationHouse);
-        return Ok(publicationHouse);
-      }
-      return BadRequest(ModelState);
-    }
+        [Authorize(Roles = "Admin")]
+        [HttpPost]
+        public IActionResult Post([FromBody]PostPublicationHouseViewItem publicationHouse)
+        {
+            if (ModelState.IsValid)
+            {
+                _publicationHouseService.Add(publicationHouse);
+                return Ok(publicationHouse);
+            }
+            return BadRequest(ModelState);
+        }
 
-    [HttpPut("{id}")]
-    public IActionResult Put(int id, [FromBody]PublicationHouseViewModel publicationHouse)
-    {
-      if (ModelState.IsValid)
-      {
-        _publicationHouseService.Edit(publicationHouse);
-        return Ok(publicationHouse);
-      }
-      return BadRequest(ModelState);
-    }
+        [Authorize(Roles = "Admin")]
+        [HttpPut("{id}")]
+        public IActionResult Put(int id, [FromBody]PostPublicationHouseViewItem publicationHouse)
+        {
+            if (ModelState.IsValid)
+            {
+                _publicationHouseService.Edit(publicationHouse);
+                return Ok(publicationHouse);
+            }
+            return BadRequest(ModelState);
+        }
 
-    [HttpDelete("{id}")]
-    public IActionResult Delete(int id)
-    {
-      PublicationHouseViewModel publicationHouse = _publicationHouseService.GetById(id);
-      _publicationHouseService.Delete(id);
-      return Ok(publicationHouse);
+        [Authorize(Roles = "Admin")]
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            GetPublicationHouseViewItem publicationHouse = _publicationHouseService.GetById(id);
+            _publicationHouseService.Delete(id);
+            return Ok(publicationHouse);
+        }
     }
-  }
 }

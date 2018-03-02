@@ -3,6 +3,7 @@ using Library.DAL.Context;
 using Library.DAL.Repositories;
 using Library.Entities.Entities;
 using Library.ViewModels;
+using Library.ViewModels.MagazineViewModel;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,24 +18,24 @@ namespace Library.BLL.Services
         {
             _unitOfWork = new UnitOfWork(context);
         }
-        public IEnumerable<MagazineViewModel> GetAll()
+        public GetMagazineViewModel GetAll()
         {
-            List<Magazine> magazinesList = _unitOfWork.Magazine.GetAll().ToList();
-            return Mapper.Map<List<Magazine>, IEnumerable<MagazineViewModel>>(magazinesList);
+            IEnumerable<Magazine> magazinesList = _unitOfWork.Magazine.GetAll();
+            return Mapper.Map<IEnumerable<Magazine>, GetMagazineViewModel>(magazinesList);
         }
 
-        public void Add(MagazineViewModel magazineViewModel)
+        public void Add(PostMagazineViewItem magazineViewModel)
         {
             _unitOfWork.Magazine.Add(ToMagazine(magazineViewModel));
         }
 
-        public MagazineViewModel GetById(int id)
+        public GetMagazineViewItem GetById(int id)
         {
             Magazine magazine = _unitOfWork.Magazine.FindById(id);
-            return Mapper.Map<Magazine, MagazineViewModel>(magazine);
+            return Mapper.Map<Magazine, GetMagazineViewItem>(magazine);
         }
 
-        public void Edit(MagazineViewModel magazineViewModel)
+        public void Edit(PostMagazineViewItem magazineViewModel)
         {
             _unitOfWork.Magazine.Update(ToMagazine(magazineViewModel));
         }
@@ -43,9 +44,9 @@ namespace Library.BLL.Services
             _unitOfWork.Magazine.Remove(id);
         }
 
-        private Magazine ToMagazine(MagazineViewModel magazineViewModel)
+        private Magazine ToMagazine(PostMagazineViewItem magazineViewModel)
         {
-            return Mapper.Map<MagazineViewModel, Magazine>(magazineViewModel);
+            return Mapper.Map<PostMagazineViewItem, Magazine>(magazineViewModel);
         }
     }
 }

@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace Library.ViewModels
+namespace Library.ViewModels.PublicationHouseViewModel
 {
-    public class PublicationHouseViewModel
+    public class GetPublicationHouseViewItem
     {
         [Key]
         public int Id { get; set; }

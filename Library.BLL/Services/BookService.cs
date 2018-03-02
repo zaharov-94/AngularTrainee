@@ -8,13 +8,14 @@ using System.Linq;
 using AutoMapper;
 using System.ComponentModel.DataAnnotations;
 using System;
+using Library.ViewModels.BookViewModel;
 
 namespace Library.BLL.Services
 {
     public class BookService
     {
         private UnitOfWork _unitOfWork;
-        IEqualityComparer<BookViewModel> _bookComparer;
+        IEqualityComparer<GetBookViewItem> _bookComparer;
         IEqualityComparer<PublicationHouseBook> _publicationHouseComparer;
 
         public BookService(ApplicationContext context)
@@ -24,19 +25,19 @@ namespace Library.BLL.Services
             _publicationHouseComparer = new PublicationHouseBookComparer();
         }
 
-        public IEnumerable<BookViewModel> GetAll()
+        public GetBookViewModel GetAll()
         {
             var list = _unitOfWork.PublicationHouseBook.GetAll().GroupBy(x => x.Book);
-            IEnumerable<BookViewModel> books = Mapper.Map<IEnumerable<IGrouping<Book, PublicationHouseBook>>, IEnumerable<BookViewModel>>(list);
-            IEnumerable<BookViewModel> booksWithoutPublisher = Mapper.Map<IEnumerable<Book>, IEnumerable<BookViewModel>>(_unitOfWork.Book.GetAll());
+            IEnumerable<GetBookViewItem> books = Mapper.Map<IEnumerable<IGrouping<Book, PublicationHouseBook>>, IEnumerable<GetBookViewItem>>(list);
+            IEnumerable<GetBookViewItem> booksWithoutPublisher = Mapper.Map<IEnumerable<Book>, IEnumerable<GetBookViewItem>>(_unitOfWork.Book.GetAll());
 
             books = books.Concat(booksWithoutPublisher.Except(books, _bookComparer));
-            return books;
+            return Mapper.Map<IEnumerable<GetBookViewItem>, GetBookViewModel>(books);
         }
 
-        public void Add(BookViewModel bookViewModel)
+        public void Add(PostBookViewItem bookViewModel)
         {
-            Book book = Mapper.Map<BookViewModel, Book>(bookViewModel);
+            Book book = Mapper.Map<PostBookViewItem, Book>(bookViewModel);
             _unitOfWork.Book.Add(book);
 
             bookViewModel.Id = book.Id;
@@ -48,15 +49,15 @@ namespace Library.BLL.Services
             }
         }
 
-        public BookViewModel GetById(int id)
+        public GetBookViewItem GetById(int id)
         {
-            BookViewModel bookViewModel = Mapper.Map<Book, BookViewModel>(_unitOfWork.Book.Get(x => x.Id == id).Single());
+            GetBookViewItem bookViewModel = Mapper.Map<Book, GetBookViewItem>(_unitOfWork.Book.Get(x => x.Id == id).Single());
             return bookViewModel;
         }
 
-        public void Edit(BookViewModel bookViewModel)
+        public void Edit(PostBookViewItem bookViewModel)
         {
-            Book book = Mapper.Map<BookViewModel, Book>(bookViewModel);
+            Book book = Mapper.Map<PostBookViewItem, Book>(bookViewModel);
             _unitOfWork.Book.Update(book);
             
             //Remove elements that are not exist in received model
@@ -75,7 +76,7 @@ namespace Library.BLL.Services
             _unitOfWork.Book.Remove(id);
         }
 
-        private List<PublicationHouseBook> ToPublicationHouseBook(BookViewModel bookViewModel)
+        private List<PublicationHouseBook> ToPublicationHouseBook(PostBookViewItem bookViewModel)
         {
             var publicationHouseBook = new List<PublicationHouseBook>();
             foreach (var item in bookViewModel.PublicationHouses)

@@ -1,19 +1,29 @@
 webpackJsonp(["main"],{
 
 /***/ "../../../../../src/$$_lazy_route_resource lazy recursive":
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-function webpackEmptyAsyncContext(req) {
-	// Here Promise.resolve().then() is used instead of new Promise() to prevent
-	// uncatched exception popping up in devtools
-	return Promise.resolve().then(function() {
-		throw new Error("Cannot find module '" + req + "'.");
+var map = {
+	"./components/authorization/auth.module": [
+		"../../../../../src/app/components/authorization/auth.module.ts"
+	],
+	"./components/library/library.module": [
+		"../../../../../src/app/components/library/library.module.ts"
+	]
+};
+function webpackAsyncContext(req) {
+	var ids = map[req];
+	if(!ids)
+		return Promise.reject(new Error("Cannot find module '" + req + "'."));
+	return Promise.all(ids.slice(1).map(__webpack_require__.e)).then(function() {
+		return __webpack_require__(ids[0]);
 	});
-}
-webpackEmptyAsyncContext.keys = function() { return []; };
-webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
-module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = "../../../../../src/$$_lazy_route_resource lazy recursive";
+};
+webpackAsyncContext.keys = function webpackAsyncContextKeys() {
+	return Object.keys(map);
+};
+webpackAsyncContext.id = "../../../../../src/$$_lazy_route_resource lazy recursive";
+module.exports = webpackAsyncContext;
 
 /***/ }),
 
@@ -64,8 +74,8 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* HttpModule */],
             __WEBPACK_IMPORTED_MODULE_3__angular_common_http__["b" /* HttpClientModule */],
             __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* JsonpModule */],
-            __WEBPACK_IMPORTED_MODULE_8__components_authorization_auth_module__["a" /* AuthModule */],
-            __WEBPACK_IMPORTED_MODULE_9__components_library_library_module__["a" /* LibraryModule */]
+            __WEBPACK_IMPORTED_MODULE_8__components_authorization_auth_module__["AuthModule"],
+            __WEBPACK_IMPORTED_MODULE_9__components_library_library_module__["LibraryModule"]
         ],
         providers: [
             __WEBPACK_IMPORTED_MODULE_10__services_account_service__["a" /* AccountService */],
@@ -84,15 +94,11 @@ AppModule = __decorate([
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_router__ = __webpack_require__("../../../router/esm2015/router.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_authorization_auth_module__ = __webpack_require__("../../../../../src/app/components/authorization/auth.module.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_library_library_module__ = __webpack_require__("../../../../../src/app/components/library/library.module.ts");
-
-
 
 const appRoutes = [
     { path: '', redirectTo: 'library', pathMatch: 'full' },
-    { path: 'account', component: __WEBPACK_IMPORTED_MODULE_1__components_authorization_auth_module__["a" /* AuthModule */] },
-    { path: 'library', component: __WEBPACK_IMPORTED_MODULE_2__components_library_library_module__["a" /* LibraryModule */] }
+    { path: 'account', loadChildren: './components/authorization/auth.module#AuthModule' },
+    { path: 'library', loadChildren: './components/library/library.module#LibraryModule' }
 ];
 const routing = __WEBPACK_IMPORTED_MODULE_0__angular_router__["c" /* RouterModule */].forRoot(appRoutes);
 /* harmony export (immutable) */ __webpack_exports__["a"] = routing;
@@ -226,7 +232,8 @@ const routing = __WEBPACK_IMPORTED_MODULE_0__angular_router__["c" /* RouterModul
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AuthModule; });
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AuthModule", function() { return AuthModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm2015/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__("../../../common/esm2015/common.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__("../../../forms/esm2015/forms.js");
@@ -294,7 +301,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/authorization/login/login.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"brandNew\" class=\"alert alert-success\" role=\"alert\" style=\"text-align:center\">\r\n    <strong>All set!</strong> Please login with your account\r\n</div>\r\n<form #f=\"ngForm\" novalidate (ngSubmit)=\"login(f)\" class=\"form-auth\">\r\n    <h2 class=\"form-auth-heading\">Login</h2>\r\n    <div class=\"form-group\">\r\n        <input id=\"email\" type=\"text\" required name=\"email\" [ngModel]=\"loginModel.email\" #email=\"ngModel\" tmFocus validateEmail class=\"form-control\"\r\n               placeholder=\"Email address\">\r\n    </div>\r\n    <div class=\"form-group\">\r\n        <input id=\"password\" type=\"password\" required name=\"password\" class=\"form-control\" placeholder=\"Password\" ngModel>\r\n    </div>\r\n    <div class=\"form-group\">\r\n        <button type=\"submit\" class=\"btn btn-lg btn-primary btn-block\" [disabled]=\"f.invalid || isRequesting\">Login  <span class='glyphicon glyphicon-log-in'></span></button>\r\n        <a [routerLink]=\"['/account/register']\"> Don`t have account?</a>\r\n    </div>\r\n    <div *ngIf=\"errors\" class=\"alert alert-danger\" role=\"alert\">\r\n        <strong>Oops!</strong> {{errors}}\r\n    </div>\r\n</form>\r\n"
+module.exports = "<div *ngIf=\"brandNew\" class=\"alert alert-success\" role=\"alert\" style=\"text-align:center\">\r\n    <strong>All set!</strong> Please login with your account\r\n</div>\r\n<form #f=\"ngForm\" (ngSubmit)=\"login(f)\" class=\"form-auth\">\r\n    <h2 class=\"form-auth-heading\">Login</h2>\r\n    <div class=\"form-group\">\r\n        <input id=\"email\" type=\"text\" required name=\"email\" [ngModel]=\"loginModel.email\" class=\"form-control\"\r\n               placeholder=\"Email address\">\r\n    </div>\r\n    <div class=\"form-group\">\r\n        <input id=\"password\" type=\"password\" required name=\"password\" [ngModel]=\"loginModel.password\" class=\"form-control\"\r\n               placeholder=\"Password\">\r\n    </div>\r\n    <div class=\"form-group\">\r\n        <button type=\"submit\" class=\"btn btn-lg btn-primary btn-block\" [(disabled)]=\"isRequesting\">Login  <span class='glyphicon glyphicon-log-in'></span></button>\r\n        <a [routerLink]=\"['/account/register']\"> Don`t have account?</a>\r\n    </div>\r\n    <div *ngIf=\"errors\" class=\"alert alert-danger\" role=\"alert\">\r\n        <strong>Oops!</strong> {{errors}}\r\n    </div>\r\n</form>\r\n"
 
 /***/ }),
 
@@ -323,11 +330,12 @@ let LoginComponent = class LoginComponent {
         this.accountService = accountService;
         this.router = router;
         this.activatedRoute = activatedRoute;
+        this.isRequesting = false;
         this.submitted = false;
-        this.loginModel = { email: '', password: '' };
+        this.loginModel = { email: undefined, password: undefined };
     }
     ngOnInit() {
-        this.accountService.logout();
+        //this.accountService.logout();
         __WEBPACK_IMPORTED_MODULE_2__services_account_service__["a" /* AccountService */].isAdmin = null;
         __WEBPACK_IMPORTED_MODULE_2__services_account_service__["a" /* AccountService */].isLoggedIn = false;
         this.subscription = this.activatedRoute.queryParams.subscribe((param) => {
@@ -350,6 +358,9 @@ let LoginComponent = class LoginComponent {
                     this.router.navigate(['/library']);
                 }
             }, error => this.errors = "Not correct data!");
+        }
+        if (!valid) {
+            this.errors = "Not correct data!";
         }
     }
 };
@@ -487,7 +498,7 @@ RootComponent = __decorate([
 /***/ "../../../../../src/app/components/library/book/book.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h2>Books</h2>\r\n<form novalidate #myForm=\"ngForm\">\r\n\r\n    <kendo-grid [kendoGridBinding]=\"books\"\r\n                [height]=\"500\"\r\n                [pageable]=\"true\"\r\n                [sortable]=\"true\"\r\n                [navigable]=\"true\"\r\n                [pageSize]=\"gridState.take\" [skip]=\"gridState.skip\" [sort]=\"gridState.sort\"\r\n                (remove)=\"removeHandler($event)\"\r\n                (dataStateChange)=\"onStateChange($event)\"\r\n                (edit)=\"editHandler($event)\"\r\n                (cancel)=\"cancelHandler($event)\"\r\n                (save)=\"saveHandler($event)\"\r\n                (add)=\"addHandler($event)\">\r\n        <ng-template kendoGridToolbarTemplate *ngIf=\"isAdmin\">\r\n            <button kendoGridAddCommand type=\"button\" [primary]=\"true\">Add new</button>\r\n        </ng-template>\r\n        <kendo-grid-column field=\"name\" title=\"Book Title\">\r\n            <ng-template kendoGridEditTemplate let-dataItem=\"dataItem\">\r\n                <input [(ngModel)]=\"dataItem.name\" kendoGridFocusable name=\"Book title\" required class=\"k-textbox\" />\r\n            </ng-template>\r\n        </kendo-grid-column>\r\n        <kendo-grid-column field=\"author\" title=\"Book author\">\r\n            <ng-template kendoGridEditTemplate let-dataItem=\"dataItem\">\r\n                <input [(ngModel)]=\"dataItem.author\" kendoGridFocusable name=\"Book author\" required class=\"k-textbox\" />\r\n            </ng-template>\r\n        </kendo-grid-column>\r\n        <kendo-grid-column field=\"yearOfPublishing\" editor=\"numeric\" title=\"Year of Publishing\">\r\n            <ng-template kendoGridEditTemplate let-dataItem=\"dataItem\">\r\n                <input [(ngModel)]=\"dataItem.yearOfPublishing\" kendoGridFocusable required min=\"1900\"\r\n                       max=\"2020\" class=\"k-textbox\" name=\"Year\" type=\"number\" />\r\n            </ng-template>\r\n        </kendo-grid-column>\r\n        <kendo-grid-column field=\"publicationHouses\" editor=\"multiSelectEditor\" title=\"Publication houses\">\r\n            <ng-template kendoGridCellTemplate let-dataItem>\r\n                {{pubHouses(dataItem.id)}}\r\n            </ng-template>\r\n            <ng-template kendoGridEditTemplate let-dataItem=\"dataItem\">\r\n                <kendo-multiselect [data]=\"publicationHouses\" [valueField]=\"'id'\" [textField]=\"'name'\"  [(value)]=\"dataItem.publicationHouses\"></kendo-multiselect>\r\n            </ng-template>\r\n        </kendo-grid-column>\r\n        <kendo-grid-command-column title=\"\" width=\"220\" *ngIf=\"isAdmin\">\r\n            <ng-template kendoGridCellTemplate let-isNew=\"isNew\">\r\n                <button kendoGridEditCommand type=\"button\" class=\"k-primary\" [primary]=\"true\">Edit</button>\r\n                <button kendoGridRemoveCommand type=\"button\" [primary]=\"true\">Remove</button>\r\n                <button kendoGridSaveCommand type=\"button\" [disabled]=\"myForm.invalid\" [primary]=\"true\">{{ isNew ? 'Add' : 'Update' }}</button>\r\n                <button kendoGridCancelCommand type=\"button\" [primary]=\"true\">{{ isNew ? 'Discard changes' : 'Cancel' }}</button>\r\n            </ng-template>\r\n        </kendo-grid-command-column>\r\n    </kendo-grid>\r\n</form>\r\n"
+module.exports = "<h2>Books</h2>\r\n<form novalidate #myForm=\"ngForm\">\r\n\r\n    <kendo-grid [kendoGridBinding]=\"books\"\r\n                [height]=\"500\"\r\n                [pageable]=\"true\"\r\n                [sortable]=\"true\"\r\n                [navigable]=\"true\"\r\n                [pageSize]=\"gridState.take\" [skip]=\"gridState.skip\" [sort]=\"gridState.sort\"\r\n                (remove)=\"removeHandler($event)\"\r\n                (dataStateChange)=\"onStateChange($event)\"\r\n                (edit)=\"editHandler($event)\"\r\n                (cancel)=\"cancelHandler($event)\"\r\n                (save)=\"saveHandler($event)\"\r\n                (add)=\"addHandler($event)\">\r\n        <ng-template kendoGridToolbarTemplate *ngIf=\"isAdmin\">\r\n            <button kendoGridAddCommand type=\"button\" [primary]=\"true\">Add new</button>\r\n        </ng-template>\r\n        <kendo-grid-column field=\"name\" title=\"Book Title\">\r\n            <ng-template kendoGridEditTemplate let-dataItem=\"dataItem\">\r\n                <input [(ngModel)]=\"dataItem.name\" kendoGridFocusable name=\"Book title\" required class=\"k-textbox\" />\r\n            </ng-template>\r\n        </kendo-grid-column>\r\n        <kendo-grid-column field=\"author\" title=\"Book author\">\r\n            <ng-template kendoGridEditTemplate let-dataItem=\"dataItem\">\r\n                <input [(ngModel)]=\"dataItem.author\" kendoGridFocusable name=\"Book author\" required class=\"k-textbox\" />\r\n            </ng-template>\r\n        </kendo-grid-column>\r\n        <kendo-grid-column field=\"yearOfPublishing\" editor=\"numeric\" title=\"Year of Publishing\">\r\n            <ng-template kendoGridEditTemplate let-dataItem=\"dataItem\">\r\n                <input [(ngModel)]=\"dataItem.yearOfPublishing\" kendoGridFocusable required min=\"1900\"\r\n                       max=\"2020\" class=\"k-textbox\" name=\"Year\" type=\"number\" />\r\n            </ng-template>\r\n        </kendo-grid-column>\r\n        <kendo-grid-column field=\"publicationHouses\" editor=\"multiSelectEditor\" title=\"Publication houses\">\r\n            <ng-template kendoGridCellTemplate let-dataItem=\"dataItem\">\r\n                {{pubHouses(dataItem.id)}}\r\n            </ng-template>\r\n            <ng-template kendoGridEditTemplate let-dataItem=\"dataItem\">\r\n                <kendo-multiselect [data]=\"publicationHouses\" [valueField]=\"'id'\" [textField]=\"'name'\"  [(value)]=\"dataItem.publicationHouses\"></kendo-multiselect>\r\n            </ng-template>\r\n        </kendo-grid-column>\r\n        <kendo-grid-command-column title=\"\" width=\"220\" *ngIf=\"isAdmin\">\r\n            <ng-template kendoGridCellTemplate let-isNew=\"isNew\">\r\n                <button kendoGridEditCommand type=\"button\" class=\"k-primary\" [primary]=\"true\">Edit</button>\r\n                <button kendoGridRemoveCommand type=\"button\" [primary]=\"true\">Remove</button>\r\n                <button kendoGridSaveCommand type=\"button\" [disabled]=\"myForm.invalid\" [primary]=\"true\">{{ isNew ? 'Add' : 'Update' }}</button>\r\n                <button kendoGridCancelCommand type=\"button\" >{{ isNew ? 'Discard changes' : 'Cancel' }}</button>\r\n            </ng-template>\r\n        </kendo-grid-command-column>\r\n    </kendo-grid>\r\n</form>\r\n"
 
 /***/ }),
 
@@ -499,7 +510,7 @@ module.exports = "<h2>Books</h2>\r\n<form novalidate #myForm=\"ngForm\">\r\n\r\n
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm2015/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_book_service__ = __webpack_require__("../../../../../src/app/services/book.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_publicationHouse_service__ = __webpack_require__("../../../../../src/app/services/publicationHouse.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_book_model__ = __webpack_require__("../../../../../src/app/models/book.model.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_bookViewModel_postBookViewItem__ = __webpack_require__("../../../../../src/app/models/bookViewModel/postBookViewItem.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_account_service__ = __webpack_require__("../../../../../src/app/services/account.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -530,8 +541,8 @@ let BookComponent = class BookComponent {
         this.isAdmin = __WEBPACK_IMPORTED_MODULE_4__services_account_service__["a" /* AccountService */].isAdmin;
     }
     load() {
-        this.bookDataService.getBooks().subscribe((data) => this.books = data);
-        this.publicationHouseDataService.getPublicationHouses().subscribe((data) => this.publicationHouses = data);
+        this.bookDataService.getBooks().subscribe((books) => this.books = books.books);
+        this.publicationHouseDataService.getPublicationHouses().subscribe((data) => this.publicationHouses = data.publicationHouses);
     }
     removeHandler({ dataItem }) {
         this.bookDataService.deleteBook(dataItem.id).subscribe(data => this.load());
@@ -552,7 +563,7 @@ let BookComponent = class BookComponent {
     }
     addHandler({ sender }) {
         this.closeEditor(sender);
-        sender.addRow(new __WEBPACK_IMPORTED_MODULE_3__models_book_model__["a" /* Book */]());
+        sender.addRow(new __WEBPACK_IMPORTED_MODULE_3__models_bookViewModel_postBookViewItem__["a" /* PostBookViewItem */]());
     }
     editHandler({ sender, rowIndex, dataItem }) {
         this.closeEditor(sender);
@@ -606,7 +617,7 @@ module.exports = "<h2>Brochures</h2>\r\n<form novalidate #myForm=\"ngForm\">\r\n
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BrochureComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm2015/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_brochure_service__ = __webpack_require__("../../../../../src/app/services/brochure.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_brochure_model__ = __webpack_require__("../../../../../src/app/models/brochure.model.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_brochureViewModel_postBrochureViewItem__ = __webpack_require__("../../../../../src/app/models/brochureViewModel/postBrochureViewItem.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_account_service__ = __webpack_require__("../../../../../src/app/services/account.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -624,7 +635,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 let BrochureComponent = class BrochureComponent {
     constructor(brochureDataService) {
         this.brochureDataService = brochureDataService;
-        //public view: Observable<GridDataResult>;
         this.gridState = {
             sort: [],
             skip: 0,
@@ -636,7 +646,7 @@ let BrochureComponent = class BrochureComponent {
         this.isAdmin = __WEBPACK_IMPORTED_MODULE_3__services_account_service__["a" /* AccountService */].isAdmin;
     }
     load() {
-        this.brochureDataService.getBrochures().subscribe((data) => this.brochures = data);
+        this.brochureDataService.getBrochures().subscribe((data) => this.brochures = data.brochures);
         this.brochureDataService.getCoverTypes().subscribe((data) => this.typeCovers = data);
     }
     removeHandler({ dataItem }) {
@@ -649,7 +659,7 @@ let BrochureComponent = class BrochureComponent {
     }
     addHandler({ sender }) {
         this.closeEditor(sender);
-        sender.addRow(new __WEBPACK_IMPORTED_MODULE_2__models_brochure_model__["a" /* Brochure */]());
+        sender.addRow(new __WEBPACK_IMPORTED_MODULE_2__models_brochureViewModel_postBrochureViewItem__["a" /* PostBrochureViewItem */]());
     }
     editHandler({ sender, rowIndex, dataItem }) {
         this.closeEditor(sender);
@@ -693,7 +703,8 @@ BrochureComponent = __decorate([
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LibraryModule; });
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LibraryModule", function() { return LibraryModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm2015/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__("../../../common/esm2015/common.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__("../../../forms/esm2015/forms.js");
@@ -846,7 +857,7 @@ module.exports = "<h2>Magazines</h2>\r\n<form novalidate #myForm=\"ngForm\">\r\n
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MagazineComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm2015/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_magazine_service__ = __webpack_require__("../../../../../src/app/services/magazine.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_magazine_model__ = __webpack_require__("../../../../../src/app/models/magazine.model.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_magazineViewModel_postMagazineViewItem__ = __webpack_require__("../../../../../src/app/models/magazineViewModel/postMagazineViewItem.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_account_service__ = __webpack_require__("../../../../../src/app/services/account.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -875,7 +886,7 @@ let MagazineComponent = class MagazineComponent {
         this.isAdmin = __WEBPACK_IMPORTED_MODULE_3__services_account_service__["a" /* AccountService */].isAdmin;
     }
     load() {
-        this.magazineDataService.getMagazines().subscribe((data) => this.magazines = data);
+        this.magazineDataService.getMagazines().subscribe((data) => this.magazines = data.magazines);
     }
     removeHandler({ dataItem }) {
         this.magazineDataService.deleteMagazine(dataItem.id).subscribe(data => this.load());
@@ -887,7 +898,7 @@ let MagazineComponent = class MagazineComponent {
     }
     addHandler({ sender }) {
         this.closeEditor(sender);
-        sender.addRow(new __WEBPACK_IMPORTED_MODULE_2__models_magazine_model__["a" /* Magazine */]());
+        sender.addRow(new __WEBPACK_IMPORTED_MODULE_2__models_magazineViewModel_postMagazineViewItem__["a" /* PostMagazineViewItem */]());
     }
     editHandler({ sender, rowIndex, dataItem }) {
         this.closeEditor(sender);
@@ -955,7 +966,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 let PublicationComponent = class PublicationComponent {
     constructor(publicationDataService) {
         this.publicationDataService = publicationDataService;
-        //public view: Observable<GridDataResult>;
         this.gridState = {
             sort: [],
             skip: 0,
@@ -966,7 +976,7 @@ let PublicationComponent = class PublicationComponent {
         this.load();
     }
     load() {
-        this.publicationDataService.getPublications().subscribe((data) => this.publications = data);
+        this.publicationDataService.getPublications().subscribe((data) => this.publications = data.publications);
     }
     onStateChange(state) {
         this.gridState = state;
@@ -998,7 +1008,7 @@ module.exports = "<h2>PublicationHouses</h2>\r\n<form novalidate #myForm=\"ngFor
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PublicationHouseComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm2015/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_publicationHouse_service__ = __webpack_require__("../../../../../src/app/services/publicationHouse.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_publicationHouse_model__ = __webpack_require__("../../../../../src/app/models/publicationHouse.model.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_publicationHouseViewModel_postPublicationHouseViewItem__ = __webpack_require__("../../../../../src/app/models/publicationHouseViewModel/postPublicationHouseViewItem.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_account_service__ = __webpack_require__("../../../../../src/app/services/account.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1016,7 +1026,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 let PublicationHouseComponent = class PublicationHouseComponent {
     constructor(publicationHouseDataService) {
         this.publicationHouseDataService = publicationHouseDataService;
-        //public view: Observable<GridDataResult>;
         this.gridState = {
             sort: [],
             skip: 0,
@@ -1028,7 +1037,7 @@ let PublicationHouseComponent = class PublicationHouseComponent {
         this.isAdmin = __WEBPACK_IMPORTED_MODULE_3__services_account_service__["a" /* AccountService */].isAdmin;
     }
     load() {
-        this.publicationHouseDataService.getPublicationHouses().subscribe((data) => this.publicationHouses = data);
+        this.publicationHouseDataService.getPublicationHouses().subscribe((data) => this.publicationHouses = data.publicationHouses);
     }
     removeHandler({ dataItem }) {
         this.publicationHouseDataService.deletePublicationHouse(dataItem.id).subscribe(data => this.load());
@@ -1040,7 +1049,7 @@ let PublicationHouseComponent = class PublicationHouseComponent {
     }
     addHandler({ sender }) {
         this.closeEditor(sender);
-        sender.addRow(new __WEBPACK_IMPORTED_MODULE_2__models_publicationHouse_model__["a" /* PublicationHouse */]());
+        sender.addRow(new __WEBPACK_IMPORTED_MODULE_2__models_publicationHouseViewModel_postPublicationHouseViewItem__["a" /* PostPublicationHouseViewItem */]());
     }
     editHandler({ sender, rowIndex, dataItem }) {
         this.closeEditor(sender);
@@ -1247,49 +1256,49 @@ SidebarMenuComponent = __decorate([
 
 /***/ }),
 
-/***/ "../../../../../src/app/models/book.model.ts":
+/***/ "../../../../../src/app/models/bookViewModel/postBookViewItem.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-class Book {
+class PostBookViewItem {
 }
-/* harmony export (immutable) */ __webpack_exports__["a"] = Book;
+/* harmony export (immutable) */ __webpack_exports__["a"] = PostBookViewItem;
 
 
 
 /***/ }),
 
-/***/ "../../../../../src/app/models/brochure.model.ts":
+/***/ "../../../../../src/app/models/brochureViewModel/postBrochureViewItem.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-class Brochure {
+class PostBrochureViewItem {
 }
-/* harmony export (immutable) */ __webpack_exports__["a"] = Brochure;
+/* harmony export (immutable) */ __webpack_exports__["a"] = PostBrochureViewItem;
 
 
 
 /***/ }),
 
-/***/ "../../../../../src/app/models/magazine.model.ts":
+/***/ "../../../../../src/app/models/magazineViewModel/postMagazineViewItem.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-class Magazine {
+class PostMagazineViewItem {
 }
-/* harmony export (immutable) */ __webpack_exports__["a"] = Magazine;
+/* harmony export (immutable) */ __webpack_exports__["a"] = PostMagazineViewItem;
 
 
 
 /***/ }),
 
-/***/ "../../../../../src/app/models/publicationHouse.model.ts":
+/***/ "../../../../../src/app/models/publicationHouseViewModel/postPublicationHouseViewItem.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-class PublicationHouse {
+class PostPublicationHouseViewItem {
 }
-/* harmony export (immutable) */ __webpack_exports__["a"] = PublicationHouse;
+/* harmony export (immutable) */ __webpack_exports__["a"] = PostPublicationHouseViewItem;
 
 
 
@@ -1393,7 +1402,7 @@ let BookDataService = class BookDataService {
         this.url = "/api/books";
     }
     getBooks() {
-        return this.http.get(this.url).map((data) => { return data; });
+        return this.http.get(this.url).map((books) => { return books; });
     }
     getBook(id) {
         return this.http.get(this.url + '/' + id).map((data) => { return data; });

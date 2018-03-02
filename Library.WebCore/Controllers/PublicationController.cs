@@ -1,25 +1,24 @@
 using Library.BLL.Services;
-using Library.ViewModels;
+using Library.DAL.Context;
+using Library.ViewModels.PublicationViewModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Library.WebCore.Controllers
 {
-  [Route("api/publications")]
-  public class PublicationController : Controller
-  {
-    PublicationService _publicationService;
-    public PublicationController(PublicationService publicationService)
+    [Authorize]
+    [Route("api/publications")]
+    public class PublicationController : Controller
     {
-      _publicationService = publicationService;
+        PublicationService _publicationService;
+        public PublicationController(ApplicationContext applicationContext)
+        {
+            _publicationService = new PublicationService(applicationContext);
+        }
+        [HttpGet]
+        public GetPublicationViewModel Get()
+        {
+            return _publicationService.GetAll();
+        }
     }
-    [HttpGet]
-    public IEnumerable<PublicationViewModel> Get()
-    {
-      return _publicationService.GetAll();
-    }
-  }
 }

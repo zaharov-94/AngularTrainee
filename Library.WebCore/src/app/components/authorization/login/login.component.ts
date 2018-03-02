@@ -17,15 +17,15 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     brandNew: boolean;
     errors: string;
-    isRequesting: boolean;
+    isRequesting: boolean = false;
     submitted: boolean = false;
-    loginModel: Login = { email: '', password: '' };
+    loginModel: Login = { email: undefined, password: undefined };
 
     constructor(private accountService: AccountService, private router: Router, private activatedRoute: ActivatedRoute) {
     }
 
     ngOnInit() {
-        this.accountService.logout();
+        //this.accountService.logout();
         AccountService.isAdmin = null;
         AccountService.isLoggedIn = false;
 
@@ -41,6 +41,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     }
 
     login({ value, valid }: { value: Login, valid: boolean }) {
+        
         this.submitted = true;
         this.isRequesting = true;
         this.errors = '';
@@ -54,6 +55,9 @@ export class LoginComponent implements OnInit, OnDestroy {
                     }
                 },
                 error => this.errors = "Not correct data!");
+        }
+        if (!valid) {
+            this.errors = "Not correct data!"
         }
     }
 }

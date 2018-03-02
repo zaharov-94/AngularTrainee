@@ -1,5 +1,8 @@
 using Library.BLL.Services;
+using Library.DAL.Context;
 using Library.ViewModels;
+using Library.ViewModels.BrochureViewModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Shared.Enums;
 using System;
@@ -9,28 +12,29 @@ using System.Threading.Tasks;
 
 namespace Library.WebCore.Controllers
 {
+    [Authorize]
     [Route("api/brochures")]
     public class BrochureController : Controller
     {
         BrochureService _brochureService;
-        public BrochureController(BrochureService brochureService)
+        public BrochureController(ApplicationContext applicationContext)
         {
-            _brochureService = brochureService;
+            _brochureService = new BrochureService(applicationContext);
         }
         [HttpGet]
-        public IEnumerable<BrochureViewModel> Get()
+        public GetBrochureViewModel Get()
         {
             return _brochureService.GetAll();
         }
         [HttpGet("{id}")]
-        public BrochureViewModel Get(int id)
+        public GetBrochureViewItem Get(int id)
         {
-            BrochureViewModel brochure = _brochureService.GetById(id);
+            GetBrochureViewItem brochure = _brochureService.GetById(id);
             return brochure;
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpPost]
-        public IActionResult Post([FromBody]BrochureViewModel brochure)
+        public IActionResult Post([FromBody]PostBrochureViewItem brochure)
         {
             if (ModelState.IsValid)
             {
@@ -39,9 +43,9 @@ namespace Library.WebCore.Controllers
             }
             return BadRequest(ModelState);
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody]BrochureViewModel brochure)
+        public IActionResult Put(int id, [FromBody]PostBrochureViewItem brochure)
         {
             if (ModelState.IsValid)
             {
@@ -50,11 +54,11 @@ namespace Library.WebCore.Controllers
             }
             return BadRequest(ModelState);
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            BrochureViewModel brochure = _brochureService.GetById(id);
+            GetBrochureViewItem brochure = _brochureService.GetById(id);
             _brochureService.Delete(id);
             return Ok(brochure);
         }

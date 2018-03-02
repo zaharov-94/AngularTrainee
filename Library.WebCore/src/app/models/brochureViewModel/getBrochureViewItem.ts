@@ -1,4 +1,4 @@
-export class Brochure {
+export class GetBrochureViewItem {
     public id: number;
     public name: string;
     public typeOfCover: string;

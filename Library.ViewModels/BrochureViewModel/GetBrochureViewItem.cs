@@ -1,16 +1,16 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Library.ViewModels
+namespace Library.ViewModels.BrochureViewModel
 {
-    public class MagazineViewModel
+    public class GetBrochureViewItem
     {
         [Key]
         public int Id { get; set; }
         [Required]
         public string Name { get; set; }
         [Required]
-        public int Number { get; set; }
+        public string TypeOfCover { get; set; }
         [Required]
-        public int YearOfPublishing { get; set; }
+        public int NumberOfPages { get; set; }
     }
 }

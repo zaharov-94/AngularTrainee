@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { PublicationHouse } from '../models/publicationHouse.model';
+import { GetPublicationHouseViewItem } from '../models/publicationHouseViewModel/getPublicationHouseViewItem';
+import { PostPublicationHouseViewItem } from '../models/publicationHouseViewModel/postPublicationHouseViewItem';
+import { GetPublicationHouseViewModel } from '../models/publicationHouseViewModel/getPublicationHouseViewModel';
 import { Observable } from 'rxjs/Observable';
 
 @Injectable()
@@ -11,18 +13,18 @@ export class PublicationHouseDataService {
     constructor(private http: HttpClient) {
     }
 
-    getPublicationHouses(): Observable<PublicationHouse[]> {
-        return this.http.get(this.url).map((data) => { return <PublicationHouse[]>data });
+    getPublicationHouses(): Observable<GetPublicationHouseViewModel> {
+        return this.http.get(this.url).map((data) => { return <GetPublicationHouseViewModel>data });
     }
 
-    getPublicationHouse(id: number): Observable<PublicationHouse> {
-        return this.http.get(this.url + '/' + id).map((data) => { return <PublicationHouse>data });
+    getPublicationHouse(id: number): Observable<GetPublicationHouseViewItem> {
+        return this.http.get(this.url + '/' + id).map((data) => { return <GetPublicationHouseViewItem>data });
     }
 
-    createPublicationHouse(publicationHouse: PublicationHouse): Observable<Boolean> {
+    createPublicationHouse(publicationHouse: PostPublicationHouseViewItem): Observable<Boolean> {
         return this.http.post(this.url, publicationHouse).map(data => data as boolean);
     }
-    updatePublicationHouse(publicationHouse: PublicationHouse): Observable<Boolean> {
+    updatePublicationHouse(publicationHouse: PostPublicationHouseViewItem): Observable<Boolean> {
 
         return this.http.put(this.url + '/' + publicationHouse.id, publicationHouse).map(data => data as boolean);
     }

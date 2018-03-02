@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
-import { Publication } from '../models/publication.model';
+import { GetPublicationViewModel } from '../models/publicationViewModel/getPublicationViewModel';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
 
@@ -12,7 +12,7 @@ export class PublicationDataService {
     constructor(private http: HttpClient) {
     }
 
-    getPublications(): Observable<Publication[]> {
-        return this.http.get(this.url).map((data) => { return <Publication[]>data });
+    getPublications(): Observable<GetPublicationViewModel> {
+        return this.http.get(this.url).map((data) => { return <GetPublicationViewModel>data });
     }
 }

@@ -1,13 +1,14 @@
 ﻿using Library.ViewModels;
+using Library.ViewModels.BookViewModel;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Library.BLL
 {
-    internal class BookViewModelComparer : IEqualityComparer<BookViewModel>
+    internal class BookViewModelComparer : IEqualityComparer<GetBookViewItem>
     {
-        public bool Equals(BookViewModel x, BookViewModel y)
+        public bool Equals(GetBookViewItem x, GetBookViewItem y)
         {
             if (x.Id == y.Id)
             {
@@ -15,7 +16,7 @@ namespace Library.BLL
             }
             return false;
         }
-        public int GetHashCode(BookViewModel codeh)
+        public int GetHashCode(GetBookViewItem codeh)
         {
             return 0;
         }

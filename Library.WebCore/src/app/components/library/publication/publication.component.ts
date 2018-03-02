@@ -1,42 +1,38 @@
-import { Component, OnInit, Inject  } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { PublicationDataService } from '../../../services/publication.service';
-import { Publication } from '../../../models/publication.model';
-//import { Observable } from 'rxjs/Observable';
+import { GetPublicationViewItem } from '../../../models/publicationViewModel/getPublicationViewItem';
+import { GetPublicationViewModel } from '../../../models/publicationViewModel/getPublicationViewModel';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
-//import { GridDataResult } from '@progress/kendo-angular-grid';
 import { State, process } from '@progress/kendo-data-query';
 
 import { map } from 'rxjs/operators/map';
 @Component({
-  templateUrl: './publication.component.html'
+    templateUrl: './publication.component.html'
 })
 export class PublicationComponent implements OnInit {
-  public publications: Publication[];
-  private editedRowIndex: number;
-  private editedItem: Publication;
+    public publications: GetPublicationViewItem[];
 
-  //public view: Observable<GridDataResult>;
-  public gridState: State = {
-    sort: [],
-    skip: 0,
-    take: 10
-  };
+    public gridState: State = {
+        sort: [],
+        skip: 0,
+        take: 10
+    };
 
-  constructor(private publicationDataService: PublicationDataService) { }
+    constructor(private publicationDataService: PublicationDataService) { }
 
-  ngOnInit() {
-    this.load();
-  }
+    ngOnInit() {
+        this.load();
+    }
 
-  load() {
-    this.publicationDataService.getPublications().subscribe((data: Publication[]) => this.publications = data);
-  }
+    load() {
+        this.publicationDataService.getPublications().subscribe((data: GetPublicationViewModel) => this.publications = data.publications);
+    }
 
-  public onStateChange(state: State) {
-    this.gridState = state;
+    public onStateChange(state: State) {
+        this.gridState = state;
 
-    this.load();
-  }
+        this.load();
+    }
 
 }

@@ -106,7 +106,7 @@ namespace Library.DAL.Repositories
             _disposed = true;
         }
 
-        public IGenericRepository<T> Repository<T>() where T : TEntity
+        private IGenericRepository<T> Repository<T>() where T : TEntity
         {
             if (repositories == null)
             {

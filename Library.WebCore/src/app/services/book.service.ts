@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Book } from '../models/book.model';
+import { GetBookViewItem } from '../models/bookViewModel/getBookViewItem';
+import { PostBookViewItem } from '../models/bookViewModel/postBookViewItem';
+import { GetBookViewModel } from '../models/bookViewModel/getBookViewModel';
 import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators/map';
 import { Response, Headers, RequestOptions } from '@angular/http';
@@ -16,18 +18,18 @@ export class BookDataService {
     constructor(private http: HttpClient) {
     }
 
-    getBooks(): Observable<Book[]>{
-        return this.http.get(this.url).map((data) => { return <Book[]>data });
+    getBooks(): Observable<GetBookViewModel>{
+        return this.http.get(this.url).map((books) => { return <GetBookViewModel>books });
     }
 
-    getBook(id: number): Observable<Book> {
-        return this.http.get(this.url + '/' + id).map((data) => { return <Book>data });
+    getBook(id: number): Observable<GetBookViewItem> {
+        return this.http.get(this.url + '/' + id).map((data) => { return <GetBookViewItem>data });
     }
 
-    createBook(book: Book): Observable<Boolean> {
+    createBook(book: PostBookViewItem): Observable<Boolean> {
         return this.http.post(this.url, book).map(data => data as boolean);
     }
-    updateBook(book: Book): Observable<Boolean> {
+    updateBook(book: PostBookViewItem): Observable<Boolean> {
 
         return this.http.put(this.url + '/' + book.id, book).map(data => data as boolean);
     }

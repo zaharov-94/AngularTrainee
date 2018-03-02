@@ -2,8 +2,7 @@
 using Library.DAL.Context;
 using Library.DAL.Repositories;
 using Library.Entities.Entities;
-using Library.ViewModels;
-using Microsoft.EntityFrameworkCore;
+using Library.ViewModels.PublicationViewModel;
 using Shared.Enums;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,9 +19,9 @@ namespace Library.BLL.Services
             _unitOfWork = new UnitOfWork(context);
         }
         
-        public IEnumerable<PublicationViewModel> GetAll()
+        public GetPublicationViewModel GetAll()
         {
-            return Mapper.Map<IEnumerable<Publication>, IEnumerable<PublicationViewModel>>(GetAllPublications());
+            return Mapper.Map<IEnumerable<Publication>, GetPublicationViewModel>(GetAllPublications());
         }
 
         private IEnumerable<Publication> GetAllPublications()

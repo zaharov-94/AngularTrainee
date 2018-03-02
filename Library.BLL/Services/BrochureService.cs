@@ -3,6 +3,7 @@ using Library.DAL.Context;
 using Library.DAL.Repositories;
 using Library.Entities.Entities;
 using Library.ViewModels;
+using Library.ViewModels.BrochureViewModel;
 using Microsoft.EntityFrameworkCore;
 using Shared.Enums;
 using System;
@@ -20,24 +21,24 @@ namespace Library.BLL.Services
         {
             _unitOfWork = new UnitOfWork(context);
         }
-        public IEnumerable<BrochureViewModel> GetAll()
+        public GetBrochureViewModel GetAll()
         {
-            List<Brochure> brochuresList = _unitOfWork.Brochure.GetAll().ToList();
-            return Mapper.Map<List<Brochure>, IEnumerable<BrochureViewModel>>(brochuresList);
+            IEnumerable<Brochure> brochuresList = _unitOfWork.Brochure.GetAll();
+            return Mapper.Map<IEnumerable<Brochure>, GetBrochureViewModel>(brochuresList);
         }
 
-        public void Add(BrochureViewModel brochureViewModel)
+        public void Add(PostBrochureViewItem brochureViewModel)
         {
             _unitOfWork.Brochure.Add(ToBrochure(brochureViewModel));
         }
 
-        public BrochureViewModel GetById(int id)
+        public GetBrochureViewItem GetById(int id)
         {
             Brochure brochure = _unitOfWork.Brochure.FindById(id);
-            return Mapper.Map<Brochure, BrochureViewModel>(brochure);
+            return Mapper.Map<Brochure, GetBrochureViewItem>(brochure);
         }
 
-        public void Edit(BrochureViewModel brochureViewModel)
+        public void Edit(PostBrochureViewItem brochureViewModel)
         {
             _unitOfWork.Brochure.Update(ToBrochure(brochureViewModel));
         }
@@ -46,9 +47,9 @@ namespace Library.BLL.Services
         {
             _unitOfWork.Brochure.Remove(id);
         }
-        private Brochure ToBrochure(BrochureViewModel brochureViewModel)
+        private Brochure ToBrochure(PostBrochureViewItem brochureViewModel)
         {
-            return Mapper.Map<BrochureViewModel, Brochure>(brochureViewModel);
+            return Mapper.Map<PostBrochureViewItem, Brochure>(brochureViewModel);
         }
     }
 }

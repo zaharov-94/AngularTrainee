@@ -1,11 +1,12 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { BrochureDataService } from '../../../services/brochure.service';
-import { Brochure } from '../../../models/brochure.model';
+import { GetBrochureViewItem } from '../../../models/brochureViewModel/getBrochureViewItem';
+import { PostBrochureViewItem } from '../../../models/brochureViewModel/postBrochureViewItem';
+import { GetBrochureViewModel } from '../../../models/brochureViewModel/getBrochureViewModel';
 import { Observable } from 'rxjs/Observable';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AccountService } from '../../../services/account.service';
 
-//import { GridDataResult } from '@progress/kendo-angular-grid';
 import { State, process } from '@progress/kendo-data-query';
 
 import { map } from 'rxjs/operators/map';
@@ -13,13 +14,12 @@ import { map } from 'rxjs/operators/map';
     templateUrl: './brochure.component.html'
 })
 export class BrochureComponent implements OnInit {
-    public brochures: Brochure[];
+    public brochures: GetBrochureViewItem[];
     public typeCovers: string[];
     private editedRowIndex: number;
-    private editedItem: Brochure;
+    private editedItem: PostBrochureViewItem;
     public isAdmin: boolean;
 
-    //public view: Observable<GridDataResult>;
     public gridState: State = {
         sort: [],
         skip: 0,
@@ -34,7 +34,7 @@ export class BrochureComponent implements OnInit {
     }
 
     load() {
-        this.brochureDataService.getBrochures().subscribe((data: Brochure[]) => this.brochures = data);
+        this.brochureDataService.getBrochures().subscribe((data: GetBrochureViewModel) => this.brochures = data.brochures);
         this.brochureDataService.getCoverTypes().subscribe((data: string[]) => this.typeCovers = data);
     }
 
@@ -51,7 +51,7 @@ export class BrochureComponent implements OnInit {
     public addHandler({ sender }) {
         this.closeEditor(sender);
 
-        sender.addRow(new Brochure());
+        sender.addRow(new PostBrochureViewItem());
     }
 
     public editHandler({ sender, rowIndex, dataItem }) {
