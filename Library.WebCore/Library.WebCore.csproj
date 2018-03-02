@@ -10,6 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove=".gitignore" />
     <None Remove="src\app\app.routing.ts" />
     <None Remove="src\app\auth.guard.ts" />
     <None Remove="src\app\components\authorization\account.routing.ts" />

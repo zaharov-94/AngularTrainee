@@ -23,13 +23,13 @@ namespace Library.WebCore.Controllers
         [HttpGet]
         public GetBookViewModel Get()
         {
-            return _bookService.GetAll(); //master branch
+            return _bookService.GetAll(); //this is test
         }
 
         [HttpGet("{id}")]
         public GetBookViewItem Get(int id)
         {
-            GetBookViewItem book = _bookService.GetById(id); //this is master
+            GetBookViewItem book = _bookService.GetById(id);
             return book;
         }
         [Authorize(Roles="Admin")]
