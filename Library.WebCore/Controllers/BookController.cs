@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Library.WebCore.Controllers
 {
-    [Authorize]
     [Route("api/books")]
     public class BookController : Controller
     {
@@ -15,12 +14,13 @@ namespace Library.WebCore.Controllers
         {
             _bookService = new BookService(applicationContext);
         }
+        [Authorize]
         [HttpGet]
         public GetBookViewModel Get()
         {
             return _bookService.GetAll();
         }
-
+        [Authorize]
         [HttpGet("{id}")]
         public GetBookViewItem Get(int id)
         {
