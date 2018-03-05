@@ -3,34 +3,35 @@ import { GetBrochureViewItem } from '../models/brochureViewModel/getBrochureView
 import { PostBrochureViewItem } from '../models/brochureViewModel/postBrochureViewItem';
 import { GetBrochureViewModel } from '../models/brochureViewModel/getBrochureViewModel';
 import { Observable } from 'rxjs/Observable';
-import { HttpClient } from '@angular/common/http';
+import { Http } from '@angular/http';
+import { AccountService } from './../services/account.service';
 
 @Injectable()
 export class BrochureDataService {
 
     private url = "/api/brochures";
 
-    constructor(private http: HttpClient) {
+    constructor(private http: Http, private authService: AccountService) {
     }
 
     getBrochures(): Observable<GetBrochureViewModel> {
-        return this.http.get(this.url).map((data) => { return <GetBrochureViewModel>data });
+        return this.http.get(this.url, { headers: this.authService.authJsonHeaders() }).map((data) => { return <GetBrochureViewModel>data.json() });
     }
 
     getBrochure(id: number): Observable<GetBrochureViewItem> {
-        return this.http.get(this.url + '/' + id).map((data) => { return <GetBrochureViewItem>data });
+        return this.http.get(this.url + '/' + id, { headers: this.authService.authJsonHeaders() }).map((data) => { return <GetBrochureViewItem>data.json() });
     }
     getCoverTypes(): Observable<string[]>{
-        return this.http.get("/api/covertypes").map((data) => { return <string[]>data });
+        return this.http.get("/api/covertypes", { headers: this.authService.authJsonHeaders() }).map((data) => { return <string[]>data.json() });
     }
     createBrochure(brochure: PostBrochureViewItem): Observable<Boolean> {
-        return this.http.post(this.url, brochure).map(data => data as boolean);
+        return this.http.post(this.url, brochure, { headers: this.authService.authJsonHeaders() }).map(data => data.json() as boolean);
     }
     updateBrochure(brochure: PostBrochureViewItem): Observable<Boolean>  {
 
-        return this.http.put(this.url + '/' + brochure.id, brochure).map(data => data as boolean);
+        return this.http.put(this.url + '/' + brochure.id, brochure, { headers: this.authService.authJsonHeaders() }).map(data => data.json() as boolean);
     }
     deleteBrochure(id: number): Observable<Boolean> {
-        return this.http.delete(this.url + '/' + id).map(data => data as boolean);
+        return this.http.delete(this.url + '/' + id, { headers: this.authService.authJsonHeaders() }).map(data => data.json() as boolean);
     }
 }

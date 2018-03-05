@@ -31,6 +31,7 @@
     <None Remove="src\app\models\authorViewModel\getAuthorViewModel.ts" />
     <None Remove="src\app\models\authorViewModel\postAuthorViewItem.ts" />
     <None Remove="src\app\models\bookViewModel\postBookViewItem.ts" />
+    <None Remove="src\app\models\interfaces.ts" />
     <None Remove="src\app\models\publicationHouse.model.ts" />
     <None Remove="src\app\models\publicationHouseViewModel\getPublicationHouseViewModel.ts" />
     <None Remove="src\app\models\publicationHouseViewModel\postPublicationHouseViewItem.ts" />
@@ -44,15 +45,20 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AspNet.Security.OAuth.Validation" Version="2.0.0-rc1-final" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.2.1" />
-    <PackageReference Include="Microsoft.AspNetCore" Version="2.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="2.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.0.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.1" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.2" />
+    <PackageReference Include="OpenIddict" Version="2.0.0-rc2-final" />
+    <PackageReference Include="OpenIddict.Core" Version="2.0.0-rc2-final" />
+    <PackageReference Include="OpenIddict.EntityFrameworkCore" Version="2.0.0-rc2-final" />
+    <PackageReference Include="OpenIddict.Mvc" Version="2.0.0-rc2-final" />
   </ItemGroup>
 
   <ItemGroup>
@@ -82,6 +88,7 @@
     <TypeScriptCompile Include="src\app\models\authorViewModel\getAuthorViewItem.ts" />
     <TypeScriptCompile Include="src\app\models\authorViewModel\getAuthorViewModel.ts" />
     <TypeScriptCompile Include="src\app\models\authorViewModel\postAuthorViewItem.ts" />
+    <TypeScriptCompile Include="src\app\models\interfaces.ts" />
     <TypeScriptCompile Include="src\app\models\publicationHouseViewModel\postPublicationHouseViewItem.ts" />
     <TypeScriptCompile Include="src\app\models\publicationHouseViewModel\getPublicationHouseViewModel.ts" />
     <TypeScriptCompile Include="src\app\models\publicationHouseViewModel\getPublicationHouseViewItem.ts" />

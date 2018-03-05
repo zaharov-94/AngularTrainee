@@ -27,7 +27,7 @@ namespace Library.WebCore.Controllers
             GetBookViewItem book = _bookService.GetById(id);
             return book;
         }
-        [Authorize(Roles="Admin")]
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public IActionResult Post([FromBody]PostBookViewItem book)
         {

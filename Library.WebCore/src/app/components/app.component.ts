@@ -12,9 +12,6 @@ import { AccountService } from '../services/account.service';
 })
 export class AppComponent implements OnInit {
     constructor(private router: Router, private cookie: CookieService) {
-        AccountService.isLoggedIn = this.cookie.get("isLoggedIn") === "true";
-        AccountService.isAdmin = this.cookie.get("isAdmin") === "true";
-        AccountService.userName = this.cookie.get("userName");
     }
 
     ngOnInit() {

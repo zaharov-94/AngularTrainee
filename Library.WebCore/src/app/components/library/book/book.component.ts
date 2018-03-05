@@ -27,8 +27,8 @@ export class BookComponent implements OnInit {
     private editedRowIndex: number;
     private editedItem: PostBookViewItem;
 
-    public isAdmin = AccountService.isAdmin;
-    public LoggedIn = AccountService.isLoggedIn;
+    public isAdmin = this.accountService.isAdmin();
+    public LoggedIn = this.accountService.isAuthenticated();
     //-----------------------------
     //public view: Observable<GridDataResult>;
     public formGroup: FormGroup;
@@ -39,7 +39,7 @@ export class BookComponent implements OnInit {
         take: 10
     };
 
-    constructor(private bookDataService: BookDataService, private publicationHouseDataService: PublicationHouseDataService,
+    constructor(private bookDataService: BookDataService, private publicationHouseDataService: PublicationHouseDataService, private accountService: AccountService,
         private authorDataService: AuthorDataService) { }
 
     ngOnInit() {

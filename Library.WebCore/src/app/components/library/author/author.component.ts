@@ -5,8 +5,9 @@ import { PostAuthorViewItem } from '../../../models/authorViewModel/postAuthorVi
 import { GetAuthorViewModel } from '../../../models/authorViewModel/getAuthorViewModel';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AccountService } from '../../../services/account.service';
-
+import { Observable } from 'rxjs/Observable';
 import { State, process } from '@progress/kendo-data-query';
+import { GridDataResult } from '@progress/kendo-angular-grid';
 
 import { map } from 'rxjs/operators/map';
 @Component({
@@ -16,19 +17,21 @@ export class AuthorComponent implements OnInit {
     public authors: GetAuthorViewItem[];
     private editedRowIndex: number;
     private editedItem: PostAuthorViewItem;
+    public formGroup: FormGroup;
     public isAdmin: boolean;
 
+    public view: Observable<GridDataResult>;
     public gridState: State = {
         sort: [],
         skip: 0,
         take: 10
     };
 
-    constructor(private authorDataService: AuthorDataService) { }
+    constructor(private authorDataService: AuthorDataService, private accountService: AccountService) { }
 
     ngOnInit() {
         this.load();
-        this.isAdmin = AccountService.isAdmin;
+        this.isAdmin = this.accountService.isAdmin();
     }
 
     load() {

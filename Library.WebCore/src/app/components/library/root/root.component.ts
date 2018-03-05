@@ -7,11 +7,11 @@ import { AccountService } from '../../../services/account.service';
     templateUrl: './root.component.html',
 })
 export class RootComponent implements OnInit {
-    constructor() { }
+    constructor(private accountService: AccountService) { }
 
     public isAdmin: boolean;
 
     ngOnInit() {
-        this.isAdmin = AccountService.isAdmin;
+        this.isAdmin = this.accountService.isAdmin();
     }
 }

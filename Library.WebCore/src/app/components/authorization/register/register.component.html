@@ -1,25 +1,25 @@
-
-<form #f="ngForm" novalidate (ngSubmit)="register(f)" class="form-auth">
-    <h2 class="form-auth-heading">Registration</h2>
-    <div class="form-group">
-        <input id="name" type="text" required name="name" class="form-control" placeholder="Name" tmFocus ngModel>
-    </div>
-    <div class="form-group">
-        <input id="email" type="text" required name="email" validateEmail class="form-control" placeholder="Email address" ngModel #email="ngModel">
-    </div>
-    <div class="form-group">
-        <input id="password" type="password" required name="password" class="form-control" placeholder="Password" ngModel>
-    </div>
-    <div class="form-group">
-        <input id="confirmPassword" type="password" required name="confirmPassword" class="form-control" placeholder="Confirm password" ngModel>
-    </div>
-    <div class="form-group">
-        <div class="row">
-            <div class="col-sm-8"><button type="submit" class="btn btn-primary btn-block" [disabled]="f.invalid || isRequesting">Sign Up</button></div>
-            <div class="col-sm-4"><a [routerLink]="['/account/login']" class="btn btn-block">Cancel</a></div>
+<div class="row" *ngIf="show" @easeInOut>
+    <form #registerForm="ngForm" class="form-auth">
+        <h2 class="form-auth-heading">Registration</h2>
+        <br />
+        <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+        <div class="form-group">
+            <input id="name" type="text" required name="name" class="form-control" placeholder="Name" [(ngModel)]="registerViewModel.name">
         </div>
-    </div>
-    <div *ngIf="errors" class="alert alert-danger" role="alert">
-        <strong>Oops!</strong> {{errors}}
-    </div>
-</form>
+        <div class="form-group">
+            <input type="text" required name="email" validateEmail class="form-control" placeholder="Email address" [(ngModel)]="registerViewModel.email">
+        </div>
+        <div class="form-group">
+            <input type="password" required name="password" class="form-control" placeholder="Password" [(ngModel)]="registerViewModel.password">
+        </div>
+        <div class="form-group">
+            <input type="password" required name="confirmPassword" class="form-control" placeholder="Confirm password" [(ngModel)]="registerViewModel.confirmPassword">
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-sm-8"><button type="submit" class="btn btn-primary btn-block" [disabled]="isRequesting" (click)="register(registerForm)">Sign Up</button></div>
+                <div class="col-sm-4"><a [routerLink]="['/account/login']" class="btn btn-block">Cancel</a></div>
+            </div>
+        </div>
+    </form>
+</div> 

@@ -1,63 +1,44 @@
-import { Subscription } from 'rxjs';
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-
-import { PostLoginViewModel } from '../../../models/postLoginViewModel';
-
-import { AccountService } from '../../../services/account.service';
+import { AccountService } from './../../../services/account.service';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
+import { Http } from '@angular/http';
+import { PostLoginViewModel } from './../../../models/postLoginViewModel';
 
 @Component({
     selector: 'login',
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit, OnDestroy {
 
-    private subscription: Subscription;
+export class LoginComponent {
+    loginViewModel: PostLoginViewModel;
+    error = '';
 
-    brandNew: boolean;
-    errors: string;
-    isRequesting: boolean;
-    submitted: boolean = false;
-    loginModel: PostLoginViewModel = { email: '', password: '' };
-
-    constructor(private accountService: AccountService, private router: Router, private activatedRoute: ActivatedRoute) {
-    }
+    constructor(public router: Router,
+        public http: Http,
+        private titleService: Title,
+        private authService: AccountService) { }
 
     ngOnInit() {
-        this.accountService.logout();
-        AccountService.isAdmin = null;
-        AccountService.isLoggedIn = false;
-
-        this.subscription = this.activatedRoute.queryParams.subscribe(
-            (param: any) => {
-                this.brandNew = param['brandNew'];
-                this.loginModel.email = param['email'];
-            });
+        this.loginViewModel = new PostLoginViewModel();
     }
 
-    ngOnDestroy() {
-        this.subscription.unsubscribe();
-    }
+    // post the user's login details to server, if authenticated token is returned, then token is saved to session storage
+    login(event: Event): void {
+        event.preventDefault();
+        let body = 'username=' + this.loginViewModel.email + '&password=' + this.loginViewModel.password + '&grant_type=password';
 
-    login({ value, valid }: { value: PostLoginViewModel, valid: boolean }) {
-        debugger;
-        this.submitted = true;
-        this.isRequesting = true;
-        this.errors = '';
-        if (valid) {
-            this.accountService.login(value)
-                .finally(() => this.isRequesting = false)
-                .subscribe(
-                result => {
-                    if (result) {
-                        this.router.navigate(['/library']);
-                    }
-                },
-                error => this.errors = "Not correct data!");
-        }
-        if (!valid) {
-            this.errors = "Not correct data!"
-        }
+        this.http.post('http://localhost:59515/connect/token', body, { headers: this.authService.contentHeaders() })
+            .subscribe(response => {
+                // success, save the token to session storage
+                this.authService.login(response.json());
+                this.router.navigate(['']);
+                this.titleService.setTitle('Home');
+            },
+            error => {
+                this.error = 'Username or password is incorrect';
+            }
+            );
     }
 }

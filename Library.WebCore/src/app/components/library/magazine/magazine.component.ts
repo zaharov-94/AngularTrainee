@@ -28,11 +28,11 @@ export class MagazineComponent implements OnInit {
         take: 10
     };
 
-    constructor(private magazineDataService: MagazineDataService) { }
+    constructor(private magazineDataService: MagazineDataService, private accountService: AccountService) { }
 
     ngOnInit() {
         this.load();
-        this.isAdmin = AccountService.isAdmin;
+        this.isAdmin = this.accountService.isAdmin();
     }
 
     load() {

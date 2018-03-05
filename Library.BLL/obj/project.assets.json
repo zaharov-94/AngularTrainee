@@ -1692,7 +1692,7 @@
       ]
     },
     "Microsoft.AspNetCore.Identity/2.0.1": {
-      "sha512": "dJzQ3AhwEWFYbWNSigHc/RutA+P8xiW6eh4KnLmQaxjikRfSVfRLf4Da4tOByD6ddJsaBqfstWJnd3KBDKzJAw==",
+      "sha512": "ZROUx15jjTyANhExExszep9zztPFm+QOKd++Xjs2yacyfmeUNYH15qVbbJbIcvQjpwS+n3+cGD0Rkm15y7Z2QQ==",
       "type": "package",
       "path": "microsoft.aspnetcore.identity/2.0.1",
       "files": [
@@ -1703,7 +1703,7 @@
       ]
     },
     "Microsoft.AspNetCore.Identity.EntityFrameworkCore/2.0.1": {
-      "sha512": "H59BaisdTVX/feI2MJ+V5wrb4P0wSxBLk10HyPrXVze8YAcpi5kGyissuRhbPzMztPyPGuiq+M+i/Wl4sk3uyA==",
+      "sha512": "yZXq7SnibhTuJ/GKbSa4bf2PVLgZgTJWLVf8Ft+iHhS91eexYPNXaUAaW4pnTmxn8XKOjGKmc0l8jVfE3k4RIA==",
       "type": "package",
       "path": "microsoft.aspnetcore.identity.entityframeworkcore/2.0.1",
       "files": [
@@ -1811,7 +1811,7 @@
       ]
     },
     "Microsoft.EntityFrameworkCore.SqlServer/2.0.1": {
-      "sha512": "+UnKJpkVpuNWRjF3BWSzbkQLL7gxY18Hnh5uXmlagO4Ua8BstqWIJaIUV+Ps2rw/2n62UPTQQV9RQWggV7OH9Q==",
+      "sha512": "yYjAv1gkWnw4Xg4iFBzP05qMp0gXl6vQmTnomCJygBlCkk3Olrgxe3nULoB4mZYyF4MfN1xpAWWS5A0OclBfyg==",
       "type": "package",
       "path": "microsoft.entityframeworkcore.sqlserver/2.0.1",
       "files": [

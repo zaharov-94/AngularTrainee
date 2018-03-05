@@ -26,11 +26,11 @@ export class BrochureComponent implements OnInit {
         take: 10
     };
 
-    constructor(private brochureDataService: BrochureDataService) { }
+    constructor(private brochureDataService: BrochureDataService, private accountService: AccountService) { }
 
     ngOnInit() {
         this.load();
-        this.isAdmin = AccountService.isAdmin;
+        this.isAdmin = this.accountService.isAdmin();
     }
 
     load() {

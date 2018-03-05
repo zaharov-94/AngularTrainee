@@ -24,11 +24,11 @@ export class PublicationHouseComponent implements OnInit {
         take: 10
     };
 
-    constructor(private publicationHouseDataService: PublicationHouseDataService) { }
+    constructor(private publicationHouseDataService: PublicationHouseDataService, private accountService: AccountService) { }
 
     ngOnInit() {
         this.load();
-        this.isAdmin = AccountService.isAdmin;
+        this.isAdmin = this.accountService.isAdmin();
     }
 
     load() {
