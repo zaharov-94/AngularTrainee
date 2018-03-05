@@ -128,9 +128,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 let AuthGuard = class AuthGuard {
-    constructor(accountService, router) {
+    constructor(accountService, router, activatedRoute) {
         this.accountService = accountService;
         this.router = router;
+        this.activatedRoute = activatedRoute;
     }
     canActivate() {
         if (!__WEBPACK_IMPORTED_MODULE_2__services_account_service__["a" /* AccountService */].isLoggedIn) {
@@ -142,7 +143,7 @@ let AuthGuard = class AuthGuard {
 };
 AuthGuard = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__services_account_service__["a" /* AccountService */], __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__services_account_service__["a" /* AccountService */], __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */], __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */]])
 ], AuthGuard);
 
 
@@ -346,6 +347,7 @@ let LoginComponent = class LoginComponent {
         this.subscription.unsubscribe();
     }
     login({ value, valid }) {
+        debugger;
         this.submitted = true;
         this.isRequesting = true;
         this.errors = '';
@@ -592,7 +594,7 @@ AuthorComponent = __decorate([
 /***/ "../../../../../src/app/components/library/book/book.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h2>Books</h2>\r\n<form novalidate #myForm=\"ngForm\">\r\n\r\n    <kendo-grid [kendoGridBinding]=\"books\"\r\n                [height]=\"500\"\r\n                [pageable]=\"true\"\r\n                [sortable]=\"true\"\r\n                [navigable]=\"true\"\r\n                [pageSize]=\"gridState.take\" [skip]=\"gridState.skip\" [sort]=\"gridState.sort\"\r\n                (remove)=\"removeHandler($event)\"\r\n                (dataStateChange)=\"onStateChange($event)\"\r\n                (edit)=\"editHandler($event)\"\r\n                (cancel)=\"cancelHandler($event)\"\r\n                (save)=\"saveHandler($event)\"\r\n                (add)=\"addHandler($event)\">\r\n        <ng-template kendoGridToolbarTemplate *ngIf=\"isAdmin\">\r\n            <button kendoGridAddCommand type=\"button\" [primary]=\"true\">Add new</button>\r\n        </ng-template>\r\n        <kendo-grid-column field=\"name\" title=\"Book Title\">\r\n            <ng-template kendoGridEditTemplate let-dataItem=\"dataItem\">\r\n                <input [(ngModel)]=\"dataItem.name\" kendoGridFocusable name=\"Book title\" required class=\"k-textbox\" />\r\n            </ng-template>\r\n        </kendo-grid-column>\r\n        <kendo-grid-column field=\"Authors\" editor=\"multiSelectEditor\" title=\"Authors\">\r\n            <ng-template kendoGridCellTemplate let-dataItem=\"dataItem\">\r\n                {{getAuthors(dataItem.id)}}\r\n            </ng-template>\r\n            <ng-template kendoGridEditTemplate let-dataItem=\"dataItem\">\r\n                <kendo-multiselect [data]=\"authors\" [valueField]=\"'id'\" [textField]=\"'firstName'\" [(value)]=\"dataItem.authors\"></kendo-multiselect>\r\n            </ng-template>\r\n        </kendo-grid-column>\r\n        <kendo-grid-column field=\"dateOfPublishing\" title=\"Date of publishing\">\r\n            <ng-template kendoGridEditTemplate let-dataItem=\"dataItem\">\r\n                <kendo-datepicker id=\"dateOfPublishing\" [format]=\"'yyyy-MM-dd'\" [value]=\"getDate(dataItem.dateOfPublishing)\">\r\n                </kendo-datepicker>\r\n            </ng-template>\r\n        </kendo-grid-column>\r\n        <kendo-grid-column field=\"publicationHouses\" editor=\"multiSelectEditor\" title=\"Publication houses\">\r\n            <ng-template kendoGridCellTemplate let-dataItem=\"dataItem\">\r\n                {{getPublicationHouses(dataItem.id)}}\r\n            </ng-template>\r\n            <ng-template kendoGridEditTemplate let-dataItem=\"dataItem\">\r\n                <kendo-multiselect [data]=\"publicationHouses\" [valueField]=\"'id'\" [textField]=\"'name'\"  [(value)]=\"dataItem.publicationHouses\"></kendo-multiselect>\r\n            </ng-template>\r\n        </kendo-grid-column>\r\n        <kendo-grid-command-column title=\"\" width=\"220\" *ngIf=\"isAdmin\">\r\n            <ng-template kendoGridCellTemplate let-isNew=\"isNew\">\r\n                <button kendoGridEditCommand type=\"button\" class=\"k-primary\" [primary]=\"true\">Edit</button>\r\n                <button kendoGridRemoveCommand type=\"button\" [primary]=\"true\">Remove</button>\r\n                <button kendoGridSaveCommand type=\"button\" [disabled]=\"myForm.invalid\" [primary]=\"true\">{{ isNew ? 'Add' : 'Update' }}</button>\r\n                <button kendoGridCancelCommand type=\"button\" >{{ isNew ? 'Discard changes' : 'Cancel' }}</button>\r\n            </ng-template>\r\n        </kendo-grid-command-column>\r\n    </kendo-grid>\r\n</form>\r\n"
+module.exports = "<h2>Books</h2>\r\n<form novalidate #myForm=\"ngForm\">\r\n\r\n    <kendo-grid [kendoGridBinding]=\"books\"\r\n                [height]=\"500\"\r\n                [pageable]=\"true\"\r\n                [sortable]=\"true\"\r\n                [navigable]=\"true\"\r\n                [pageSize]=\"gridState.take\" [skip]=\"gridState.skip\" [sort]=\"gridState.sort\"\r\n                (remove)=\"removeHandler($event)\"\r\n                (dataStateChange)=\"onStateChange($event)\"\r\n                (edit)=\"editHandler($event)\"\r\n                (cancel)=\"cancelHandler($event)\"\r\n                (save)=\"saveHandler($event)\"\r\n                (add)=\"addHandler($event)\">\r\n        <ng-template kendoGridToolbarTemplate *ngIf=\"isAdmin\">\r\n            <button kendoGridAddCommand type=\"button\" [primary]=\"true\">Add new</button>\r\n        </ng-template>\r\n        <kendo-grid-column field=\"name\" title=\"Book Title\">\r\n        </kendo-grid-column>\r\n        <kendo-grid-column field=\"authors\" title=\"Authors\">\r\n            <ng-template kendoGridCellTemplate let-dataItem=\"dataItem\" let-column=\"column\" let-formGroup=\"formGroup\">\r\n                {{getAuthors(dataItem.id)}}\r\n            </ng-template>\r\n            <ng-template kendoGridEditTemplate let-dataItem=\"dataItem\" let-column=\"column\" let-formGroup=\"formGroup\">\r\n                <kendo-multiselect [data]=\"authors\" [valueField]=\"'id'\" [textField]=\"'lastName'\" [formControl]=\"formGroup.get('authors')\"></kendo-multiselect>\r\n            </ng-template>\r\n        </kendo-grid-column>\r\n        <kendo-grid-column field=\"dateOfPublishing\" title=\"Date of publishing\">\r\n            <ng-template kendoGridCellTemplate let-dataItem=\"dataItem\" let-column=\"column\" let-formGroup=\"formGroup\">\r\n                {{dataItem.dateOfPublishing|date:'yyyy-MM-dd'}}\r\n            </ng-template>\r\n            <ng-template kendoGridEditTemplate let-dataItem=\"dataItem\" let-column=\"column\" let-formGroup=\"formGroup\">\r\n                <kendo-datepicker [format]=\"'yyyy-MM-dd'\" [formControl]=\"formGroup.get('dateOfPublishing')\">\r\n                </kendo-datepicker>\r\n            </ng-template>\r\n        </kendo-grid-column>\r\n        <kendo-grid-column field=\"publicationHouses\" title=\"Publication houses\">\r\n            <ng-template kendoGridCellTemplate let-dataItem=\"dataItem\" let-column=\"column\" let-formGroup=\"formGroup\">\r\n                {{getPublicationHouses(dataItem.id)}}\r\n            </ng-template>\r\n            <ng-template kendoGridEditTemplate let-dataItem=\"dataItem\" let-column=\"column\" let-formGroup=\"formGroup\">\r\n                <kendo-multiselect [data]=\"publicationHouses\" [valueField]=\"'id'\" [textField]=\"'name'\" [formControl]=\"formGroup.get('publicationHouses')\"></kendo-multiselect>\r\n            </ng-template>\r\n        </kendo-grid-column>\r\n        <kendo-grid-command-column title=\"\" width=\"220\" *ngIf=\"isAdmin\">\r\n            <ng-template kendoGridCellTemplate let-isNew=\"isNew\">\r\n                <button kendoGridEditCommand type=\"button\" class=\"k-primary\" [primary]=\"true\">Edit</button>\r\n                <button kendoGridRemoveCommand type=\"button\" [primary]=\"true\">Remove</button>\r\n                <button kendoGridSaveCommand type=\"button\" [disabled]=\"myForm.invalid\" [primary]=\"true\">{{ isNew ? 'Add' : 'Update' }}</button>\r\n                <button kendoGridCancelCommand type=\"button\">{{ isNew ? 'Discard changes' : 'Cancel' }}</button>\r\n            </ng-template>\r\n        </kendo-grid-command-column>\r\n    </kendo-grid>\r\n</form>\r\n"
 
 /***/ }),
 
@@ -605,7 +607,7 @@ module.exports = "<h2>Books</h2>\r\n<form novalidate #myForm=\"ngForm\">\r\n\r\n
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_book_service__ = __webpack_require__("../../../../../src/app/services/book.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_publicationHouse_service__ = __webpack_require__("../../../../../src/app/services/publicationHouse.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_author_service__ = __webpack_require__("../../../../../src/app/services/author.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__models_bookViewModel_postBookViewItem__ = __webpack_require__("../../../../../src/app/models/bookViewModel/postBookViewItem.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_forms__ = __webpack_require__("../../../forms/esm2015/forms.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_account_service__ = __webpack_require__("../../../../../src/app/services/account.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -627,6 +629,8 @@ let BookComponent = class BookComponent {
         this.bookDataService = bookDataService;
         this.publicationHouseDataService = publicationHouseDataService;
         this.authorDataService = authorDataService;
+        this.isAdmin = __WEBPACK_IMPORTED_MODULE_5__services_account_service__["a" /* AccountService */].isAdmin;
+        this.LoggedIn = __WEBPACK_IMPORTED_MODULE_5__services_account_service__["a" /* AccountService */].isLoggedIn;
         this.gridState = {
             sort: [],
             skip: 0,
@@ -635,7 +639,6 @@ let BookComponent = class BookComponent {
     }
     ngOnInit() {
         this.load();
-        this.isAdmin = __WEBPACK_IMPORTED_MODULE_5__services_account_service__["a" /* AccountService */].isAdmin;
     }
     load() {
         this.bookDataService.getBooks().subscribe((books) => this.books = books.books);
@@ -664,40 +667,50 @@ let BookComponent = class BookComponent {
         }
         return new Array();
     }
-    getDate(date) {
-        return new Date(date);
-    }
     onStateChange(state) {
         this.gridState = state;
         this.load();
     }
     addHandler({ sender }) {
         this.closeEditor(sender);
-        sender.addRow(new __WEBPACK_IMPORTED_MODULE_4__models_bookViewModel_postBookViewItem__["a" /* PostBookViewItem */]());
+        this.formGroup = new __WEBPACK_IMPORTED_MODULE_4__angular_forms__["b" /* FormGroup */]({
+            'id': new __WEBPACK_IMPORTED_MODULE_4__angular_forms__["a" /* FormControl */]({ value: 0, disabled: true }, __WEBPACK_IMPORTED_MODULE_4__angular_forms__["h" /* Validators */].required),
+            'name': new __WEBPACK_IMPORTED_MODULE_4__angular_forms__["a" /* FormControl */]('', __WEBPACK_IMPORTED_MODULE_4__angular_forms__["h" /* Validators */].required),
+            'authors': new __WEBPACK_IMPORTED_MODULE_4__angular_forms__["a" /* FormControl */]('', __WEBPACK_IMPORTED_MODULE_4__angular_forms__["h" /* Validators */].required),
+            'dateOfPublishing': new __WEBPACK_IMPORTED_MODULE_4__angular_forms__["a" /* FormControl */](new Date(Date.now()), __WEBPACK_IMPORTED_MODULE_4__angular_forms__["h" /* Validators */].required),
+            'publicationHouses': new __WEBPACK_IMPORTED_MODULE_4__angular_forms__["a" /* FormControl */]('', __WEBPACK_IMPORTED_MODULE_4__angular_forms__["h" /* Validators */].required)
+        });
+        sender.addRow(this.formGroup);
     }
     editHandler({ sender, rowIndex, dataItem }) {
         this.closeEditor(sender);
+        this.formGroup = new __WEBPACK_IMPORTED_MODULE_4__angular_forms__["b" /* FormGroup */]({
+            'id': new __WEBPACK_IMPORTED_MODULE_4__angular_forms__["a" /* FormControl */]({ value: dataItem.id, disabled: true }, __WEBPACK_IMPORTED_MODULE_4__angular_forms__["h" /* Validators */].required),
+            'name': new __WEBPACK_IMPORTED_MODULE_4__angular_forms__["a" /* FormControl */](dataItem.name, __WEBPACK_IMPORTED_MODULE_4__angular_forms__["h" /* Validators */].required),
+            'authors': new __WEBPACK_IMPORTED_MODULE_4__angular_forms__["a" /* FormControl */](dataItem.authors, __WEBPACK_IMPORTED_MODULE_4__angular_forms__["h" /* Validators */].required),
+            'dateOfPublishing': new __WEBPACK_IMPORTED_MODULE_4__angular_forms__["a" /* FormControl */](new Date(dataItem.dateOfPublishing), __WEBPACK_IMPORTED_MODULE_4__angular_forms__["h" /* Validators */].required),
+            'publicationHouses': new __WEBPACK_IMPORTED_MODULE_4__angular_forms__["a" /* FormControl */](dataItem.publicationHouses, __WEBPACK_IMPORTED_MODULE_4__angular_forms__["h" /* Validators */].required)
+        });
         this.editedRowIndex = rowIndex;
-        this.editedItem = Object.assign({}, dataItem);
-        sender.editRow(rowIndex);
+        sender.editRow(rowIndex, this.formGroup);
     }
     cancelHandler({ sender, rowIndex }) {
         this.closeEditor(sender, rowIndex);
         this.load();
     }
-    saveHandler({ sender, rowIndex, dataItem, isNew }) {
-        debugger;
-        if ((dataItem.publicationHouses != null) && (dataItem.publicationHouses.length !== 0)) {
-            if (isNew) {
-                this.bookDataService.createBook(dataItem).subscribe(data => this.load());
-            }
-            if (!isNew) {
-                this.bookDataService.updateBook(dataItem).subscribe(data => this.load());
-            }
-            sender.closeRow(rowIndex);
-            this.editedRowIndex = undefined;
-            this.editedItem = undefined;
+    saveHandler({ sender, rowIndex, formGroup, isNew }) {
+        var book = formGroup.getRawValue();
+        var oldDate = new Date(book.dateOfPublishing);
+        book.dateOfPublishing = new Date(oldDate.getFullYear(), oldDate.getMonth(), oldDate.getDate(), 2, 0, 0);
+        if (isNew) {
+            this.bookDataService.createBook(book).subscribe(data => this.load());
         }
+        if (!isNew) {
+            this.bookDataService.updateBook(book).subscribe(data => this.load());
+        }
+        sender.closeRow(rowIndex);
+        this.editedRowIndex = undefined;
+        this.editedItem = undefined;
     }
     closeEditor(grid, rowIndex = this.editedRowIndex) {
         grid.closeRow(rowIndex);
@@ -969,7 +982,7 @@ const routing = __WEBPACK_IMPORTED_MODULE_0__angular_router__["c" /* RouterModul
 /***/ "../../../../../src/app/components/library/magazine/magazine.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h2>Magazines</h2>\r\n<form novalidate #myForm=\"ngForm\">\r\n\r\n  <kendo-grid \r\n              [kendoGridBinding]=\"magazines\"\r\n              [height]=\"500\"\r\n              [pageable]=\"true\"\r\n              [sortable]=\"true\"\r\n              [navigable]=\"true\"\r\n              [pageSize]=\"gridState.take\" [skip]=\"gridState.skip\" [sort]=\"gridState.sort\"\r\n              (remove)=\"removeHandler($event)\"\r\n              (dataStateChange)=\"onStateChange($event)\"\r\n              (edit)=\"editHandler($event)\"\r\n              (cancel)=\"cancelHandler($event)\"\r\n              (save)=\"saveHandler($event)\" \r\n              (add)=\"addHandler($event)\"\r\n              >\r\n    <ng-template kendoGridToolbarTemplate *ngIf=\"isAdmin\">\r\n      <button kendoGridAddCommand type=\"button\" [primary]=\"true\">Add new</button>\r\n    </ng-template>\r\n    <kendo-grid-column field=\"name\" title=\"Magazine Name\">\r\n      <ng-template kendoGridEditTemplate let-dataItem=\"dataItem\">\r\n        <input [(ngModel)]=\"dataItem.name\" kendoGridFocusable name=\"MagazineName\" required class=\"k-textbox\"  />\r\n      </ng-template>\r\n    </kendo-grid-column>\r\n    <kendo-grid-column field=\"number\" editor=\"numeric\" title=\"Number\">\r\n      <ng-template kendoGridEditTemplate let-dataItem=\"dataItem\">\r\n        <input [(ngModel)]=\"dataItem.number\" kendoGridFocusable name=\"Number\" required min=\"0\" \r\n               max=\"999\"  type=\"number\" class=\"k-textbox\" />\r\n      </ng-template>\r\n    </kendo-grid-column>\r\n    <kendo-grid-column field=\"dateOfPublishing\" editor=\"numeric\" title=\"Year of Publishing\">\r\n      <ng-template kendoGridEditTemplate let-dataItem=\"dataItem\">\r\n        <input [(ngModel)]=\"dataItem.dateOfPublishing\" kendoGridFocusable required min=\"1900\"\r\n               max=\"2020\" class=\"k-textbox\" name=\"Year\" type=\"number\"/>\r\n      </ng-template>\r\n    </kendo-grid-column>\r\n    <kendo-grid-command-column title=\"\" width=\"220\" *ngIf=\"isAdmin\">\r\n      <ng-template kendoGridCellTemplate let-isNew=\"isNew\">\r\n        <button kendoGridEditCommand type=\"button\" class=\"k-primary\" [primary]=\"true\">Edit</button>\r\n        <button kendoGridRemoveCommand type=\"button\" [primary]=\"true\">Remove</button>\r\n        <button kendoGridSaveCommand type=\"button\" [disabled]=\"myForm.invalid\" [primary]=\"true\">{{ isNew ? 'Add' : 'Update' }}</button>\r\n        <button kendoGridCancelCommand type=\"button\" [primary]=\"true\">{{ isNew ? 'Discard changes' : 'Cancel' }}</button>\r\n      </ng-template>\r\n    </kendo-grid-command-column>\r\n  </kendo-grid>\r\n</form>\r\n"
+module.exports = "<h2>Magazines</h2>\r\n<form novalidate #myForm=\"ngForm\">\r\n\r\n  <kendo-grid \r\n              [kendoGridBinding]=\"magazines\"\r\n              [height]=\"500\"\r\n              [pageable]=\"true\"\r\n              [sortable]=\"true\"\r\n              [navigable]=\"true\"\r\n              [pageSize]=\"gridState.take\" [skip]=\"gridState.skip\" [sort]=\"gridState.sort\"\r\n              (remove)=\"removeHandler($event)\"\r\n              (dataStateChange)=\"onStateChange($event)\"\r\n              (edit)=\"editHandler($event)\"\r\n              (cancel)=\"cancelHandler($event)\"\r\n              (save)=\"saveHandler($event)\" \r\n              (add)=\"addHandler($event)\"\r\n              >\r\n    <ng-template kendoGridToolbarTemplate *ngIf=\"isAdmin\">\r\n      <button kendoGridAddCommand type=\"button\" [primary]=\"true\">Add new</button>\r\n    </ng-template>\r\n    <kendo-grid-column field=\"name\" title=\"Book Title\">\r\n    </kendo-grid-column>\r\n    <kendo-grid-column field=\"number\" editor=\"numeric\" title=\"Number\">\r\n        <ng-template kendoGridEditTemplate let-dataItem=\"dataItem\">\r\n            <input [formControl]=\"formGroup.get('number')\" kendoGridFocusable name=\"number\" class=\"k-textbox\" type=\"number\" />\r\n        </ng-template>\r\n    </kendo-grid-column>\r\n    <kendo-grid-column field=\"dateOfPublishing\" title=\"Date of publishing\">\r\n        <ng-template kendoGridCellTemplate let-dataItem=\"dataItem\" let-column=\"column\" let-formGroup=\"formGroup\">\r\n            {{dataItem.dateOfPublishing|date:'yyyy-MM-dd'}}\r\n        </ng-template>\r\n        <ng-template kendoGridEditTemplate let-dataItem=\"dataItem\" let-column=\"column\" let-formGroup=\"formGroup\">\r\n            <kendo-datepicker [format]=\"'yyyy-MM-dd'\" [formControl]=\"formGroup.get('dateOfPublishing')\">\r\n            </kendo-datepicker>\r\n        </ng-template>\r\n    </kendo-grid-column>\r\n    <kendo-grid-command-column title=\"\" width=\"220\" *ngIf=\"isAdmin\">\r\n      <ng-template kendoGridCellTemplate let-isNew=\"isNew\">\r\n        <button kendoGridEditCommand type=\"button\" class=\"k-primary\" [primary]=\"true\">Edit</button>\r\n        <button kendoGridRemoveCommand type=\"button\" [primary]=\"true\">Remove</button>\r\n        <button kendoGridSaveCommand type=\"button\" [disabled]=\"myForm.invalid\" [primary]=\"true\">{{ isNew ? 'Add' : 'Update' }}</button>\r\n        <button kendoGridCancelCommand type=\"button\" [primary]=\"true\">{{ isNew ? 'Discard changes' : 'Cancel' }}</button>\r\n      </ng-template>\r\n    </kendo-grid-command-column>\r\n  </kendo-grid>\r\n</form>\r\n"
 
 /***/ }),
 
@@ -980,7 +993,7 @@ module.exports = "<h2>Magazines</h2>\r\n<form novalidate #myForm=\"ngForm\">\r\n
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MagazineComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm2015/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_magazine_service__ = __webpack_require__("../../../../../src/app/services/magazine.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_magazineViewModel_postMagazineViewItem__ = __webpack_require__("../../../../../src/app/models/magazineViewModel/postMagazineViewItem.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__("../../../forms/esm2015/forms.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_account_service__ = __webpack_require__("../../../../../src/app/services/account.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1021,24 +1034,38 @@ let MagazineComponent = class MagazineComponent {
     }
     addHandler({ sender }) {
         this.closeEditor(sender);
-        sender.addRow(new __WEBPACK_IMPORTED_MODULE_2__models_magazineViewModel_postMagazineViewItem__["a" /* PostMagazineViewItem */]());
+        this.formGroup = new __WEBPACK_IMPORTED_MODULE_2__angular_forms__["b" /* FormGroup */]({
+            'id': new __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormControl */]({ value: 0, disabled: true }, __WEBPACK_IMPORTED_MODULE_2__angular_forms__["h" /* Validators */].required),
+            'name': new __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormControl */]('', __WEBPACK_IMPORTED_MODULE_2__angular_forms__["h" /* Validators */].required),
+            'number': new __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormControl */](0, __WEBPACK_IMPORTED_MODULE_2__angular_forms__["h" /* Validators */].required),
+            'dateOfPublishing': new __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormControl */](new Date(2000, 1, 1), __WEBPACK_IMPORTED_MODULE_2__angular_forms__["h" /* Validators */].required)
+        });
+        sender.addRow(this.formGroup);
     }
     editHandler({ sender, rowIndex, dataItem }) {
         this.closeEditor(sender);
+        this.formGroup = new __WEBPACK_IMPORTED_MODULE_2__angular_forms__["b" /* FormGroup */]({
+            'id': new __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormControl */]({ value: dataItem.id, disabled: true }, __WEBPACK_IMPORTED_MODULE_2__angular_forms__["h" /* Validators */].required),
+            'name': new __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormControl */](dataItem.name, __WEBPACK_IMPORTED_MODULE_2__angular_forms__["h" /* Validators */].required),
+            'number': new __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormControl */](dataItem.number, __WEBPACK_IMPORTED_MODULE_2__angular_forms__["h" /* Validators */].required),
+            'dateOfPublishing': new __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormControl */](new Date(dataItem.dateOfPublishing), __WEBPACK_IMPORTED_MODULE_2__angular_forms__["h" /* Validators */].required)
+        });
         this.editedRowIndex = rowIndex;
-        this.editedItem = Object.assign({}, dataItem);
-        sender.editRow(rowIndex);
+        sender.editRow(rowIndex, this.formGroup);
     }
     cancelHandler({ sender, rowIndex }) {
         this.closeEditor(sender, rowIndex);
         this.load();
     }
-    saveHandler({ sender, rowIndex, dataItem, isNew }) {
+    saveHandler({ sender, rowIndex, formGroup, isNew }) {
+        var magazine = formGroup.getRawValue();
+        var oldDate = new Date(magazine.dateOfPublishing);
+        magazine.dateOfPublishing = new Date(oldDate.getFullYear(), oldDate.getMonth(), oldDate.getDate(), 2, 0, 0);
         if (isNew) {
-            this.magazineDataService.createMagazine(dataItem).subscribe(data => this.load());
+            this.magazineDataService.createMagazine(magazine).subscribe(data => this.load());
         }
         if (!isNew) {
-            this.magazineDataService.updateMagazine(dataItem).subscribe(data => this.load());
+            this.magazineDataService.updateMagazine(magazine).subscribe(data => this.load());
         }
         sender.closeRow(rowIndex);
         this.editedRowIndex = undefined;
@@ -1391,18 +1418,6 @@ class PostAuthorViewItem {
 
 /***/ }),
 
-/***/ "../../../../../src/app/models/bookViewModel/postBookViewItem.ts":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-class PostBookViewItem {
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = PostBookViewItem;
-
-
-
-/***/ }),
-
 /***/ "../../../../../src/app/models/brochureViewModel/postBrochureViewItem.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1410,18 +1425,6 @@ class PostBookViewItem {
 class PostBrochureViewItem {
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = PostBrochureViewItem;
-
-
-
-/***/ }),
-
-/***/ "../../../../../src/app/models/magazineViewModel/postMagazineViewItem.ts":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-class PostMagazineViewItem {
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = PostMagazineViewItem;
 
 
 
@@ -1492,6 +1495,9 @@ let AccountService = AccountService_1 = class AccountService extends __WEBPACK_I
         this.http.get('api/auth/logout').subscribe();
         AccountService_1.isAdmin = null;
         AccountService_1.isLoggedIn = false;
+        this.cookie.delete("isLoggedIn");
+        this.cookie.delete("isAdmin");
+        this.cookie.delete("userName");
         this.cookie.deleteAll();
         return new __WEBPACK_IMPORTED_MODULE_3_rxjs_Rx__["a" /* Observable */]();
     }

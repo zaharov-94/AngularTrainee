@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DatePipe } from '@angular/common';
 import { BookDataService } from '../../../services/book.service';
 import { PublicationHouseDataService } from '../../../services/publicationHouse.service';
 import { AuthorDataService } from '../../../services/author.service';
@@ -13,7 +14,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AccountService } from '../../../services/account.service';
 import { Observable } from 'rxjs/Observable';
 
-
+import { GridDataResult } from '@progress/kendo-angular-grid';
 import { State } from '@progress/kendo-data-query';
 
 @Component({
@@ -25,7 +26,12 @@ export class BookComponent implements OnInit {
     public authors: GetAuthorViewItem[];
     private editedRowIndex: number;
     private editedItem: PostBookViewItem;
-    public isAdmin: boolean;
+
+    public isAdmin = AccountService.isAdmin;
+    public LoggedIn = AccountService.isLoggedIn;
+    //-----------------------------
+    //public view: Observable<GridDataResult>;
+    public formGroup: FormGroup;
 
     public gridState: State = {
         sort: [],
@@ -38,7 +44,6 @@ export class BookComponent implements OnInit {
 
     ngOnInit() {
         this.load();
-        this.isAdmin = AccountService.isAdmin;
     }
 
     load() {
@@ -65,9 +70,7 @@ export class BookComponent implements OnInit {
         }
         return new Array<string>();
     }
-    public getDate(date: Date): Date {
-        return new Date(date);
-    }
+
     public onStateChange(state: State) {
         this.gridState = state;
 
@@ -76,15 +79,27 @@ export class BookComponent implements OnInit {
 
     public addHandler({ sender }) {
         this.closeEditor(sender);
-        sender.addRow(new PostBookViewItem());
+        this.formGroup = new FormGroup({
+            'id': new FormControl({ value: 0, disabled: true }, Validators.required),
+            'name': new FormControl('', Validators.required),
+            'authors': new FormControl('', Validators.required),
+            'dateOfPublishing': new FormControl(new Date(Date.now()), Validators.required),
+            'publicationHouses': new FormControl('', Validators.required)
+        });
+        sender.addRow(this.formGroup);
     }
 
     public editHandler({ sender, rowIndex, dataItem }) {
         this.closeEditor(sender);
-
+        this.formGroup = new FormGroup({
+            'id': new FormControl({ value: dataItem.id, disabled: true }, Validators.required),
+            'name': new FormControl(dataItem.name, Validators.required),
+            'authors': new FormControl(dataItem.authors, Validators.required),
+            'dateOfPublishing': new FormControl(new Date(dataItem.dateOfPublishing), Validators.required),
+            'publicationHouses': new FormControl(dataItem.publicationHouses, Validators.required)
+        });
         this.editedRowIndex = rowIndex;
-        this.editedItem = Object.assign({}, dataItem);
-        sender.editRow(rowIndex);
+        sender.editRow(rowIndex, this.formGroup);
     }
 
     public cancelHandler({ sender, rowIndex }) {
@@ -92,15 +107,15 @@ export class BookComponent implements OnInit {
         this.load();
     }
 
-    public saveHandler({ sender, rowIndex, dataItem, isNew }) {
-        debugger;
-        if ((dataItem.publicationHouses != null)&&(dataItem.publicationHouses.length!==0)){
-            if (isNew) { this.bookDataService.createBook(dataItem).subscribe(data => this.load()); }
-            if (!isNew) { this.bookDataService.updateBook(dataItem).subscribe(data => this.load()); }
-            sender.closeRow(rowIndex);
-            this.editedRowIndex = undefined;
-            this.editedItem = undefined;
-        }
+    public saveHandler({ sender, rowIndex, formGroup, isNew }) {
+        var book: PostBookViewItem = formGroup.getRawValue();
+        var oldDate = new Date(book.dateOfPublishing);
+        book.dateOfPublishing = new Date(oldDate.getFullYear(), oldDate.getMonth(), oldDate.getDate(), 2, 0, 0);
+        if (isNew) { this.bookDataService.createBook(book).subscribe(data => this.load()); }
+        if (!isNew) { this.bookDataService.updateBook(book).subscribe(data => this.load()); }
+        sender.closeRow(rowIndex);
+        this.editedRowIndex = undefined;
+        this.editedItem = undefined;
     }
 
     private closeEditor(grid, rowIndex = this.editedRowIndex) {

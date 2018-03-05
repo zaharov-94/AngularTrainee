@@ -18,6 +18,7 @@ export class MagazineComponent implements OnInit {
     public magazines: GetMagazineViewItem[];
     private editedRowIndex: number;
     private editedItem: PostMagazineViewItem;
+    public formGroup: FormGroup;
     public isAdmin: boolean;
 
     public view: Observable<GridDataResult>;
@@ -50,17 +51,25 @@ export class MagazineComponent implements OnInit {
 
     public addHandler({ sender }) {
         this.closeEditor(sender);
-
-        sender.addRow(new PostMagazineViewItem());
+        this.formGroup = new FormGroup({
+            'id': new FormControl({ value: 0, disabled: true }, Validators.required),
+            'name': new FormControl('', Validators.required),
+            'number': new FormControl(0, Validators.required),
+            'dateOfPublishing': new FormControl(new Date(2000, 1, 1), Validators.required)
+        });
+        sender.addRow(this.formGroup);
     }
 
     public editHandler({ sender, rowIndex, dataItem }) {
         this.closeEditor(sender);
-
+        this.formGroup = new FormGroup({
+            'id': new FormControl({ value: dataItem.id, disabled: true }, Validators.required),
+            'name': new FormControl(dataItem.name, Validators.required),
+            'number': new FormControl(dataItem.number, Validators.required),
+            'dateOfPublishing': new FormControl(new Date(dataItem.dateOfPublishing), Validators.required)
+        });
         this.editedRowIndex = rowIndex;
-        this.editedItem = Object.assign({}, dataItem);
-
-        sender.editRow(rowIndex);
+        sender.editRow(rowIndex, this.formGroup);
     }
 
     public cancelHandler({ sender, rowIndex }) {
@@ -68,9 +77,12 @@ export class MagazineComponent implements OnInit {
         this.load();
     }
 
-    public saveHandler({ sender, rowIndex, dataItem, isNew }) {
-        if (isNew) { this.magazineDataService.createMagazine(dataItem).subscribe(data => this.load()); }
-        if (!isNew) { this.magazineDataService.updateMagazine(dataItem).subscribe(data => this.load()); }
+    public saveHandler({ sender, rowIndex, formGroup, isNew }) {
+        var magazine: PostMagazineViewItem = formGroup.getRawValue();
+        var oldDate = new Date(magazine.dateOfPublishing);
+        magazine.dateOfPublishing = new Date(oldDate.getFullYear(), oldDate.getMonth(), oldDate.getDate(), 2, 0, 0);
+        if (isNew) { this.magazineDataService.createMagazine(magazine).subscribe(data => this.load()); }
+        if (!isNew) { this.magazineDataService.updateMagazine(magazine).subscribe(data => this.load()); }
         sender.closeRow(rowIndex);
 
         this.editedRowIndex = undefined;

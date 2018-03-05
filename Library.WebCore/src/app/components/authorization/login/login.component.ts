@@ -41,6 +41,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     }
 
     login({ value, valid }: { value: PostLoginViewModel, valid: boolean }) {
+        debugger;
         this.submitted = true;
         this.isRequesting = true;
         this.errors = '';
