@@ -21,7 +21,7 @@ export class AccountService extends ErrorService {
     }
 
     public login(data: PostLoginViewModel): Observable<boolean> {
-        debugger;
+
         return this.http.post('api/auth/login', data)
             .map(res => {
                 AccountService.isLoggedIn = true;

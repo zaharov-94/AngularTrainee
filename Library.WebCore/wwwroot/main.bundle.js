@@ -1470,7 +1470,6 @@ let AccountService = AccountService_1 = class AccountService extends __WEBPACK_I
         this.cookie = cookie;
     }
     login(data) {
-        debugger;
         return this.http.post('api/auth/login', data)
             .map(res => {
             AccountService_1.isLoggedIn = true;
