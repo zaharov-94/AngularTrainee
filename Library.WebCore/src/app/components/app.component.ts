@@ -12,6 +12,7 @@ import { AccountService } from '../services/account.service';
 })
 export class AppComponent implements OnInit {
     constructor(private router: Router, private cookie: CookieService) {
+        AccountService.userName = this.cookie.get("userName");
     }
 
     ngOnInit() {

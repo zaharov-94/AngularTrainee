@@ -56,6 +56,7 @@ export class AccountService {
         sessionStorage.setItem('bearer_token', access_token);
         // TODO: implement meaningful refresh, handle expiry 
         sessionStorage.setItem('expires_in', expires_in.toString());
+        //this.cookie.get("userName");
     }
 
     // called when logging out user; clears tokens from browser

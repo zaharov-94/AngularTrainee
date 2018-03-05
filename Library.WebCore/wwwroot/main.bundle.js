@@ -165,6 +165,7 @@ module.exports = "<div class='container-fluid'>\r\n    <router-outlet></router-o
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm2015/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/esm2015/router.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ngx_cookie_service__ = __webpack_require__("../../../../ngx-cookie-service/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_account_service__ = __webpack_require__("../../../../../src/app/services/account.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -177,10 +178,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 let AppComponent = class AppComponent {
     constructor(router, cookie) {
         this.router = router;
         this.cookie = cookie;
+        __WEBPACK_IMPORTED_MODULE_3__services_account_service__["a" /* AccountService */].userName = this.cookie.get("userName");
     }
     ngOnInit() {
     }
@@ -397,7 +400,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "body {\n    padding-top: 40px;\n    padding-bottom: 40px;\n    background-color: #eee;\n}\n\n.form-auth {\n    max-width: 400px;\n    padding: 15px;\n    margin: 0 auto;\n}\n\n.form-auth .form-auth-heading,\n.form-auth .checkbox {\n    margin-bottom: 10px;\n}\n\n.form-auth .checkbox {\n    font-weight: normal;\n}\n\n.form-auth .form-control {\n    position: relative;\n    height: auto;\n    -webkit-box-sizing: border-box;\n    box-sizing: border-box;\n    padding: 10px;\n    font-size: 16px;\n}\n\n.form-auth .form-control:focus {\n        z-index: 2;\n    }\n\n.form-auth input[type=\"email\"] {\n    margin-bottom: -1px;\n    border-bottom-right-radius: 0;\n    border-bottom-left-radius: 0;\n}\n\n.form-auth input[type=\"password\"] {\n    margin-bottom: 10px;\n    border-top-left-radius: 0;\n    border-top-right-radius: 0;\n}\n", ""]);
+exports.push([module.i, "body {\r\n    padding-top: 40px;\r\n    padding-bottom: 40px;\r\n    background-color: #eee;\r\n}\r\n\r\n.form-auth {\r\n    max-width: 400px;\r\n    padding: 15px;\r\n    margin: 0 auto;\r\n}\r\n\r\n.form-auth .form-auth-heading,\r\n.form-auth .checkbox {\r\n    margin-bottom: 10px;\r\n}\r\n\r\n.form-auth .checkbox {\r\n    font-weight: normal;\r\n}\r\n\r\n.form-auth .form-control {\r\n    position: relative;\r\n    height: auto;\r\n    -webkit-box-sizing: border-box;\r\n    box-sizing: border-box;\r\n    padding: 10px;\r\n    font-size: 16px;\r\n}\r\n\r\n.form-auth .form-control:focus {\r\n        z-index: 2;\r\n    }\r\n\r\n.form-auth input[type=\"email\"] {\r\n    margin-bottom: -1px;\r\n    border-bottom-right-radius: 0;\r\n    border-bottom-left-radius: 0;\r\n}\r\n\r\n.form-auth input[type=\"password\"] {\r\n    margin-bottom: 10px;\r\n    border-top-left-radius: 0;\r\n    border-top-right-radius: 0;\r\n}\r\n", ""]);
 
 // exports
 
@@ -1595,6 +1598,7 @@ let AccountService = class AccountService {
         sessionStorage.setItem('bearer_token', access_token);
         // TODO: implement meaningful refresh, handle expiry 
         sessionStorage.setItem('expires_in', expires_in.toString());
+        //this.cookie.get("userName");
     }
     // called when logging out user; clears tokens from browser
     logout() {
