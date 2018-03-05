@@ -31,7 +31,6 @@ namespace Library.WebCore
             AutoMapperInitialize.Initialize();
             services.AddDbContext<ApplicationContext>(options =>
                       options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-
             services.AddIdentity<IdentityUser, IdentityRole>()
                   .AddEntityFrameworkStores<ApplicationContext>();
         }
