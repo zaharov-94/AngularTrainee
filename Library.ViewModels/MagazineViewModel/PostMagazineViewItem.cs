@@ -11,6 +11,6 @@ namespace Library.ViewModels.MagazineViewModel
         [Required]
         public int Number { get; set; }
         [Required]
-        public int YearOfPublishing { get; set; }
+        public int DateOfPublishing { get; set; }
     }
 }

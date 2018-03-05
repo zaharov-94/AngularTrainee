@@ -17,9 +17,9 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     brandNew: boolean;
     errors: string;
-    isRequesting: boolean = false;
+    isRequesting: boolean;
     submitted: boolean = false;
-    loginModel: PostLoginViewModel = { email: undefined, password: undefined };
+    loginModel: PostLoginViewModel = { email: '', password: '' };
 
     constructor(private accountService: AccountService, private router: Router, private activatedRoute: ActivatedRoute) {
     }

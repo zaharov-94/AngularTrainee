@@ -16,12 +16,12 @@ export class AccountService extends ErrorService {
     public static isLoggedIn: boolean = false;
     public static isAdmin: boolean = null;
     public static userName: string = null;
-
     constructor(private http: HttpClient, private cookie: CookieService) {
         super();
     }
 
     public login(data: PostLoginViewModel): Observable<boolean> {
+        debugger;
         return this.http.post('api/auth/login', data)
             .map(res => {
                 AccountService.isLoggedIn = true;

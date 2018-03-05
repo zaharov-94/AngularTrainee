@@ -21,20 +21,23 @@
                 <input [(ngModel)]="dataItem.name" kendoGridFocusable name="Book title" required class="k-textbox" />
             </ng-template>
         </kendo-grid-column>
-        <kendo-grid-column field="author" title="Book author">
+        <kendo-grid-column field="Authors" editor="multiSelectEditor" title="Authors">
+            <ng-template kendoGridCellTemplate let-dataItem="dataItem">
+                {{getAuthors(dataItem.id)}}
+            </ng-template>
             <ng-template kendoGridEditTemplate let-dataItem="dataItem">
-                <input [(ngModel)]="dataItem.author" kendoGridFocusable name="Book author" required class="k-textbox" />
+                <kendo-multiselect [data]="authors" [valueField]="'id'" [textField]="'firstName'" [(value)]="dataItem.authors"></kendo-multiselect>
             </ng-template>
         </kendo-grid-column>
-        <kendo-grid-column field="yearOfPublishing" editor="numeric" title="Year of Publishing">
+        <kendo-grid-column field="dateOfPublishing" title="Date of publishing">
             <ng-template kendoGridEditTemplate let-dataItem="dataItem">
-                <input [(ngModel)]="dataItem.yearOfPublishing" kendoGridFocusable required min="1900"
-                       max="2020" class="k-textbox" name="Year" type="number" />
+                <kendo-datepicker id="dateOfPublishing" [format]="'yyyy-MM-dd'" [value]="getDate(dataItem.dateOfPublishing)">
+                </kendo-datepicker>
             </ng-template>
         </kendo-grid-column>
         <kendo-grid-column field="publicationHouses" editor="multiSelectEditor" title="Publication houses">
             <ng-template kendoGridCellTemplate let-dataItem="dataItem">
-                {{pubHouses(dataItem.id)}}
+                {{getPublicationHouses(dataItem.id)}}
             </ng-template>
             <ng-template kendoGridEditTemplate let-dataItem="dataItem">
                 <kendo-multiselect [data]="publicationHouses" [valueField]="'id'" [textField]="'name'"  [(value)]="dataItem.publicationHouses"></kendo-multiselect>

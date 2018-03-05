@@ -8,18 +8,21 @@ import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
 import { GridModule } from '@progress/kendo-angular-grid'
 import { DropDownListModule } from '@progress/kendo-angular-dropdowns';
 import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
+import { getDate, addDays } from '@progress/kendo-date-math';
 
 import { routing } from './library.routing';
 
 import { RootComponent } from './root/root.component';
 import { SidebarMenuComponent } from '../navigation/sidebar/sidebar.component';
 import { NavMenuComponent } from '../navigation/navmenu/navmenu.component';
+import { AuthorComponent } from './author/author.component';
 import { BookComponent } from './book/book.component';
 import { BrochureComponent } from './brochure/brochure.component';
 import { MagazineComponent } from './magazine/magazine.component';
 import { PublicationComponent } from './publication/publication.component';
 import { PublicationHouseComponent } from './publicationHouse/publicationHouse.component';
 
+import { AuthorDataService } from '../../services/author.service';
 import { BookDataService } from '../../services/book.service';
 import { BrochureDataService } from '../../services/brochure.service';
 import { MagazineDataService } from '../../services/magazine.service';
@@ -47,6 +50,7 @@ import { AuthGuard } from '../../auth.guard';
         RootComponent,
         SidebarMenuComponent,
         NavMenuComponent,
+        AuthorComponent,
         BookComponent,
         BrochureComponent,
         MagazineComponent,
@@ -56,6 +60,7 @@ import { AuthGuard } from '../../auth.guard';
     exports: [],
     providers: [
         AuthGuard,
+        AuthorDataService,
         BookDataService,
         BrochureDataService,
         MagazineDataService,

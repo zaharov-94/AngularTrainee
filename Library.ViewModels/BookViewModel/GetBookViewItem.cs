@@ -1,4 +1,6 @@
-﻿using Library.ViewModels.PublicationHouseViewModel;
+﻿using Library.ViewModels.AuthorViewModel;
+using Library.ViewModels.PublicationHouseViewModel;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -11,10 +13,10 @@ namespace Library.ViewModels.BookViewModel
         [Required]
         public string Name { get; set; }
         [Required]
-        public string Author { get; set; }
+        public DateTime DateOfPublishing { get; set; }
         [Required]
-        public int YearOfPublishing { get; set; }
-
+        public ICollection<GetAuthorViewItem> Authors { get; set; }
+        [Required]
         public ICollection<GetPublicationHouseViewItem> PublicationHouses { get; set; }
     }
 }

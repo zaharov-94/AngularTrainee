@@ -1,15 +1,8 @@
 ﻿using Library.DAL.Abstract;
 using Library.DAL.Context;
 using Library.Entities.Entities;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Library.DAL.Repositories
@@ -20,10 +13,12 @@ namespace Library.DAL.Repositories
         private bool _disposed = false;
         private Dictionary<string, object> repositories;
         private IGenericRepository<Magazine> _magazineRepository;
+        private IGenericRepository<Author> _authorRepository;
         private IGenericRepository<PublicationHouse> _houseRepository;
         private IGenericRepository<Brochure> _brochureRepository;
         private IGenericRepository<Book> _bookRepository;
         private IGenericRepository<PublicationHouseBook> _publicationHouseBookRepository;
+        private IGenericRepository<BookAuthor> _bookAuthorRepository;
 
         public IGenericRepository<Magazine> Magazine
         {
@@ -42,6 +37,16 @@ namespace Library.DAL.Repositories
                 if (_bookRepository == null)
                     _bookRepository = this.Repository<Book>();
                 return _bookRepository;
+            }
+        }
+
+        public IGenericRepository<Author> Author
+        {
+            get
+            {
+                if (_authorRepository == null)
+                    _authorRepository = this.Repository<Author>();
+                return _authorRepository;
             }
         }
 
@@ -64,6 +69,7 @@ namespace Library.DAL.Repositories
                 return _houseRepository;
             }
         }
+
         public IGenericRepository<PublicationHouseBook> PublicationHouseBook
         {
             get
@@ -73,6 +79,17 @@ namespace Library.DAL.Repositories
                 return _publicationHouseBookRepository;
             }
         }
+
+        public IGenericRepository<BookAuthor> BookAuthor
+        {
+            get
+            {
+                if (_bookAuthorRepository == null)
+                    _bookAuthorRepository = this.Repository<BookAuthor>();
+                return _bookAuthorRepository;
+            }
+        }
+
         public UnitOfWork(ApplicationContext context)
         {
             _context = context;
@@ -121,6 +138,10 @@ namespace Library.DAL.Repositories
                 if (typeof(T) == typeof(PublicationHouseBook))
                 {
                     repositoryType = typeof(EntityBookRepository<>);
+                }
+                if (typeof(T) == typeof(BookAuthor))
+                {
+                    repositoryType = typeof(EntityBookAuthorRepository<>);
                 }
                 var repositoryInstance = Activator.CreateInstance(repositoryType.MakeGenericType(typeof(T)), _context);
                 repositories.Add(type, repositoryInstance);

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Library.Entities.Entities
 {
@@ -9,6 +10,6 @@ namespace Library.Entities.Entities
         [Required]
         public int Number { get; set; }
         [Required]
-        public int YearOfPublishing { get; set; }
+        public DateTime DateOfPublishing { get; set; }
     }
 }

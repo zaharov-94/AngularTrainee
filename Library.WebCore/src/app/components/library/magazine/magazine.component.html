@@ -29,9 +29,9 @@
                max="999"  type="number" class="k-textbox" />
       </ng-template>
     </kendo-grid-column>
-    <kendo-grid-column field="yearOfPublishing" editor="numeric" title="Year of Publishing">
+    <kendo-grid-column field="dateOfPublishing" editor="numeric" title="Year of Publishing">
       <ng-template kendoGridEditTemplate let-dataItem="dataItem">
-        <input [(ngModel)]="dataItem.yearOfPublishing" kendoGridFocusable required min="1900"
+        <input [(ngModel)]="dataItem.dateOfPublishing" kendoGridFocusable required min="1900"
                max="2020" class="k-textbox" name="Year" type="number"/>
       </ng-template>
     </kendo-grid-column>

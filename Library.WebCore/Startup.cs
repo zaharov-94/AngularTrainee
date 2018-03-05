@@ -28,7 +28,7 @@ namespace Library.WebCore
         {
             
             services.AddMvc();
-            MapperInitialize.Initialize();
+            AutoMapperInitialize.Initialize();
             services.AddDbContext<ApplicationContext>(options =>
                       options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 

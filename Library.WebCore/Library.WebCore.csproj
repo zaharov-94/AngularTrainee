@@ -18,6 +18,7 @@
     <None Remove="src\app\components\authorization\login\login.component.ts" />
     <None Remove="src\app\components\authorization\register\register.component.ts" />
     <None Remove="src\app\components\authorization\root\root.component.ts" />
+    <None Remove="src\app\components\library\author\author.component.ts" />
     <None Remove="src\app\components\library\book\book.component.ts" />
     <None Remove="src\app\components\library\library.module.ts" />
     <None Remove="src\app\components\library\root\library.routing.ts" />
@@ -26,6 +27,9 @@
     <None Remove="src\app\components\magazine - Copy (3)\magazine.component.ts" />
     <None Remove="src\app\components\library\magazine\magazine.component.ts" />
     <None Remove="src\app\components\library\publicationHouse\publicationHouse.component.ts" />
+    <None Remove="src\app\models\authorViewModel\getAuthorViewItem.ts" />
+    <None Remove="src\app\models\authorViewModel\getAuthorViewModel.ts" />
+    <None Remove="src\app\models\authorViewModel\postAuthorViewItem.ts" />
     <None Remove="src\app\models\bookViewModel\postBookViewItem.ts" />
     <None Remove="src\app\models\publicationHouse.model.ts" />
     <None Remove="src\app\models\publicationHouseViewModel\getPublicationHouseViewModel.ts" />
@@ -68,12 +72,16 @@
     <TypeScriptCompile Include="src\app\components\library\book\book.component.ts" />
     <TypeScriptCompile Include="src\app\components\library\brochure\brochure.component.ts" />
     <TypeScriptCompile Include="src\app\components\library\library.module.ts" />
+    <TypeScriptCompile Include="src\app\components\library\author\author.component.ts" />
     <TypeScriptCompile Include="src\app\components\library\publication\publication.component.ts" />
     <TypeScriptCompile Include="src\app\components\library\publicationHouse\publicationHouse.component.ts" />
     <TypeScriptCompile Include="src\app\components\library\magazine\magazine.component.ts" />
     <TypeScriptCompile Include="src\app\components\library\library.routing.ts" />
     <TypeScriptCompile Include="src\app\components\library\root\root.component.ts" />
     <TypeScriptCompile Include="src\app\models\bookViewModel\postBookViewItem.ts" />
+    <TypeScriptCompile Include="src\app\models\authorViewModel\getAuthorViewItem.ts" />
+    <TypeScriptCompile Include="src\app\models\authorViewModel\getAuthorViewModel.ts" />
+    <TypeScriptCompile Include="src\app\models\authorViewModel\postAuthorViewItem.ts" />
     <TypeScriptCompile Include="src\app\models\publicationHouseViewModel\postPublicationHouseViewItem.ts" />
     <TypeScriptCompile Include="src\app\models\publicationHouseViewModel\getPublicationHouseViewModel.ts" />
     <TypeScriptCompile Include="src\app\models\publicationHouseViewModel\getPublicationHouseViewItem.ts" />
