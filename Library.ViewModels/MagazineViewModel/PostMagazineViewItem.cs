@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Library.ViewModels.MagazineViewModel
 {
@@ -11,6 +12,6 @@ namespace Library.ViewModels.MagazineViewModel
         [Required]
         public int Number { get; set; }
         [Required]
-        public int YearOfPublishing { get; set; }
+        public DateTime DateOfPublishing { get; set; }
     }
 }

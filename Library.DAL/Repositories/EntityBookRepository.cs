@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using Library.DAL.Context;
+﻿using Library.DAL.Context;
 using Library.Entities.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;

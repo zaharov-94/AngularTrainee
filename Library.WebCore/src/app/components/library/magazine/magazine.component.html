@@ -18,22 +18,21 @@
     <ng-template kendoGridToolbarTemplate *ngIf="isAdmin">
       <button kendoGridAddCommand type="button" [primary]="true">Add new</button>
     </ng-template>
-    <kendo-grid-column field="name" title="Magazine Name">
-      <ng-template kendoGridEditTemplate let-dataItem="dataItem">
-        <input [(ngModel)]="dataItem.name" kendoGridFocusable name="MagazineName" required class="k-textbox"  />
-      </ng-template>
+    <kendo-grid-column field="name" title="Book Title">
     </kendo-grid-column>
     <kendo-grid-column field="number" editor="numeric" title="Number">
-      <ng-template kendoGridEditTemplate let-dataItem="dataItem">
-        <input [(ngModel)]="dataItem.number" kendoGridFocusable name="Number" required min="0" 
-               max="999"  type="number" class="k-textbox" />
-      </ng-template>
+        <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+            <input [formControl]="formGroup.get('number')" kendoGridFocusable name="number" class="k-textbox" type="number" />
+        </ng-template>
     </kendo-grid-column>
-    <kendo-grid-column field="yearOfPublishing" editor="numeric" title="Year of Publishing">
-      <ng-template kendoGridEditTemplate let-dataItem="dataItem">
-        <input [(ngModel)]="dataItem.yearOfPublishing" kendoGridFocusable required min="1900"
-               max="2020" class="k-textbox" name="Year" type="number"/>
-      </ng-template>
+    <kendo-grid-column field="dateOfPublishing" title="Date of publishing">
+        <ng-template kendoGridCellTemplate let-dataItem="dataItem" let-column="column" let-formGroup="formGroup">
+            {{dataItem.dateOfPublishing|date:'yyyy-MM-dd'}}
+        </ng-template>
+        <ng-template kendoGridEditTemplate let-dataItem="dataItem" let-column="column" let-formGroup="formGroup">
+            <kendo-datepicker [format]="'yyyy-MM-dd'" [formControl]="formGroup.get('dateOfPublishing')">
+            </kendo-datepicker>
+        </ng-template>
     </kendo-grid-column>
     <kendo-grid-command-column title="" width="220" *ngIf="isAdmin">
       <ng-template kendoGridCellTemplate let-isNew="isNew">

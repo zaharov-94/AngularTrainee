@@ -17,27 +17,30 @@
             <button kendoGridAddCommand type="button" [primary]="true">Add new</button>
         </ng-template>
         <kendo-grid-column field="name" title="Book Title">
-            <ng-template kendoGridEditTemplate let-dataItem="dataItem">
-                <input [(ngModel)]="dataItem.name" kendoGridFocusable name="Book title" required class="k-textbox" />
+        </kendo-grid-column>
+        <kendo-grid-column field="authors" title="Authors">
+            <ng-template kendoGridCellTemplate let-dataItem="dataItem" let-column="column" let-formGroup="formGroup">
+                {{getAuthors(dataItem.id)}}
+            </ng-template>
+            <ng-template kendoGridEditTemplate let-dataItem="dataItem" let-column="column" let-formGroup="formGroup">
+                <kendo-multiselect [data]="authors" [valueField]="'id'" [textField]="'lastName'" [formControl]="formGroup.get('authors')"></kendo-multiselect>
             </ng-template>
         </kendo-grid-column>
-        <kendo-grid-column field="author" title="Book author">
-            <ng-template kendoGridEditTemplate let-dataItem="dataItem">
-                <input [(ngModel)]="dataItem.author" kendoGridFocusable name="Book author" required class="k-textbox" />
+        <kendo-grid-column field="dateOfPublishing" title="Date of publishing">
+            <ng-template kendoGridCellTemplate let-dataItem="dataItem" let-column="column" let-formGroup="formGroup">
+                {{dataItem.dateOfPublishing|date:'yyyy-MM-dd'}}
+            </ng-template>
+            <ng-template kendoGridEditTemplate let-dataItem="dataItem" let-column="column" let-formGroup="formGroup">
+                <kendo-datepicker [format]="'yyyy-MM-dd'" [formControl]="formGroup.get('dateOfPublishing')">
+                </kendo-datepicker>
             </ng-template>
         </kendo-grid-column>
-        <kendo-grid-column field="yearOfPublishing" editor="numeric" title="Year of Publishing">
-            <ng-template kendoGridEditTemplate let-dataItem="dataItem">
-                <input [(ngModel)]="dataItem.yearOfPublishing" kendoGridFocusable required min="1900"
-                       max="2020" class="k-textbox" name="Year" type="number" />
+        <kendo-grid-column field="publicationHouses" title="Publication houses">
+            <ng-template kendoGridCellTemplate let-dataItem="dataItem" let-column="column" let-formGroup="formGroup">
+                {{getPublicationHouses(dataItem.id)}}
             </ng-template>
-        </kendo-grid-column>
-        <kendo-grid-column field="publicationHouses" editor="multiSelectEditor" title="Publication houses">
-            <ng-template kendoGridCellTemplate let-dataItem="dataItem">
-                {{pubHouses(dataItem.id)}}
-            </ng-template>
-            <ng-template kendoGridEditTemplate let-dataItem="dataItem">
-                <kendo-multiselect [data]="publicationHouses" [valueField]="'id'" [textField]="'name'"  [(value)]="dataItem.publicationHouses"></kendo-multiselect>
+            <ng-template kendoGridEditTemplate let-dataItem="dataItem" let-column="column" let-formGroup="formGroup">
+                <kendo-multiselect [data]="publicationHouses" [valueField]="'id'" [textField]="'name'" [formControl]="formGroup.get('publicationHouses')"></kendo-multiselect>
             </ng-template>
         </kendo-grid-column>
         <kendo-grid-command-column title="" width="220" *ngIf="isAdmin">
@@ -45,7 +48,7 @@
                 <button kendoGridEditCommand type="button" class="k-primary" [primary]="true">Edit</button>
                 <button kendoGridRemoveCommand type="button" [primary]="true">Remove</button>
                 <button kendoGridSaveCommand type="button" [disabled]="myForm.invalid" [primary]="true">{{ isNew ? 'Add' : 'Update' }}</button>
-                <button kendoGridCancelCommand type="button" >{{ isNew ? 'Discard changes' : 'Cancel' }}</button>
+                <button kendoGridCancelCommand type="button">{{ isNew ? 'Discard changes' : 'Cancel' }}</button>
             </ng-template>
         </kendo-grid-command-column>
     </kendo-grid>

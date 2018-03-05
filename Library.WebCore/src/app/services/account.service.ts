@@ -46,6 +46,9 @@ export class AccountService extends ErrorService {
         this.http.get('api/auth/logout').subscribe();
         AccountService.isAdmin = null;
         AccountService.isLoggedIn = false;
+        this.cookie.delete("isLoggedIn");
+        this.cookie.delete("isAdmin");
+        this.cookie.delete("userName");
         this.cookie.deleteAll();
         return new Observable<boolean>();
     }

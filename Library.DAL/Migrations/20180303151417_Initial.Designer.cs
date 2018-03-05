@@ -12,8 +12,8 @@ using System;
 namespace Library.DAL.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20180228085238_identity")]
-    partial class identity
+    [Migration("20180303151417_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -22,22 +22,51 @@ namespace Library.DAL.Migrations
                 .HasAnnotation("ProductVersion", "2.0.1-rtm-125")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("Library.Entities.Entities.Author", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("FirstName");
+
+                    b.Property<string>("LastName");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Authors");
+                });
+
             modelBuilder.Entity("Library.Entities.Entities.Book", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Author")
-                        .IsRequired();
+                    b.Property<DateTime>("DateOfPublishing");
 
                     b.Property<string>("Name")
                         .IsRequired();
 
-                    b.Property<int>("YearOfPublishing");
-
                     b.HasKey("Id");
 
                     b.ToTable("Books");
+                });
+
+            modelBuilder.Entity("Library.Entities.Entities.BookAuthor", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("AuthorId");
+
+                    b.Property<int>("BookId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AuthorId");
+
+                    b.HasIndex("BookId");
+
+                    b.ToTable("BookAuthors");
                 });
 
             modelBuilder.Entity("Library.Entities.Entities.Brochure", b =>
@@ -57,77 +86,17 @@ namespace Library.DAL.Migrations
                     b.ToTable("Brochures");
                 });
 
-            modelBuilder.Entity("Library.Entities.Entities.Identity.ApplicationUser", b =>
-                {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("AccessFailedCount");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken();
-
-                    b.Property<string>("Email")
-                        .HasMaxLength(256);
-
-                    b.Property<bool>("EmailConfirmed");
-
-                    b.Property<bool>("LockoutEnabled");
-
-                    b.Property<DateTimeOffset?>("LockoutEnd");
-
-                    b.Property<string>("NormalizedEmail")
-                        .HasMaxLength(256);
-
-                    b.Property<string>("NormalizedUserName")
-                        .HasMaxLength(256);
-
-                    b.Property<string>("PasswordHash");
-
-                    b.Property<string>("PhoneNumber");
-
-                    b.Property<bool>("PhoneNumberConfirmed");
-
-                    b.Property<string>("SecurityStamp");
-
-                    b.Property<bool>("TwoFactorEnabled");
-
-                    b.Property<string>("UserName")
-                        .HasMaxLength(256);
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NormalizedEmail")
-                        .HasName("EmailIndex");
-
-                    b.HasIndex("NormalizedUserName")
-                        .IsUnique()
-                        .HasName("UserNameIndex")
-                        .HasFilter("[NormalizedUserName] IS NOT NULL");
-
-                    b.ToTable("AspNetUsers");
-                });
-
-            modelBuilder.Entity("Library.Entities.Entities.Identity.ClientProfile", b =>
-                {
-                    b.Property<string>("Id");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ClientProfiles");
-                });
-
             modelBuilder.Entity("Library.Entities.Entities.Magazine", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<DateTime>("DateOfPublishing");
+
                     b.Property<string>("Name")
                         .IsRequired();
 
                     b.Property<int>("Number");
-
-                    b.Property<int>("YearOfPublishing");
 
                     b.HasKey("Id");
 
@@ -211,6 +180,57 @@ namespace Library.DAL.Migrations
                     b.ToTable("AspNetRoleClaims");
                 });
 
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUser", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("AccessFailedCount");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken();
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(256);
+
+                    b.Property<bool>("EmailConfirmed");
+
+                    b.Property<bool>("LockoutEnabled");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasMaxLength(256);
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasMaxLength(256);
+
+                    b.Property<string>("PasswordHash");
+
+                    b.Property<string>("PhoneNumber");
+
+                    b.Property<bool>("PhoneNumberConfirmed");
+
+                    b.Property<string>("SecurityStamp");
+
+                    b.Property<bool>("TwoFactorEnabled");
+
+                    b.Property<string>("UserName")
+                        .HasMaxLength(256);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedEmail")
+                        .HasName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasName("UserNameIndex")
+                        .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.ToTable("AspNetUsers");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
                     b.Property<int>("Id")
@@ -276,11 +296,16 @@ namespace Library.DAL.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("Library.Entities.Entities.Identity.ClientProfile", b =>
+            modelBuilder.Entity("Library.Entities.Entities.BookAuthor", b =>
                 {
-                    b.HasOne("Library.Entities.Entities.Identity.ApplicationUser", "ApplicationUser")
-                        .WithOne("ClientProfile")
-                        .HasForeignKey("Library.Entities.Entities.Identity.ClientProfile", "Id")
+                    b.HasOne("Library.Entities.Entities.Author", "Author")
+                        .WithMany()
+                        .HasForeignKey("AuthorId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Library.Entities.Entities.Book", "Book")
+                        .WithMany()
+                        .HasForeignKey("BookId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
@@ -307,7 +332,7 @@ namespace Library.DAL.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("Library.Entities.Entities.Identity.ApplicationUser")
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -315,7 +340,7 @@ namespace Library.DAL.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("Library.Entities.Entities.Identity.ApplicationUser")
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -328,7 +353,7 @@ namespace Library.DAL.Migrations
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("Library.Entities.Entities.Identity.ApplicationUser")
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -336,7 +361,7 @@ namespace Library.DAL.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("Library.Entities.Entities.Identity.ApplicationUser")
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);

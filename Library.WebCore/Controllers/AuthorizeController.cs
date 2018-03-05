@@ -44,6 +44,7 @@ namespace Library.WebCore.Controllers
             return BadRequest("Please enter correct data!");
         }
 
+        [AllowAnonymous]
         [HttpPost]
         [Route("login")]
         public async Task<IActionResult> Login([FromBody] PostLoginViewModel model)
