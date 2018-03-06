@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { Http } from '@angular/http';
-import { PostLoginViewModel } from './../../../models/postLoginViewModel';
+import { PostLoginViewModel } from './../../../models/accountViewModel/postLoginViewModel';
 
 @Component({
     selector: 'login',

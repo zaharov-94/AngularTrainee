@@ -9,14 +9,13 @@ namespace Library.BLL.MapperProfiles
             Mapper.Reset();
             Mapper.Initialize(cfg =>
             {
-                cfg.AddProfile<GroupingBookToBookViewModel>();
-                cfg.AddProfile<PublicationHouseToPublicationHouseViewModel>();
-                cfg.AddProfile<PublicationToPublicationViewModel>();
-                cfg.AddProfile<AuthorToAuthorViewModel>();
-                cfg.AddProfile<BookViewItemToBookViewModel>();
-                cfg.AddProfile<BrochureToBrochureViewModel>();
-                cfg.AddProfile<MagazineToMagazineViewModel>();
-                cfg.AddProfile<BookToBookViewItem>();
+                cfg.AddProfile<PublicationHouseProfile>();
+                cfg.AddProfile<PublicationProfile>();
+                cfg.AddProfile<AuthorProfile>();
+                cfg.AddProfile<BookProfile>();
+                cfg.AddProfile<BrochureProfile>();
+                cfg.AddProfile<MagazineProfile>();
+
             });
         }
     }

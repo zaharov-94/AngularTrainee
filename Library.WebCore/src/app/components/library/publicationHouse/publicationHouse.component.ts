@@ -6,6 +6,7 @@ import { PublicationHouseDataService } from '../../../services/publicationHouse.
 import { GetPublicationHouseViewItem } from '../../../models/publicationHouseViewModel/getPublicationHouseViewItem';
 import { PostPublicationHouseViewItem } from '../../../models/publicationHouseViewModel/postPublicationHouseViewItem';
 import { GetPublicationHouseViewModel } from '../../../models/publicationHouseViewModel/getPublicationHouseViewModel';
+import { PostPublicationHouseViewModel } from '../../../models/publicationHouseViewModel/postPublicationHouseViewModel';
 
 import { AccountService } from '../../../services/account.service';
 
@@ -66,8 +67,10 @@ export class PublicationHouseComponent implements OnInit {
     }
 
     public saveHandler({ sender, rowIndex, dataItem, isNew }) {
-        if (isNew) { this.publicationHouseDataService.createPublicationHouse(dataItem).subscribe(data => this.load()); }
-        if (!isNew) { this.publicationHouseDataService.updatePublicationHouse(dataItem).subscribe(data => this.load()); }
+        var publicationHouseViewModel: PostPublicationHouseViewModel = new PostPublicationHouseViewModel();
+        publicationHouseViewModel.postPublicationHouseViewItem = dataItem;
+        if (isNew) { this.publicationHouseDataService.createPublicationHouse(publicationHouseViewModel).subscribe(data => this.load()); }
+        if (!isNew) { this.publicationHouseDataService.updatePublicationHouse(publicationHouseViewModel).subscribe(data => this.load()); }
         sender.closeRow(rowIndex);
 
         this.editedRowIndex = undefined;

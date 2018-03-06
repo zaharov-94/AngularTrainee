@@ -3,11 +3,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Library.Entities.Entities
 {
-    public class PublicationHouse : TEntity
+    public class PublicationHouse : BaseEntity
     {
-        [Required]
         public string Name { get; set; }
-        [Required]
         public string Address { get; set; }
     }
 }

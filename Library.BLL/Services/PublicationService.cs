@@ -11,12 +11,17 @@ namespace Library.BLL.Services
 {
     public class PublicationService
     {
-        private UnitOfWork _unitOfWork;
+        private BookRepository<Book> _bookRepository;
+        private BrochureRepository<Brochure> _brochureRepository;
+        private MagazineRepository<Magazine> _magazineRepository;
+
         private IEnumerable<Publication> _publicationList;
 
         public PublicationService(ApplicationContext context)
         {
-            _unitOfWork = new UnitOfWork(context);
+            _bookRepository = new BookRepository<Book>(context);
+            _brochureRepository = new BrochureRepository<Brochure>(context);
+            _magazineRepository = new MagazineRepository<Magazine>(context);
         }
         
         public GetPublicationViewModel GetAll()
@@ -27,9 +32,9 @@ namespace Library.BLL.Services
         private IEnumerable<Publication> GetAllPublications()
         {
             _publicationList = new List<Publication>();
-            _publicationList = _unitOfWork.Book.GetAll().Select(x => new Publication { Name = x.Name, Type = PublicationType.Book })
-                .Concat(_unitOfWork.Brochure.GetAll().Select(x => new Publication { Name = x.Name, Type = PublicationType.Brochure }))
-                .Concat(_unitOfWork.Magazine.GetAll().Select(x => new Publication { Name = x.Name, Type = PublicationType.Magazine }));
+            _publicationList = _bookRepository.GetAll().Select(x => new Publication { Name = x.Name, Type = PublicationType.Book })
+                .Concat(_brochureRepository.GetAll().Select(x => new Publication { Name = x.Name, Type = PublicationType.Brochure }))
+                .Concat(_magazineRepository.GetAll().Select(x => new Publication { Name = x.Name, Type = PublicationType.Magazine }));
             return _publicationList;
         }
     }

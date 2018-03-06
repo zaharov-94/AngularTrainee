@@ -14,8 +14,8 @@ namespace Library.DAL.Context
         public DbSet<Brochure> Brochures { get; set; }
         public DbSet<Magazine> Magazines { get; set; }
         public DbSet<PublicationHouse> PublicationHouses { get; set; }
-        public DbSet<PublicationHouseBook> PublicationHouseBooks { get; set; }
-        public DbSet<BookAuthor> BookAuthors { get; set; }
+        public DbSet<PublicationHouseInBook> PublicationHouseBooks { get; set; }
+        public DbSet<BookInAuthor> BookAuthors { get; set; }
 
         public ApplicationContext(DbContextOptions options)
             : base(options)

@@ -6,6 +6,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { GetBookViewItem } from '../../../models/bookViewModel/getBookViewItem';
 import { GetBookViewModel } from '../../../models/bookViewModel/getBookViewModel';
 import { PostBookViewItem } from '../../../models/bookViewModel/postBookViewItem';
+import { PostBookViewModel } from '../../../models/bookViewModel/postBookViewModel';
 import { GetPublicationHouseViewModel } from '../../../models/publicationHouseViewModel/getPublicationHouseViewModel';
 import { GetPublicationHouseViewItem } from '../../../models/publicationHouseViewModel/getPublicationHouseViewItem';
 import { GetAuthorViewModel } from '../../../models/authorViewModel/getAuthorViewModel';
@@ -109,8 +110,10 @@ export class BookComponent implements OnInit {
         var book: PostBookViewItem = formGroup.getRawValue();
         var oldDate = new Date(book.dateOfPublishing);
         book.dateOfPublishing = new Date(oldDate.getFullYear(), oldDate.getMonth(), oldDate.getDate(), 2, 0, 0);
-        if (isNew) { this.bookDataService.createBook(book).subscribe(data => this.load()); }
-        if (!isNew) { this.bookDataService.updateBook(book).subscribe(data => this.load()); }
+        var bookModel: PostBookViewModel = new PostBookViewModel();
+        bookModel.postBookViewItem = book;
+        if (isNew) { this.bookDataService.createBook(bookModel).subscribe(data => this.load()); }
+        if (!isNew) { this.bookDataService.updateBook(bookModel).subscribe(data => this.load()); }
         sender.closeRow(rowIndex);
         this.editedRowIndex = undefined;
         this.editedItem = undefined;

@@ -10,21 +10,21 @@ namespace Library.BLL.Services
 {
     public class BookService
     {
-        private UnitOfWork _unitOfWork;
-        IEqualityComparer<BookAuthor> _authorComparer;
-        IEqualityComparer<PublicationHouseBook> _publicationHouseComparer;
+        private BookAuthorRepository<BookInAuthor> _bookAuthorRepository;
+        private BookRepository<Book> _bookRepository;
+        private PublicationHouseBookRepository<PublicationHouseInBook> _publicationHouseBookRepository;
 
         public BookService(ApplicationContext context)
         {
-            _unitOfWork = new UnitOfWork(context);
-            _authorComparer = new BookAuthorComparer();
-            _publicationHouseComparer = new PublicationHouseBookComparer();
+            _bookAuthorRepository = new BookAuthorRepository<BookInAuthor>(context);
+            _bookRepository = new BookRepository<Book>(context);
+            _publicationHouseBookRepository = new PublicationHouseBookRepository<PublicationHouseInBook>(context);
         }
 
         public GetBookViewModel GetAll()
         {
-            var publicationHouseBookList = _unitOfWork.PublicationHouseBook.GetAll();
-            var bookAuthorList = _unitOfWork.BookAuthor.GetAll();
+            var publicationHouseBookList = _publicationHouseBookRepository.GetAll();
+            var bookAuthorList = _bookAuthorRepository.GetAll();
             var groupedList = publicationHouseBookList.Join(bookAuthorList, x => x.BookId, y => y.BookId, 
                 (x,y) => new BookDTO {Book = x.Book, Author = y.Author, PublicationHouse = x.PublicationHouse}).GroupBy(x=>x.Book);
 
@@ -32,91 +32,83 @@ namespace Library.BLL.Services
             return Mapper.Map<IEnumerable<GetBookViewItem>, GetBookViewModel>(bookItems);
         }
 
-        public void Add(PostBookViewItem bookViewModel)
+        public void Add(PostBookViewModel bookViewModel)
         {
-            Book book = Mapper.Map<PostBookViewItem, Book>(bookViewModel);
-            _unitOfWork.Book.Add(book);
+            Book book = Mapper.Map<PostBookViewModel, Book>(bookViewModel);
+            _bookRepository.Add(book);
 
-            bookViewModel.Id = book.Id;
+            bookViewModel.PostBookViewItem.Id = book.Id;
 
-            var listToAdd = MapToPublicationHouseBook(bookViewModel);
-            _unitOfWork.PublicationHouseBook.Add(listToAdd);
+            var listToAdd = MapToPublicationHouseBook(bookViewModel.PostBookViewItem);
+            _publicationHouseBookRepository.Add(listToAdd);
 
-            var listAuthorsToAdd = MapToBookAuthor(bookViewModel);
-            _unitOfWork.BookAuthor.Add(listAuthorsToAdd);
+            var listAuthorsToAdd = MapToBookAuthor(bookViewModel.PostBookViewItem);
+            _bookAuthorRepository.Add(listAuthorsToAdd);
         }
 
-        public GetBookViewItem GetById(int id)
+        public GetByIdBookViewModel GetById(int id)
         {
-            GetBookViewItem bookViewModel = Mapper.Map<Book, GetBookViewItem>(_unitOfWork.Book.FindById(id));
+            GetByIdBookViewModel bookViewModel = Mapper.Map<Book, GetByIdBookViewModel>(_bookRepository.FindById(id));
             return bookViewModel;
         }
 
-        public void Edit(PostBookViewItem bookViewModel)
+        public void Edit(PostBookViewModel bookViewModel)
         {
-            Book book = Mapper.Map<PostBookViewItem, Book>(bookViewModel);
-            _unitOfWork.Book.Update(book);
-            
-            //Remove elements that are not exist in received model (Publication house)
-            var listToRemove = _unitOfWork.PublicationHouseBook.Get(x => x.BookId == bookViewModel.Id)
-                .Except(MapToPublicationHouseBook(bookViewModel), _publicationHouseComparer);
-            _unitOfWork.PublicationHouseBook.Remove(listToRemove);
+            Book book = Mapper.Map<PostBookViewItem, Book>(bookViewModel.PostBookViewItem);
+            _bookRepository.Update(book);
 
-            //Add elements that are exist in received model (Publication house)
-            var listToAdd = MapToPublicationHouseBook(bookViewModel)
-                .Except(_unitOfWork.PublicationHouseBook.Get(x => x.BookId == bookViewModel.Id), _publicationHouseComparer);
-            _unitOfWork.PublicationHouseBook.Add(listToAdd);
+            var listPublicationHoouseIds = bookViewModel.PostBookViewItem.PublicationHouses.Select(x => x.Id);
+            var listToRemove = _publicationHouseBookRepository.Get(x => x.BookId == bookViewModel.PostBookViewItem.Id)
+                .Where(x => x.BookId == bookViewModel.PostBookViewItem.Id)
+                .Where(x => !listPublicationHoouseIds.Contains(x.PublicationHouseId));
+            _publicationHouseBookRepository.Remove(listToRemove);
 
-            //Remove elements that are not exist in received model (Author)
-            var listToRemoveAuthors = _unitOfWork.BookAuthor.Get(x => x.BookId == bookViewModel.Id)
-                .Except(MapToBookAuthor(bookViewModel), _authorComparer);
-            _unitOfWork.BookAuthor.Remove(listToRemoveAuthors);
+            var listToAdd = MapToPublicationHouseBook(bookViewModel.PostBookViewItem)
+                .Where(x => x.BookId == bookViewModel.PostBookViewItem.Id)
+                .Where(x => listPublicationHoouseIds.Contains(x.PublicationHouseId));
+            _publicationHouseBookRepository.Add(listToAdd);
 
-            //Add elements that are exist in received model (Author)
-            var listToAddAuthors = MapToBookAuthor(bookViewModel)
-                .Except(_unitOfWork.BookAuthor.Get(x => x.BookId == bookViewModel.Id), _authorComparer);
-            _unitOfWork.BookAuthor.Add(listToAddAuthors);
+            var listAuthorIds = bookViewModel.PostBookViewItem.Authors.Select(x => x.Id);
+            var listToRemoveAuthors = _bookAuthorRepository.Get(x => x.BookId == bookViewModel.PostBookViewItem.Id)
+                .Where(x => x.BookId == bookViewModel.PostBookViewItem.Id)
+                .Where(x => !listAuthorIds.Contains(x.AuthorId));
+            _bookAuthorRepository.Remove(listToRemoveAuthors);
+
+            var listToAddAuthors = MapToBookAuthor(bookViewModel.PostBookViewItem)
+                .Where(x => x.BookId == bookViewModel.PostBookViewItem.Id)
+                .Where(x => listAuthorIds.Contains(x.AuthorId));
+            _bookAuthorRepository.Add(listToAddAuthors);
         }
 
         public void Delete(int id)
         {
-            _unitOfWork.Book.Remove(id);
+            _bookRepository.Remove(id);
         }
 
-        private List<PublicationHouseBook> MapToPublicationHouseBook(PostBookViewItem bookViewModel)
+        private List<PublicationHouseInBook> MapToPublicationHouseBook(PostBookViewItem bookViewModel)
         {
-            var publicationHouseBook = new List<PublicationHouseBook>();
-            var listPublicationHouseIds = bookViewModel.PublicationHouses.Select(x => x.Id).ToList();
-            var publicationHouses = _unitOfWork.PublicationHouse.Get(x => listPublicationHouseIds.Contains(x.Id)).ToList();
-            var bookId = _unitOfWork.Book.FindById(bookViewModel.Id);
+            var publicationHouseBookList = new List<PublicationHouseInBook>();
 
             foreach (var item in bookViewModel.PublicationHouses)
             {
-                PublicationHouseBook ph = new PublicationHouseBook();
-                ph.PublicationHouse = publicationHouses.FirstOrDefault(x => x.Id == item.Id);
-                ph.Book = bookId;
-                ph.PublicationHouseId = ph.PublicationHouse.Id;
-                ph.BookId = bookViewModel.Id;
-                publicationHouseBook.Add(ph);
+                var publicationHouseBook = new PublicationHouseInBook();
+                publicationHouseBook.PublicationHouseId = item.Id;
+                publicationHouseBook.BookId = bookViewModel.Id;
+                publicationHouseBookList.Add(publicationHouseBook);
             }
-            return publicationHouseBook;
+            return publicationHouseBookList;
         }
 
-        private List<BookAuthor> MapToBookAuthor(PostBookViewItem bookViewModel)
+        private List<BookInAuthor> MapToBookAuthor(PostBookViewItem bookViewModel)
         {
-            var bookAuthors = new List<BookAuthor>();
-            var listAuthorIds = bookViewModel.Authors.Select(x => x.Id).ToList();
-            var authors = _unitOfWork.Author.Get(x => listAuthorIds.Contains(x.Id)).ToList();
-            var bookId = _unitOfWork.Book.FindById(bookViewModel.Id);
+            var bookAuthors = new List<BookInAuthor>();
 
             foreach (var item in bookViewModel.Authors)
             {
-                BookAuthor ba = new BookAuthor();
-                ba.Author = authors.FirstOrDefault(x => x.Id == item.Id);
-                ba.Book = bookId;
-                ba.AuthorId = ba.Author.Id;
-                ba.BookId = bookViewModel.Id;
-                bookAuthors.Add(ba);
+                var bookAuthor = new BookInAuthor();
+                bookAuthor.AuthorId = item.Id;
+                bookAuthor.BookId = bookViewModel.Id;
+                bookAuthors.Add(bookAuthor);
             }
             return bookAuthors;
         }

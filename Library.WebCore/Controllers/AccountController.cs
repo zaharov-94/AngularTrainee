@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using Newtonsoft.Json;
 using Microsoft.Extensions.Options;
-using Library.ViewModels;
+using Library.ViewModels.AccountViewModel;
 using Library.BLL;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
@@ -84,20 +84,16 @@ namespace ContosoUniversity.API.Controllers
             if (result.Succeeded)
             {
                 var userAccount = await _userManager.FindByEmailAsync(model.Email);
-                // This code can be deleted when the user must activate their account via email.
                 userAccount.EmailConfirmed = true;
 
-                // Create user role                
                 var findUserRole = await _roleManager.FindByNameAsync("User");
                 var userRole = new IdentityRole("User");
 
-                //If user role does not exists, create it
                 if (findUserRole == null)
                 {
                     await _roleManager.CreateAsync(userRole);
                 }
 
-                // Add userAccount to a user role
                 if (!await _userManager.IsInRoleAsync(userAccount, userRole.Name))
                 {
                     await _userManager.AddToRoleAsync(userAccount, userRole.Name);
@@ -106,7 +102,6 @@ namespace ContosoUniversity.API.Controllers
                 return new OkResult();
             }
 
-            // If result is not successful, add error message(s)
             AddErrors(result);
 
             return new BadRequestObjectResult(result.Errors);

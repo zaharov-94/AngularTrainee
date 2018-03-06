@@ -292,7 +292,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "body {\n    padding-top: 40px;\n    padding-bottom: 40px;\n    background-color: #eee;\n}\n\n.form-auth {\n    max-width: 330px;\n    padding: 15px;\n    margin: 0 auto;\n}\n\n.form-auth .form-auth-heading,\n.form-auth .checkbox {\n    margin-bottom: 10px;\n}\n\n.form-auth .checkbox {\n    font-weight: normal;\n}\n\n.form-auth .form-control {\n    position: relative;\n    height: auto;\n    -webkit-box-sizing: border-box;\n    box-sizing: border-box;\n    padding: 10px;\n    font-size: 16px;\n}\n\n.form-auth .form-control:focus {\n        z-index: 2;\n    }\n\n.form-auth input[type=\"email\"] {\n    margin-bottom: -1px;\n    border-bottom-right-radius: 0;\n    border-bottom-left-radius: 0;\n}\n\n.form-auth input[type=\"password\"] {\n    margin-bottom: 10px;\n    border-top-left-radius: 0;\n    border-top-right-radius: 0;\n}\n\n", ""]);
+exports.push([module.i, "body {\r\n    padding-top: 40px;\r\n    padding-bottom: 40px;\r\n    background-color: #eee;\r\n}\r\n\r\n.form-auth {\r\n    max-width: 330px;\r\n    padding: 15px;\r\n    margin: 0 auto;\r\n}\r\n\r\n.form-auth .form-auth-heading,\r\n.form-auth .checkbox {\r\n    margin-bottom: 10px;\r\n}\r\n\r\n.form-auth .checkbox {\r\n    font-weight: normal;\r\n}\r\n\r\n.form-auth .form-control {\r\n    position: relative;\r\n    height: auto;\r\n    -webkit-box-sizing: border-box;\r\n    box-sizing: border-box;\r\n    padding: 10px;\r\n    font-size: 16px;\r\n}\r\n\r\n.form-auth .form-control:focus {\r\n        z-index: 2;\r\n    }\r\n\r\n.form-auth input[type=\"email\"] {\r\n    margin-bottom: -1px;\r\n    border-bottom-right-radius: 0;\r\n    border-bottom-left-radius: 0;\r\n}\r\n\r\n.form-auth input[type=\"password\"] {\r\n    margin-bottom: 10px;\r\n    border-top-left-radius: 0;\r\n    border-top-right-radius: 0;\r\n}\r\n\r\n", ""]);
 
 // exports
 
@@ -319,7 +319,7 @@ module.exports = "<div *ngIf=\"brandNew\" class=\"alert alert-success\" role=\"a
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__("../../../router/esm2015/router.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_platform_browser__ = __webpack_require__("../../../platform-browser/esm2015/platform-browser.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_http__ = __webpack_require__("../../../http/esm2015/http.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__models_postLoginViewModel__ = __webpack_require__("../../../../../src/app/models/postLoginViewModel.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__models_accountViewModel_postLoginViewModel__ = __webpack_require__("../../../../../src/app/models/accountViewModel/postLoginViewModel.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -344,7 +344,7 @@ let LoginComponent = class LoginComponent {
         this.error = '';
     }
     ngOnInit() {
-        this.loginViewModel = new __WEBPACK_IMPORTED_MODULE_5__models_postLoginViewModel__["a" /* PostLoginViewModel */]();
+        this.loginViewModel = new __WEBPACK_IMPORTED_MODULE_5__models_accountViewModel_postLoginViewModel__["a" /* PostLoginViewModel */]();
     }
     login(event) {
         event.preventDefault();
@@ -407,7 +407,7 @@ module.exports = "<div class=\"row\" *ngIf=\"show\">\r\n    <form #registerForm=
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_account_service__ = __webpack_require__("../../../../../src/app/services/account.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/esm2015/router.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__("../../../http/esm2015/http.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_postRegisterViewModel__ = __webpack_require__("../../../../../src/app/models/postRegisterViewModel.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_accountViewModel_postRegisterViewModel__ = __webpack_require__("../../../../../src/app/models/accountViewModel/postRegisterViewModel.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_core__ = __webpack_require__("../../../core/esm2015/core.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -432,7 +432,7 @@ let RegisterComponent = class RegisterComponent {
         this.show = false;
     }
     ngOnInit() {
-        this.registerViewModel = new __WEBPACK_IMPORTED_MODULE_3__models_postRegisterViewModel__["a" /* PostRegisterViewModel */]();
+        this.registerViewModel = new __WEBPACK_IMPORTED_MODULE_3__models_accountViewModel_postRegisterViewModel__["a" /* PostRegisterViewModel */]();
         this.show = true;
     }
     register(form) {
@@ -514,7 +514,8 @@ module.exports = "<h2>Authors</h2>\r\n<form novalidate #myForm=\"ngForm\">\r\n\r
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm2015/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_account_service__ = __webpack_require__("../../../../../src/app/services/account.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_authorViewModel_postAuthorViewItem__ = __webpack_require__("../../../../../src/app/models/authorViewModel/postAuthorViewItem.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_author_service__ = __webpack_require__("../../../../../src/app/services/author.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_authorViewModel_postAuthorViewModel__ = __webpack_require__("../../../../../src/app/models/authorViewModel/postAuthorViewModel.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_author_service__ = __webpack_require__("../../../../../src/app/services/author.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -524,6 +525,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -568,11 +570,13 @@ let AuthorComponent = class AuthorComponent {
         this.load();
     }
     saveHandler({ sender, rowIndex, dataItem, isNew }) {
+        var authorModel = new __WEBPACK_IMPORTED_MODULE_3__models_authorViewModel_postAuthorViewModel__["a" /* PostAuthorViewModel */]();
+        authorModel.postAuthorViewItem = dataItem;
         if (isNew) {
-            this.authorDataService.createAuthor(dataItem).subscribe(data => this.load());
+            this.authorDataService.createAuthor(authorModel).subscribe(data => this.load());
         }
         if (!isNew) {
-            this.authorDataService.updateAuthor(dataItem).subscribe(data => this.load());
+            this.authorDataService.updateAuthor(authorModel).subscribe(data => this.load());
         }
         sender.closeRow(rowIndex);
         this.editedRowIndex = undefined;
@@ -588,7 +592,7 @@ AuthorComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         template: __webpack_require__("../../../../../src/app/components/library/author/author.component.html")
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__services_author_service__["a" /* AuthorDataService */], __WEBPACK_IMPORTED_MODULE_1__services_account_service__["a" /* AccountService */]])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_4__services_author_service__["a" /* AuthorDataService */], __WEBPACK_IMPORTED_MODULE_1__services_account_service__["a" /* AccountService */]])
 ], AuthorComponent);
 
 
@@ -609,10 +613,11 @@ module.exports = "<h2>Books</h2>\r\n<form novalidate #myForm=\"ngForm\">\r\n\r\n
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BookComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm2015/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__("../../../forms/esm2015/forms.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_account_service__ = __webpack_require__("../../../../../src/app/services/account.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_book_service__ = __webpack_require__("../../../../../src/app/services/book.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_publicationHouse_service__ = __webpack_require__("../../../../../src/app/services/publicationHouse.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_author_service__ = __webpack_require__("../../../../../src/app/services/author.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_bookViewModel_postBookViewModel__ = __webpack_require__("../../../../../src/app/models/bookViewModel/postBookViewModel.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_account_service__ = __webpack_require__("../../../../../src/app/services/account.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_book_service__ = __webpack_require__("../../../../../src/app/services/book.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_publicationHouse_service__ = __webpack_require__("../../../../../src/app/services/publicationHouse.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_author_service__ = __webpack_require__("../../../../../src/app/services/author.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -622,6 +627,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -707,11 +713,13 @@ let BookComponent = class BookComponent {
         var book = formGroup.getRawValue();
         var oldDate = new Date(book.dateOfPublishing);
         book.dateOfPublishing = new Date(oldDate.getFullYear(), oldDate.getMonth(), oldDate.getDate(), 2, 0, 0);
+        var bookModel = new __WEBPACK_IMPORTED_MODULE_2__models_bookViewModel_postBookViewModel__["a" /* PostBookViewModel */]();
+        bookModel.postBookViewItem = book;
         if (isNew) {
-            this.bookDataService.createBook(book).subscribe(data => this.load());
+            this.bookDataService.createBook(bookModel).subscribe(data => this.load());
         }
         if (!isNew) {
-            this.bookDataService.updateBook(book).subscribe(data => this.load());
+            this.bookDataService.updateBook(bookModel).subscribe(data => this.load());
         }
         sender.closeRow(rowIndex);
         this.editedRowIndex = undefined;
@@ -727,8 +735,8 @@ BookComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         template: __webpack_require__("../../../../../src/app/components/library/book/book.component.html")
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__services_book_service__["a" /* BookDataService */], __WEBPACK_IMPORTED_MODULE_4__services_publicationHouse_service__["a" /* PublicationHouseDataService */], __WEBPACK_IMPORTED_MODULE_2__services_account_service__["a" /* AccountService */],
-        __WEBPACK_IMPORTED_MODULE_5__services_author_service__["a" /* AuthorDataService */]])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_4__services_book_service__["a" /* BookDataService */], __WEBPACK_IMPORTED_MODULE_5__services_publicationHouse_service__["a" /* PublicationHouseDataService */], __WEBPACK_IMPORTED_MODULE_3__services_account_service__["a" /* AccountService */],
+        __WEBPACK_IMPORTED_MODULE_6__services_author_service__["a" /* AuthorDataService */]])
 ], BookComponent);
 
 
@@ -750,7 +758,8 @@ module.exports = "<h2>Brochures</h2>\r\n<form novalidate #myForm=\"ngForm\">\r\n
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm2015/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_account_service__ = __webpack_require__("../../../../../src/app/services/account.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_brochureViewModel_postBrochureViewItem__ = __webpack_require__("../../../../../src/app/models/brochureViewModel/postBrochureViewItem.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_brochure_service__ = __webpack_require__("../../../../../src/app/services/brochure.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_brochureViewModel_postBrochureViewModel__ = __webpack_require__("../../../../../src/app/models/brochureViewModel/postBrochureViewModel.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_brochure_service__ = __webpack_require__("../../../../../src/app/services/brochure.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -760,6 +769,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -805,11 +815,13 @@ let BrochureComponent = class BrochureComponent {
         this.load();
     }
     saveHandler({ sender, rowIndex, dataItem, isNew }) {
+        var brochureModel = new __WEBPACK_IMPORTED_MODULE_3__models_brochureViewModel_postBrochureViewModel__["a" /* PostBrochureViewModel */]();
+        brochureModel.postBrochureViewItem = dataItem;
         if (isNew) {
-            this.brochureDataService.createBrochure(dataItem).subscribe(data => this.load());
+            this.brochureDataService.createBrochure(brochureModel).subscribe(data => this.load());
         }
         if (!isNew) {
-            this.brochureDataService.updateBrochure(dataItem).subscribe(data => this.load());
+            this.brochureDataService.updateBrochure(brochureModel).subscribe(data => this.load());
         }
         sender.closeRow(rowIndex);
         this.editedRowIndex = undefined;
@@ -825,7 +837,7 @@ BrochureComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         template: __webpack_require__("../../../../../src/app/components/library/brochure/brochure.component.html")
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__services_brochure_service__["a" /* BrochureDataService */], __WEBPACK_IMPORTED_MODULE_1__services_account_service__["a" /* AccountService */]])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_4__services_brochure_service__["a" /* BrochureDataService */], __WEBPACK_IMPORTED_MODULE_1__services_account_service__["a" /* AccountService */]])
 ], BrochureComponent);
 
 
@@ -996,8 +1008,9 @@ module.exports = "<h2>Magazines</h2>\r\n<form novalidate #myForm=\"ngForm\">\r\n
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MagazineComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm2015/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__("../../../forms/esm2015/forms.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_account_service__ = __webpack_require__("../../../../../src/app/services/account.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_magazine_service__ = __webpack_require__("../../../../../src/app/services/magazine.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_magazineViewModel_postMagazineViewModel__ = __webpack_require__("../../../../../src/app/models/magazineViewModel/postMagazineViewModel.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_account_service__ = __webpack_require__("../../../../../src/app/services/account.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_magazine_service__ = __webpack_require__("../../../../../src/app/services/magazine.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1007,6 +1020,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -1065,11 +1079,13 @@ let MagazineComponent = class MagazineComponent {
         var magazine = formGroup.getRawValue();
         var oldDate = new Date(magazine.dateOfPublishing);
         magazine.dateOfPublishing = new Date(oldDate.getFullYear(), oldDate.getMonth(), oldDate.getDate(), 2, 0, 0);
+        var magazineModel = new __WEBPACK_IMPORTED_MODULE_2__models_magazineViewModel_postMagazineViewModel__["a" /* PostMagazineViewModel */]();
+        magazineModel.postMagazineViewItem = magazine;
         if (isNew) {
-            this.magazineDataService.createMagazine(magazine).subscribe(data => this.load());
+            this.magazineDataService.createMagazine(magazineModel).subscribe(data => this.load());
         }
         if (!isNew) {
-            this.magazineDataService.updateMagazine(magazine).subscribe(data => this.load());
+            this.magazineDataService.updateMagazine(magazineModel).subscribe(data => this.load());
         }
         sender.closeRow(rowIndex);
         this.editedRowIndex = undefined;
@@ -1085,7 +1101,7 @@ MagazineComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         template: __webpack_require__("../../../../../src/app/components/library/magazine/magazine.component.html")
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__services_magazine_service__["a" /* MagazineDataService */], __WEBPACK_IMPORTED_MODULE_2__services_account_service__["a" /* AccountService */]])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_4__services_magazine_service__["a" /* MagazineDataService */], __WEBPACK_IMPORTED_MODULE_3__services_account_service__["a" /* AccountService */]])
 ], MagazineComponent);
 
 
@@ -1163,7 +1179,8 @@ module.exports = "<h2>PublicationHouses</h2>\r\n<form novalidate #myForm=\"ngFor
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm2015/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_publicationHouse_service__ = __webpack_require__("../../../../../src/app/services/publicationHouse.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_publicationHouseViewModel_postPublicationHouseViewItem__ = __webpack_require__("../../../../../src/app/models/publicationHouseViewModel/postPublicationHouseViewItem.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_account_service__ = __webpack_require__("../../../../../src/app/services/account.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_publicationHouseViewModel_postPublicationHouseViewModel__ = __webpack_require__("../../../../../src/app/models/publicationHouseViewModel/postPublicationHouseViewModel.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_account_service__ = __webpack_require__("../../../../../src/app/services/account.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1173,6 +1190,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -1217,11 +1235,13 @@ let PublicationHouseComponent = class PublicationHouseComponent {
         this.load();
     }
     saveHandler({ sender, rowIndex, dataItem, isNew }) {
+        var publicationHouseViewModel = new __WEBPACK_IMPORTED_MODULE_3__models_publicationHouseViewModel_postPublicationHouseViewModel__["a" /* PostPublicationHouseViewModel */]();
+        publicationHouseViewModel.postPublicationHouseViewItem = dataItem;
         if (isNew) {
-            this.publicationHouseDataService.createPublicationHouse(dataItem).subscribe(data => this.load());
+            this.publicationHouseDataService.createPublicationHouse(publicationHouseViewModel).subscribe(data => this.load());
         }
         if (!isNew) {
-            this.publicationHouseDataService.updatePublicationHouse(dataItem).subscribe(data => this.load());
+            this.publicationHouseDataService.updatePublicationHouse(publicationHouseViewModel).subscribe(data => this.load());
         }
         sender.closeRow(rowIndex);
         this.editedRowIndex = undefined;
@@ -1237,7 +1257,7 @@ PublicationHouseComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         template: __webpack_require__("../../../../../src/app/components/library/publicationHouse/publicationHouse.component.html")
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__services_publicationHouse_service__["a" /* PublicationHouseDataService */], __WEBPACK_IMPORTED_MODULE_3__services_account_service__["a" /* AccountService */]])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__services_publicationHouse_service__["a" /* PublicationHouseDataService */], __WEBPACK_IMPORTED_MODULE_4__services_account_service__["a" /* AccountService */]])
 ], PublicationHouseComponent);
 
 
@@ -1417,6 +1437,30 @@ SidebarMenuComponent = __decorate([
 
 /***/ }),
 
+/***/ "../../../../../src/app/models/accountViewModel/postLoginViewModel.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+class PostLoginViewModel {
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = PostLoginViewModel;
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/models/accountViewModel/postRegisterViewModel.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+class PostRegisterViewModel {
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = PostRegisterViewModel;
+
+
+
+/***/ }),
+
 /***/ "../../../../../src/app/models/authorViewModel/postAuthorViewItem.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1424,6 +1468,30 @@ SidebarMenuComponent = __decorate([
 class PostAuthorViewItem {
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = PostAuthorViewItem;
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/models/authorViewModel/postAuthorViewModel.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+class PostAuthorViewModel {
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = PostAuthorViewModel;
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/models/bookViewModel/postBookViewModel.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+class PostBookViewModel {
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = PostBookViewModel;
 
 
 
@@ -1441,25 +1509,25 @@ class PostBrochureViewItem {
 
 /***/ }),
 
-/***/ "../../../../../src/app/models/postLoginViewModel.ts":
+/***/ "../../../../../src/app/models/brochureViewModel/postBrochureViewModel.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-class PostLoginViewModel {
+class PostBrochureViewModel {
 }
-/* harmony export (immutable) */ __webpack_exports__["a"] = PostLoginViewModel;
+/* harmony export (immutable) */ __webpack_exports__["a"] = PostBrochureViewModel;
 
 
 
 /***/ }),
 
-/***/ "../../../../../src/app/models/postRegisterViewModel.ts":
+/***/ "../../../../../src/app/models/magazineViewModel/postMagazineViewModel.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-class PostRegisterViewModel {
+class PostMagazineViewModel {
 }
-/* harmony export (immutable) */ __webpack_exports__["a"] = PostRegisterViewModel;
+/* harmony export (immutable) */ __webpack_exports__["a"] = PostMagazineViewModel;
 
 
 
@@ -1472,6 +1540,18 @@ class PostRegisterViewModel {
 class PostPublicationHouseViewItem {
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = PostPublicationHouseViewItem;
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/models/publicationHouseViewModel/postPublicationHouseViewModel.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+class PostPublicationHouseViewModel {
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = PostPublicationHouseViewModel;
 
 
 
@@ -1632,7 +1712,7 @@ let AuthorDataService = class AuthorDataService {
         return this.http.post(this.url, author, { headers: this.authService.authJsonHeaders() }).map(data => data.json());
     }
     updateAuthor(author) {
-        return this.http.put(this.url + '/' + author.id, author, { headers: this.authService.authJsonHeaders() }).map(data => data.json());
+        return this.http.put(this.url + '/' + author.postAuthorViewItem.id, author, { headers: this.authService.authJsonHeaders() }).map(data => data.json());
     }
     deleteAuthor(id) {
         return this.http.delete(this.url + '/' + id, { headers: this.authService.authJsonHeaders() }).map(data => data.json());
@@ -1687,7 +1767,7 @@ let BookDataService = class BookDataService {
         return this.http.post(this.url, book, { headers: this.authService.authJsonHeaders() }).map(data => data.json());
     }
     updateBook(book) {
-        return this.http.put(this.url + '/' + book.id, book, { headers: this.authService.authJsonHeaders() }).map(data => data.json());
+        return this.http.put(this.url + '/' + book.postBookViewItem.id, book, { headers: this.authService.authJsonHeaders() }).map(data => data.json());
     }
     deleteBook(id) {
         return this.http.delete(this.url + '/' + id, { headers: this.authService.authJsonHeaders() }).map(data => data.json());
@@ -1741,7 +1821,7 @@ let BrochureDataService = class BrochureDataService {
         return this.http.post(this.url, brochure, { headers: this.authService.authJsonHeaders() }).map(data => data.json());
     }
     updateBrochure(brochure) {
-        return this.http.put(this.url + '/' + brochure.id, brochure, { headers: this.authService.authJsonHeaders() }).map(data => data.json());
+        return this.http.put(this.url + '/' + brochure.postBrochureViewItem.id, brochure, { headers: this.authService.authJsonHeaders() }).map(data => data.json());
     }
     deleteBrochure(id) {
         return this.http.delete(this.url + '/' + id, { headers: this.authService.authJsonHeaders() }).map(data => data.json());
@@ -1793,7 +1873,7 @@ let MagazineDataService = class MagazineDataService {
         return this.http.post(this.url, magazine, { headers: this.authService.authJsonHeaders() }).map(data => data.json());
     }
     updateMagazine(magazine) {
-        return this.http.put(this.url + '/' + magazine.id, magazine, { headers: this.authService.authJsonHeaders() }).map(data => data.json());
+        return this.http.put(this.url + '/' + magazine.postMagazineViewItem.id, magazine, { headers: this.authService.authJsonHeaders() }).map(data => data.json());
     }
     deleteMagazine(id) {
         return this.http.delete(this.url + '/' + id, { headers: this.authService.authJsonHeaders() }).map(data => data.json());
@@ -1883,7 +1963,7 @@ let PublicationHouseDataService = class PublicationHouseDataService {
         return this.http.post(this.url, publicationHouse, { headers: this.authService.authJsonHeaders() }).map(data => data.json());
     }
     updatePublicationHouse(publicationHouse) {
-        return this.http.put(this.url + '/' + publicationHouse.id, publicationHouse, { headers: this.authService.authJsonHeaders() }).map(data => data.json());
+        return this.http.put(this.url + '/' + publicationHouse.postPublicationHouseViewItem.id, publicationHouse, { headers: this.authService.authJsonHeaders() }).map(data => data.json());
     }
     deletePublicationHouse(id) {
         return this.http.delete(this.url + '/' + id, { headers: this.authService.authJsonHeaders() }).map(data => data.json());

@@ -3,6 +3,7 @@ import { Http } from '@angular/http';
 import { GetMagazineViewItem } from '../models/magazineViewModel/getMagazineViewItem';
 import { PostMagazineViewItem } from '../models/magazineViewModel/postMagazineViewItem';
 import { GetMagazineViewModel } from '../models/magazineViewModel/getMagazineViewModel';
+import { PostMagazineViewModel } from '../models/magazineViewModel/postMagazineViewModel';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
 import { AccountService } from './../services/account.service';
@@ -24,12 +25,12 @@ export class MagazineDataService {
         return this.http.get(this.url + '/' + id, { headers: this.authService.authJsonHeaders() }).map((data) => { return <GetMagazineViewItem>data.json() });
     }
 
-    createMagazine(magazine: PostMagazineViewItem): Observable<Boolean> {
+    createMagazine(magazine: PostMagazineViewModel): Observable<Boolean> {
         return this.http.post(this.url, magazine, { headers: this.authService.authJsonHeaders() }).map(data => data.json() as boolean);
     }
-    updateMagazine(magazine: PostMagazineViewItem): Observable<Boolean> {
+    updateMagazine(magazine: PostMagazineViewModel): Observable<Boolean> {
 
-        return this.http.put(this.url + '/' + magazine.id, magazine, { headers: this.authService.authJsonHeaders() }).map(data => data.json() as boolean);
+        return this.http.put(this.url + '/' + magazine.postMagazineViewItem.id, magazine, { headers: this.authService.authJsonHeaders() }).map(data => data.json() as boolean);
     }
     deleteMagazine(id: number): Observable<Boolean> {
         return this.http.delete(this.url + '/' + id, { headers: this.authService.authJsonHeaders() }).map(data => data.json() as boolean);

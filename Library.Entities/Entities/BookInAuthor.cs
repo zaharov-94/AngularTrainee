@@ -2,13 +2,13 @@
 
 namespace Library.Entities.Entities
 {
-    public class PublicationHouseBook : TEntity
+    public class BookInAuthor:BaseEntity
     {
         [ForeignKey("Book")]
         public int BookId { get; set; }
         public virtual Book Book { get; set; }
-        [ForeignKey("PublicationHouse")]
-        public int PublicationHouseId { get; set; }
-        public virtual PublicationHouse PublicationHouse { get; set; }
+        [ForeignKey("Author")]
+        public int AuthorId { get; set; }
+        public virtual Author Author { get; set; }
     }
 }

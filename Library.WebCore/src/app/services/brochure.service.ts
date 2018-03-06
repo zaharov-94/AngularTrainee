@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { GetBrochureViewItem } from '../models/brochureViewModel/getBrochureViewItem';
 import { PostBrochureViewItem } from '../models/brochureViewModel/postBrochureViewItem';
 import { GetBrochureViewModel } from '../models/brochureViewModel/getBrochureViewModel';
+import { PostBrochureViewModel } from '../models/brochureViewModel/postBrochureViewModel';
 import { Observable } from 'rxjs/Observable';
 import { Http } from '@angular/http';
 import { AccountService } from './../services/account.service';
@@ -24,12 +25,12 @@ export class BrochureDataService {
     getCoverTypes(): Observable<string[]>{
         return this.http.get("/api/covertypes", { headers: this.authService.authJsonHeaders() }).map((data) => { return <string[]>data.json() });
     }
-    createBrochure(brochure: PostBrochureViewItem): Observable<Boolean> {
+    createBrochure(brochure: PostBrochureViewModel): Observable<Boolean> {
         return this.http.post(this.url, brochure, { headers: this.authService.authJsonHeaders() }).map(data => data.json() as boolean);
     }
-    updateBrochure(brochure: PostBrochureViewItem): Observable<Boolean>  {
+    updateBrochure(brochure: PostBrochureViewModel): Observable<Boolean>  {
 
-        return this.http.put(this.url + '/' + brochure.id, brochure, { headers: this.authService.authJsonHeaders() }).map(data => data.json() as boolean);
+        return this.http.put(this.url + '/' + brochure.postBrochureViewItem.id, brochure, { headers: this.authService.authJsonHeaders() }).map(data => data.json() as boolean);
     }
     deleteBrochure(id: number): Observable<Boolean> {
         return this.http.delete(this.url + '/' + id, { headers: this.authService.authJsonHeaders() }).map(data => data.json() as boolean);

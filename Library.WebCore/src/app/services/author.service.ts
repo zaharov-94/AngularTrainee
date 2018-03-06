@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { GetAuthorViewItem } from '../models/authorViewModel/getAuthorViewItem';
 import { PostAuthorViewItem } from '../models/authorViewModel/postAuthorViewItem';
 import { GetAuthorViewModel } from '../models/authorViewModel/getAuthorViewModel';
+import { PostAuthorViewModel } from '../models/authorViewModel/postAuthorViewModel';
 import { Observable } from 'rxjs/Observable';
 import { Http } from '@angular/http';
 import { AccountService } from './../services/account.service';
@@ -23,12 +24,12 @@ export class AuthorDataService {
         return this.http.get(this.url + '/' + id, { headers: this.authService.authJsonHeaders() }).map((data) => { return <GetAuthorViewItem>data.json() });
     }
 
-    createAuthor(author: PostAuthorViewItem): Observable<Boolean> {
+    createAuthor(author: PostAuthorViewModel): Observable<Boolean> {
         return this.http.post(this.url, author, { headers: this.authService.authJsonHeaders() }).map(data => data.json() as boolean);
     }
-    updateAuthor(author: PostAuthorViewItem): Observable<Boolean> {
+    updateAuthor(author: PostAuthorViewModel): Observable<Boolean> {
 
-        return this.http.put(this.url + '/' + author.id, author, { headers: this.authService.authJsonHeaders() }).map(data => data.json() as boolean);
+        return this.http.put(this.url + '/' + author.postAuthorViewItem.id, author, { headers: this.authService.authJsonHeaders() }).map(data => data.json() as boolean);
     }
     deleteAuthor(id: number): Observable<Boolean> {
         return this.http.delete(this.url + '/' + id, { headers: this.authService.authJsonHeaders() }).map(data => data.json() as boolean);

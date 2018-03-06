@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { GetBookViewItem } from '../models/bookViewModel/getBookViewItem';
 import { PostBookViewItem } from '../models/bookViewModel/postBookViewItem';
 import { GetBookViewModel } from '../models/bookViewModel/getBookViewModel';
+import { PostBookViewModel } from '../models/bookViewModel/postBookViewModel';
 import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators/map';
 import { Response, Headers, RequestOptions } from '@angular/http';
@@ -28,12 +29,12 @@ export class BookDataService {
         return this.http.get(this.url + '/' + id, { headers: this.authService.authJsonHeaders() }).map((data) => { return <GetBookViewItem>data.json() });
     }
 
-    createBook(book: PostBookViewItem): Observable<Boolean> {
+    createBook(book: PostBookViewModel): Observable<Boolean> {
         return this.http.post(this.url, book, { headers: this.authService.authJsonHeaders() }).map(data => data.json() as boolean);
     }
-    updateBook(book: PostBookViewItem): Observable<Boolean> {
+    updateBook(book: PostBookViewModel): Observable<Boolean> {
 
-        return this.http.put(this.url + '/' + book.id, book, { headers: this.authService.authJsonHeaders() }).map(data => data.json() as boolean);
+        return this.http.put(this.url + '/' + book.postBookViewItem.id, book, { headers: this.authService.authJsonHeaders() }).map(data => data.json() as boolean);
     }
     deleteBook(id: number): Observable<Boolean> {
         return this.http.delete(this.url + '/' + id, { headers: this.authService.authJsonHeaders() }).map(data => data.json() as boolean);

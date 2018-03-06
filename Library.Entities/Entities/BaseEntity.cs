@@ -2,7 +2,7 @@
 
 namespace Library.Entities.Entities
 {
-    public class TEntity
+    public class BaseEntity
     {
         [Key]
         public int Id { get; set; }

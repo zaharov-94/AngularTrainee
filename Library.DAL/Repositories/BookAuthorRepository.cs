@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace Library.DAL.Repositories
 {
-    public class BookAuthorRepository<T> : EntityGenericRepository<T> where T : BookAuthor
+    public class BookAuthorRepository<T> : EntityGenericRepository<T> where T : BookInAuthor
     {
         private ApplicationContext _context;
 

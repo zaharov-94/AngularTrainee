@@ -1,15 +1,13 @@
-﻿using Library.DAL.Abstract;
-using Library.DAL.Context;
+﻿using Library.DAL.Context;
 using Library.Entities.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 
 namespace Library.DAL.Repositories
 {
-    public class EntityGenericRepository<T> : IGenericRepository<T> where T : TEntity
+    public class EntityGenericRepository<T>  where T : BaseEntity
     {
         private ApplicationContext _context;
         private DbSet<T> _dbSet;

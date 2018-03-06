@@ -5,11 +5,9 @@ using System.Text;
 
 namespace Library.Entities.Entities
 {
-    public class Book : TEntity
+    public class Book : BaseEntity
     {
-        [Required]
         public string Name { get; set; }
-        [Required]
         public DateTime DateOfPublishing { get; set; }
     }
 }

@@ -2,52 +2,49 @@
 using Library.DAL.Context;
 using Library.DAL.Repositories;
 using Library.Entities.Entities;
-using Library.ViewModels;
 using Library.ViewModels.PublicationHouseViewModel;
-using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Library.BLL.Services
 {
     public class PublicationHouseService
     {
-        private UnitOfWork _unitOfWork;
+        private PublicationHouseRepository<PublicationHouse> _publicationHouseRepository;
 
         public PublicationHouseService(ApplicationContext context)
         {
-            _unitOfWork = new UnitOfWork(context);
+            _publicationHouseRepository = new PublicationHouseRepository<PublicationHouse>(context);
         }
 
         public GetPublicationHouseViewModel GetAll()
         {
-            IEnumerable<PublicationHouse> publicationHouseList = _unitOfWork.PublicationHouse.GetAll();
+            IEnumerable<PublicationHouse> publicationHouseList = _publicationHouseRepository.GetAll();
             return Mapper.Map<IEnumerable<PublicationHouse>, GetPublicationHouseViewModel>(publicationHouseList);
         }
 
-        public void Add(PostPublicationHouseViewItem publicationHouse)
+        public void Add(PostPublicationHouseViewModel publicationHouse)
         {
-            _unitOfWork.PublicationHouse.Add(ToPublicationHouse(publicationHouse));
+            _publicationHouseRepository.Add(ToPublicationHouse(publicationHouse));
         }
 
-        public GetPublicationHouseViewItem GetById(int id)
+        public GetByIdPublicationHouseViewModel GetById(int id)
         {
-            PublicationHouse publicationHouse = _unitOfWork.PublicationHouse.FindById(id);
-            return Mapper.Map<PublicationHouse, GetPublicationHouseViewItem>(publicationHouse);
+            PublicationHouse publicationHouse = _publicationHouseRepository.FindById(id);
+            return Mapper.Map<PublicationHouse, GetByIdPublicationHouseViewModel>(publicationHouse);
         }
 
-        public void Edit(PostPublicationHouseViewItem publicationHouse)
+        public void Edit(PostPublicationHouseViewModel publicationHouse)
         {
-            _unitOfWork.PublicationHouse.Update(ToPublicationHouse(publicationHouse));
+            _publicationHouseRepository.Update(ToPublicationHouse(publicationHouse));
         }
         public void Delete(int id)
         {
-            _unitOfWork.PublicationHouse.Remove(id);
+            _publicationHouseRepository.Remove(id);
         }
 
-        private PublicationHouse ToPublicationHouse(PostPublicationHouseViewItem publicationHouseViewModel)
+        private PublicationHouse ToPublicationHouse(PostPublicationHouseViewModel publicationHouseViewModel)
         {
-            return Mapper.Map<PostPublicationHouseViewItem, PublicationHouse>(publicationHouseViewModel);
+            return Mapper.Map<PostPublicationHouseViewModel, PublicationHouse>(publicationHouseViewModel);
         }
 
     }

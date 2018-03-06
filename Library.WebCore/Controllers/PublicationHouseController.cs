@@ -16,21 +16,22 @@ namespace Library.WebCore.Controllers
             _publicationHouseService = new PublicationHouseService(applicationContext);
         }
         [HttpGet]
-        public GetPublicationHouseViewModel Get()
+        public IActionResult Get()
         {
-            return _publicationHouseService.GetAll();
+            GetPublicationHouseViewModel listPublicationHouses = _publicationHouseService.GetAll();
+            return Ok(listPublicationHouses);
         }
 
         [HttpGet("{id}")]
-        public GetPublicationHouseViewItem Get(int id)
+        public IActionResult Get(int id)
         {
-            GetPublicationHouseViewItem publicationHouse = _publicationHouseService.GetById(id);
-            return publicationHouse;
+            GetByIdPublicationHouseViewModel publicationHouse = _publicationHouseService.GetById(id);
+            return Ok(publicationHouse);
         }
 
         [Authorize(Roles = "Admin")]
         [HttpPost]
-        public IActionResult Post([FromBody]PostPublicationHouseViewItem publicationHouse)
+        public IActionResult Post([FromBody]PostPublicationHouseViewModel publicationHouse)
         {
             if (ModelState.IsValid)
             {
@@ -42,7 +43,7 @@ namespace Library.WebCore.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody]PostPublicationHouseViewItem publicationHouse)
+        public IActionResult Put(int id, [FromBody]PostPublicationHouseViewModel publicationHouse)
         {
             if (ModelState.IsValid)
             {
@@ -56,7 +57,7 @@ namespace Library.WebCore.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            GetPublicationHouseViewItem publicationHouse = _publicationHouseService.GetById(id);
+            GetByIdPublicationHouseViewModel publicationHouse = _publicationHouseService.GetById(id);
             _publicationHouseService.Delete(id);
             return Ok(publicationHouse);
         }

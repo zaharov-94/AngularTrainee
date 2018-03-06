@@ -2,51 +2,48 @@
 using Library.DAL.Context;
 using Library.DAL.Repositories;
 using Library.Entities.Entities;
-using Library.ViewModels;
 using Library.ViewModels.MagazineViewModel;
-using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Library.BLL.Services
 {
     public class MagazineService
     {
-        private UnitOfWork _unitOfWork;
+        private MagazineRepository<Magazine> _magazineRepository;
 
         public MagazineService(ApplicationContext context)
         {
-            _unitOfWork = new UnitOfWork(context);
+            _magazineRepository = new MagazineRepository<Magazine>(context);
         }
         public GetMagazineViewModel GetAll()
         {
-            IEnumerable<Magazine> magazinesList = _unitOfWork.Magazine.GetAll();
+            IEnumerable<Magazine> magazinesList = _magazineRepository.GetAll();
             return Mapper.Map<IEnumerable<Magazine>, GetMagazineViewModel>(magazinesList);
         }
 
-        public void Add(PostMagazineViewItem magazineViewModel)
+        public void Add(PostMagazineViewModel magazineViewModel)
         {
-            _unitOfWork.Magazine.Add(ToMagazine(magazineViewModel));
+            _magazineRepository.Add(ToMagazine(magazineViewModel));
         }
 
-        public GetMagazineViewItem GetById(int id)
+        public GetByIdMagazineViewModel GetById(int id)
         {
-            Magazine magazine = _unitOfWork.Magazine.FindById(id);
-            return Mapper.Map<Magazine, GetMagazineViewItem>(magazine);
+            Magazine magazine = _magazineRepository.FindById(id);
+            return Mapper.Map<Magazine, GetByIdMagazineViewModel>(magazine);
         }
 
-        public void Edit(PostMagazineViewItem magazineViewModel)
+        public void Edit(PostMagazineViewModel magazineViewModel)
         {
-            _unitOfWork.Magazine.Update(ToMagazine(magazineViewModel));
+            _magazineRepository.Update(ToMagazine(magazineViewModel));
         }
         public void Delete(int id)
         {
-            _unitOfWork.Magazine.Remove(id);
+            _magazineRepository.Remove(id);
         }
 
-        private Magazine ToMagazine(PostMagazineViewItem magazineViewModel)
+        private Magazine ToMagazine(PostMagazineViewModel magazineViewModel)
         {
-            return Mapper.Map<PostMagazineViewItem, Magazine>(magazineViewModel);
+            return Mapper.Map<PostMagazineViewModel, Magazine>(magazineViewModel);
         }
     }
 }

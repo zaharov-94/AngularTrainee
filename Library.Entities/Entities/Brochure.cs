@@ -3,13 +3,10 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Library.Entities.Entities
 {
-    public class Brochure : TEntity
+    public class Brochure : BaseEntity
     {
-        [Required]
         public string Name { get; set; }
-        [Required]
         public TypeOfCover TypeOfCover { get; set; }
-        [Required]
         public int NumberOfPages { get; set; }
     }
 }

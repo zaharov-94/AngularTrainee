@@ -21,21 +21,22 @@ namespace Library.WebCore.Controllers
             _magazineService = new MagazineService(applicationContext);
         }
         [HttpGet]
-        public GetMagazineViewModel Get()
+        public IActionResult Get()
         {
-            return _magazineService.GetAll();
+            GetMagazineViewModel listMagazines = _magazineService.GetAll();
+            return Ok(listMagazines);
         }
 
         [HttpGet("{id}")]
-        public GetMagazineViewItem Get(int id)
+        public IActionResult Get(int id)
         {
-            GetMagazineViewItem magazine = _magazineService.GetById(id);
-            return magazine;
+            GetByIdMagazineViewModel magazine = _magazineService.GetById(id);
+            return Ok(magazine);
         }
 
         [Authorize(Roles = "Admin")]
         [HttpPost]
-        public IActionResult Post([FromBody]PostMagazineViewItem magazine)
+        public IActionResult Post([FromBody]PostMagazineViewModel magazine)
         {
             if (ModelState.IsValid)
             {
@@ -47,7 +48,7 @@ namespace Library.WebCore.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody]PostMagazineViewItem magazine)
+        public IActionResult Put(int id, [FromBody]PostMagazineViewModel magazine)
         {
             if (ModelState.IsValid)
             {
@@ -61,7 +62,7 @@ namespace Library.WebCore.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            GetMagazineViewItem magazine = _magazineService.GetById(id);
+            GetByIdMagazineViewModel magazine = _magazineService.GetById(id);
             _magazineService.Delete(id);
             return Ok(magazine);
         }

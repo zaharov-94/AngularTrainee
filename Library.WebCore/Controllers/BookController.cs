@@ -16,20 +16,21 @@ namespace Library.WebCore.Controllers
         }
         [Authorize]
         [HttpGet]
-        public GetBookViewModel Get()
+        public IActionResult Get()
         {
-            return _bookService.GetAll();
+            GetBookViewModel listBooks = _bookService.GetAll();
+            return Ok(listBooks);
         }
         [Authorize]
         [HttpGet("{id}")]
-        public GetBookViewItem Get(int id)
+        public IActionResult Get(int id)
         {
-            GetBookViewItem book = _bookService.GetById(id);
-            return book;
+            GetByIdBookViewModel book = _bookService.GetById(id);
+            return Ok(book);
         }
         [Authorize(Roles = "Admin")]
         [HttpPost]
-        public IActionResult Post([FromBody]PostBookViewItem book)
+        public IActionResult Post([FromBody]PostBookViewModel book)
         {
             if (ModelState.IsValid)
             {
@@ -40,7 +41,7 @@ namespace Library.WebCore.Controllers
         }
         [Authorize(Roles = "Admin")]
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody]PostBookViewItem book)
+        public IActionResult Put(int id, [FromBody]PostBookViewModel book)
         {
             if (ModelState.IsValid)
             {
@@ -53,7 +54,7 @@ namespace Library.WebCore.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            GetBookViewItem book = _bookService.GetById(id);
+            GetByIdBookViewModel book = _bookService.GetById(id);
             _bookService.Delete(id);
             return Ok(book);
         }

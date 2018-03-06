@@ -1,14 +1,8 @@
 using Library.BLL.Services;
 using Library.DAL.Context;
-using Library.ViewModels;
 using Library.ViewModels.BrochureViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Shared.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Library.WebCore.Controllers
 {
@@ -22,19 +16,20 @@ namespace Library.WebCore.Controllers
             _brochureService = new BrochureService(applicationContext);
         }
         [HttpGet]
-        public GetBrochureViewModel Get()
+        public IActionResult Get()
         {
-            return _brochureService.GetAll();
+            GetBrochureViewModel brochureList = _brochureService.GetAll();
+            return Ok(brochureList);
         }
         [HttpGet("{id}")]
-        public GetBrochureViewItem Get(int id)
+        public IActionResult Get(int id)
         {
-            GetBrochureViewItem brochure = _brochureService.GetById(id);
-            return brochure;
+            GetByIdBrochureViewModel brochure = _brochureService.GetById(id);
+            return Ok(brochure);
         }
         [Authorize(Roles = "Admin")]
         [HttpPost]
-        public IActionResult Post([FromBody]PostBrochureViewItem brochure)
+        public IActionResult Post([FromBody]PostBrochureViewModel brochure)
         {
             if (ModelState.IsValid)
             {
@@ -45,7 +40,7 @@ namespace Library.WebCore.Controllers
         }
         [Authorize(Roles = "Admin")]
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody]PostBrochureViewItem brochure)
+        public IActionResult Put(int id, [FromBody]PostBrochureViewModel brochure)
         {
             if (ModelState.IsValid)
             {
@@ -58,7 +53,7 @@ namespace Library.WebCore.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            GetBrochureViewItem brochure = _brochureService.GetById(id);
+            GetByIdBrochureViewModel brochure = _brochureService.GetById(id);
             _brochureService.Delete(id);
             return Ok(brochure);
         }

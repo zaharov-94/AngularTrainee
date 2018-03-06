@@ -1,4 +1,4 @@
-import { AuthTokenModel } from './../models/authTokenModel';
+import { AuthTokenModel } from './../models/accountViewModel/authTokenModel';
 import { JwtHelper } from 'angular2-jwt';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
 import { Headers } from '@angular/http';
 import { Http } from '@angular/http';
 
-import { PostRegisterViewModel } from '../models/postRegisterViewModel';
+import { PostRegisterViewModel } from '../models/accountViewModel/postRegisterViewModel';
 @Injectable()
 export class AccountService {
 

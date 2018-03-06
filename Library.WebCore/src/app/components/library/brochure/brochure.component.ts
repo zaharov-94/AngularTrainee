@@ -6,6 +6,7 @@ import { State } from '@progress/kendo-data-query';
 import { GetBrochureViewItem } from '../../../models/brochureViewModel/getBrochureViewItem';
 import { PostBrochureViewItem } from '../../../models/brochureViewModel/postBrochureViewItem';
 import { GetBrochureViewModel } from '../../../models/brochureViewModel/getBrochureViewModel';
+import { PostBrochureViewModel } from '../../../models/brochureViewModel/postBrochureViewModel';
 
 import { BrochureDataService } from '../../../services/brochure.service';
 
@@ -68,8 +69,10 @@ export class BrochureComponent implements OnInit {
     }
 
     public saveHandler({ sender, rowIndex, dataItem, isNew }) {
-        if (isNew) { this.brochureDataService.createBrochure(dataItem).subscribe(data => this.load()); }
-        if (!isNew) { this.brochureDataService.updateBrochure(dataItem).subscribe(data => this.load()); }
+        var brochureModel: PostBrochureViewModel = new PostBrochureViewModel();
+        brochureModel.postBrochureViewItem = dataItem;
+        if (isNew) { this.brochureDataService.createBrochure(brochureModel).subscribe(data => this.load()); }
+        if (!isNew) { this.brochureDataService.updateBrochure(brochureModel).subscribe(data => this.load()); }
         sender.closeRow(rowIndex);
 
         this.editedRowIndex = undefined;

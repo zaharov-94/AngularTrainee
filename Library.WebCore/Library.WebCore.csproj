@@ -30,10 +30,13 @@
     <None Remove="src\app\models\authorViewModel\getAuthorViewItem.ts" />
     <None Remove="src\app\models\authorViewModel\getAuthorViewModel.ts" />
     <None Remove="src\app\models\authorViewModel\postAuthorViewItem.ts" />
+    <None Remove="src\app\models\authorViewModel\postAuthorViewModel.ts" />
     <None Remove="src\app\models\bookViewModel\postBookViewItem.ts" />
+    <None Remove="src\app\models\bookViewModel\postBookViewModel.ts" />
     <None Remove="src\app\models\publicationHouse.model.ts" />
     <None Remove="src\app\models\publicationHouseViewModel\getPublicationHouseViewModel.ts" />
     <None Remove="src\app\models\publicationHouseViewModel\postPublicationHouseViewItem.ts" />
+    <None Remove="src\app\models\publicationHouseViewModel\postPublicationHouseViewModel.ts" />
     <None Remove="src\app\services\account.service.ts" />
     <None Remove="src\app\services\error.service.ts" />
   </ItemGroup>
@@ -83,10 +86,13 @@
     <TypeScriptCompile Include="src\app\components\library\magazine\magazine.component.ts" />
     <TypeScriptCompile Include="src\app\components\library\library.routing.ts" />
     <TypeScriptCompile Include="src\app\components\library\root\root.component.ts" />
+    <TypeScriptCompile Include="src\app\models\authorViewModel\postAuthorViewModel.ts" />
     <TypeScriptCompile Include="src\app\models\bookViewModel\postBookViewItem.ts" />
     <TypeScriptCompile Include="src\app\models\authorViewModel\getAuthorViewItem.ts" />
     <TypeScriptCompile Include="src\app\models\authorViewModel\getAuthorViewModel.ts" />
     <TypeScriptCompile Include="src\app\models\authorViewModel\postAuthorViewItem.ts" />
+    <TypeScriptCompile Include="src\app\models\bookViewModel\postBookViewModel.ts" />
+    <TypeScriptCompile Include="src\app\models\publicationHouseViewModel\postPublicationHouseViewModel.ts" />
     <TypeScriptCompile Include="src\app\models\publicationHouseViewModel\postPublicationHouseViewItem.ts" />
     <TypeScriptCompile Include="src\app\models\publicationHouseViewModel\getPublicationHouseViewModel.ts" />
     <TypeScriptCompile Include="src\app\models\publicationHouseViewModel\getPublicationHouseViewItem.ts" />

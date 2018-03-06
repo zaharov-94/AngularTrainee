@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { GetPublicationHouseViewItem } from '../models/publicationHouseViewModel/getPublicationHouseViewItem';
 import { PostPublicationHouseViewItem } from '../models/publicationHouseViewModel/postPublicationHouseViewItem';
 import { GetPublicationHouseViewModel } from '../models/publicationHouseViewModel/getPublicationHouseViewModel';
+import { PostPublicationHouseViewModel } from '../models/publicationHouseViewModel/postPublicationHouseViewModel';
 import { Observable } from 'rxjs/Observable';
 import { AccountService } from './../services/account.service';
 import { Http } from '@angular/http';
@@ -23,12 +24,12 @@ export class PublicationHouseDataService {
         return this.http.get(this.url + '/' + id, { headers: this.authService.authJsonHeaders() }).map((data) => { return <GetPublicationHouseViewItem>data.json() });
     }
 
-    createPublicationHouse(publicationHouse: PostPublicationHouseViewItem): Observable<Boolean> {
+    createPublicationHouse(publicationHouse: PostPublicationHouseViewModel): Observable<Boolean> {
         return this.http.post(this.url, publicationHouse, { headers: this.authService.authJsonHeaders() }).map(data => data.json() as boolean);
     }
-    updatePublicationHouse(publicationHouse: PostPublicationHouseViewItem): Observable<Boolean> {
+    updatePublicationHouse(publicationHouse: PostPublicationHouseViewModel): Observable<Boolean> {
 
-        return this.http.put(this.url + '/' + publicationHouse.id, publicationHouse, { headers: this.authService.authJsonHeaders() }).map(data => data.json() as boolean);
+        return this.http.put(this.url + '/' + publicationHouse.postPublicationHouseViewItem.id, publicationHouse, { headers: this.authService.authJsonHeaders() }).map(data => data.json() as boolean);
     }
     deletePublicationHouse(id: number): Observable<Boolean> {
         return this.http.delete(this.url + '/' + id, { headers: this.authService.authJsonHeaders() }).map(data => data.json() as boolean);

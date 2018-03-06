@@ -5,6 +5,7 @@ import { State, process } from '@progress/kendo-data-query';
 import { GetMagazineViewItem } from '../../../models/magazineViewModel/getMagazineViewItem';
 import { PostMagazineViewItem } from '../../../models/magazineViewModel/postMagazineViewItem';
 import { GetMagazineViewModel } from '../../../models/magazineViewModel/getMagazineViewModel';
+import { PostMagazineViewModel } from '../../../models/magazineViewModel/postMagazineViewModel';
 
 import { AccountService } from '../../../services/account.service';
 import { MagazineDataService } from '../../../services/magazine.service';
@@ -78,8 +79,10 @@ export class MagazineComponent implements OnInit {
         var magazine: PostMagazineViewItem = formGroup.getRawValue();
         var oldDate = new Date(magazine.dateOfPublishing);
         magazine.dateOfPublishing = new Date(oldDate.getFullYear(), oldDate.getMonth(), oldDate.getDate(), 2, 0, 0);
-        if (isNew) { this.magazineDataService.createMagazine(magazine).subscribe(data => this.load()); }
-        if (!isNew) { this.magazineDataService.updateMagazine(magazine).subscribe(data => this.load()); }
+        var magazineModel: PostMagazineViewModel = new PostMagazineViewModel();
+        magazineModel.postMagazineViewItem = magazine;
+        if (isNew) { this.magazineDataService.createMagazine(magazineModel).subscribe(data => this.load()); }
+        if (!isNew) { this.magazineDataService.updateMagazine(magazineModel).subscribe(data => this.load()); }
         sender.closeRow(rowIndex);
 
         this.editedRowIndex = undefined;

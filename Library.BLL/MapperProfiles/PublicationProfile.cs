@@ -5,9 +5,9 @@ using System.Collections.Generic;
 
 namespace Library.BLL.MapperProfiles
 {
-    public class PublicationToPublicationViewModel : Profile
+    public class PublicationProfile : Profile
     {
-        public PublicationToPublicationViewModel()
+        public PublicationProfile()
         {
             CreateMap<IEnumerable<Publication>, GetPublicationViewModel>()
                 .ForMember(dest => dest.Publications, x => x.MapFrom(src => src));

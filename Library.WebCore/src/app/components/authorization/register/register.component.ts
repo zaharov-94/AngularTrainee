@@ -2,7 +2,7 @@ import { NgForm } from '@angular/forms';
 import { AccountService } from './../../../services/account.service';
 import { Router } from '@angular/router';
 import { Http } from '@angular/http';
-import { PostRegisterViewModel } from '../../../models/postRegisterViewModel';
+import { PostRegisterViewModel } from '../../../models/accountViewModel/postRegisterViewModel';
 import { Component, OnInit} from '@angular/core';
 
 @Component({

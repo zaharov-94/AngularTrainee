@@ -16,21 +16,22 @@ namespace Library.WebCore.Controllers
             _authorService = new AuthorService(applicationContext);
         }
         [HttpGet]
-        public GetAuthorViewModel Get()
+        public IActionResult Get()
         {
-            return _authorService.GetAll();
+            GetAuthorViewModel result = _authorService.GetAll();
+            return Ok(result);
         }
 
         [HttpGet("{id}")]
-        public GetAuthorViewItem Get(int id)
+        public IActionResult GetById(int id)
         {
-            GetAuthorViewItem author = _authorService.GetById(id);
-            return author;
+            GetByIdAuthorViewModel author = _authorService.GetById(id);
+            return Ok(author);
         }
 
         [Authorize(Roles = "Admin")]
         [HttpPost]
-        public IActionResult Post([FromBody]PostAuthorViewItem author)
+        public IActionResult Post([FromBody]PostAuthorViewModel author)
         {
             if (ModelState.IsValid)
             {
@@ -42,7 +43,7 @@ namespace Library.WebCore.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody]PostAuthorViewItem author)
+        public IActionResult Put(int id, [FromBody]PostAuthorViewModel author)
         {
             if (ModelState.IsValid)
             {
@@ -56,7 +57,7 @@ namespace Library.WebCore.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            GetAuthorViewItem author = _authorService.GetById(id);
+            GetByIdAuthorViewModel author = _authorService.GetById(id);
             _authorService.Delete(id);
             return Ok(author);
         }

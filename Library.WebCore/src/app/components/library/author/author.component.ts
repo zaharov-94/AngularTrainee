@@ -6,6 +6,7 @@ import { State, process } from '@progress/kendo-data-query';
 import { GetAuthorViewItem } from '../../../models/authorViewModel/getAuthorViewItem';
 import { PostAuthorViewItem } from '../../../models/authorViewModel/postAuthorViewItem';
 import { GetAuthorViewModel } from '../../../models/authorViewModel/getAuthorViewModel';
+import { PostAuthorViewModel } from '../../../models/authorViewModel/postAuthorViewModel';
 
 import { AuthorDataService } from '../../../services/author.service';
 
@@ -67,8 +68,10 @@ export class AuthorComponent implements OnInit {
     }
 
     public saveHandler({ sender, rowIndex, dataItem, isNew }) {
-        if (isNew) { this.authorDataService.createAuthor(dataItem).subscribe(data => this.load()); }
-        if (!isNew) { this.authorDataService.updateAuthor(dataItem).subscribe(data => this.load()); }
+        var authorModel: PostAuthorViewModel = new PostAuthorViewModel();
+        authorModel.postAuthorViewItem = dataItem;
+        if (isNew) { this.authorDataService.createAuthor(authorModel).subscribe(data => this.load()); }
+        if (!isNew) { this.authorDataService.updateAuthor(authorModel).subscribe(data => this.load()); }
         sender.closeRow(rowIndex);
 
         this.editedRowIndex = undefined;
