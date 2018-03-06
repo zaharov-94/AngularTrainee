@@ -1,9 +1,4 @@
 ﻿using Library.Entities.Entities;
-using Library.ViewModels.AuthorViewModel;
-using Library.ViewModels.PublicationHouseViewModel;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Library.ViewModels.BookViewModel
 {

@@ -1,4 +1,4 @@
-<div class="row" *ngIf="show" @easeInOut>
+<div class="row" *ngIf="show">
     <form #registerForm="ngForm" class="form-auth">
         <h2 class="form-auth-heading">Registration</h2>
         <br />
@@ -13,7 +13,7 @@
             <input type="password" required name="password" class="form-control" placeholder="Password" [(ngModel)]="registerViewModel.password">
         </div>
         <div class="form-group">
-            <input type="password" required name="confirmPassword" class="form-control" placeholder="Confirm password" [(ngModel)]="registerViewModel.confirmPassword">
+            <input type="password" required name="confirmPassword" class="form-control" placeholder="Confirm password"  validateEqual="password" [(ngModel)]="registerViewModel.confirmPassword">
         </div>
         <div class="form-group">
             <div class="row">

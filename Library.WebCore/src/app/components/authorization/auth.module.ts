@@ -5,12 +5,9 @@ import { Http, RequestOptions } from '@angular/http';
 import { AuthHttp, AuthConfig } from 'angular2-jwt';
 import { AccountService } from '../../services/account.service';
 import { routing } from './account.routing';
-import { ToastyModule } from 'ng2-toasty';
 import { RootComponent } from './root/root.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { NotificationService } from './../../services/notification.service';
-import { ToastrModule } from 'ngx-toastr';
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     return new AuthHttp(new AuthConfig(), http, options);
@@ -20,8 +17,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     imports: [
         CommonModule,
         FormsModule,
-        routing,
-        ToastrModule.forRoot()
+        routing
     ],
     declarations: [
         RootComponent,
@@ -30,7 +26,6 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     ],
     providers: [
         AccountService,
-        NotificationService,
         {
             provide: AuthHttp,
             useFactory: authHttpServiceFactory,

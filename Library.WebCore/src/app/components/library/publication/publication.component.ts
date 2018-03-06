@@ -1,12 +1,11 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { PublicationDataService } from '../../../services/publication.service';
-import { GetPublicationViewItem } from '../../../models/publicationViewModel/getPublicationViewItem';
-import { GetPublicationViewModel } from '../../../models/publicationViewModel/getPublicationViewModel';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-
 import { State, process } from '@progress/kendo-data-query';
 
-import { map } from 'rxjs/operators/map';
+import { GetPublicationViewItem } from '../../../models/publicationViewModel/getPublicationViewItem';
+import { GetPublicationViewModel } from '../../../models/publicationViewModel/getPublicationViewModel';
+
+import { PublicationDataService } from '../../../services/publication.service';
 @Component({
     templateUrl: './publication.component.html'
 })

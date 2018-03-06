@@ -1,15 +1,14 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { AuthorDataService } from '../../../services/author.service';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AccountService } from '../../../services/account.service';
+import { State, process } from '@progress/kendo-data-query';
+
 import { GetAuthorViewItem } from '../../../models/authorViewModel/getAuthorViewItem';
 import { PostAuthorViewItem } from '../../../models/authorViewModel/postAuthorViewItem';
 import { GetAuthorViewModel } from '../../../models/authorViewModel/getAuthorViewModel';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { AccountService } from '../../../services/account.service';
-import { Observable } from 'rxjs/Observable';
-import { State, process } from '@progress/kendo-data-query';
-import { GridDataResult } from '@progress/kendo-angular-grid';
 
-import { map } from 'rxjs/operators/map';
+import { AuthorDataService } from '../../../services/author.service';
+
 @Component({
     templateUrl: './author.component.html'
 })
@@ -20,7 +19,6 @@ export class AuthorComponent implements OnInit {
     public formGroup: FormGroup;
     public isAdmin: boolean;
 
-    public view: Observable<GridDataResult>;
     public gridState: State = {
         sort: [],
         skip: 0,

@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule, JsonpModule } from '@angular/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
 import { GridModule } from '@progress/kendo-angular-grid'
@@ -35,7 +34,6 @@ import { AuthGuard } from '../../auth.guard';
 @NgModule({
     imports: [
         CommonModule,
-        BrowserAnimationsModule,
         FormsModule,
         ReactiveFormsModule,
         HttpModule,

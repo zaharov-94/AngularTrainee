@@ -2,8 +2,6 @@
 using Library.DAL.Context;
 using Library.Entities.Entities;
 using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace Library.DAL.Repositories
 {
@@ -11,7 +9,6 @@ namespace Library.DAL.Repositories
     {
         private readonly ApplicationContext _context;
         private bool _disposed = false;
-        private Dictionary<string, object> repositories;
         private IGenericRepository<Magazine> _magazineRepository;
         private IGenericRepository<Author> _authorRepository;
         private IGenericRepository<PublicationHouse> _houseRepository;
@@ -25,7 +22,7 @@ namespace Library.DAL.Repositories
             get
             {
                 if (_magazineRepository == null)
-                    _magazineRepository = this.Repository<Magazine>();
+                    _magazineRepository = new MagazineRepository<Magazine>(_context);
                 return _magazineRepository;
             }
         }
@@ -35,7 +32,7 @@ namespace Library.DAL.Repositories
             get
             {
                 if (_bookRepository == null)
-                    _bookRepository = this.Repository<Book>();
+                    _bookRepository = new BookRepository<Book>(_context);
                 return _bookRepository;
             }
         }
@@ -45,7 +42,7 @@ namespace Library.DAL.Repositories
             get
             {
                 if (_authorRepository == null)
-                    _authorRepository = this.Repository<Author>();
+                    _authorRepository = new AuthorRepository<Author>(_context);
                 return _authorRepository;
             }
         }
@@ -55,7 +52,7 @@ namespace Library.DAL.Repositories
             get
             {
                 if (_brochureRepository == null)
-                    _brochureRepository = this.Repository<Brochure>();
+                    _brochureRepository = new BrochureRepository<Brochure>(_context);
                 return _brochureRepository;
             }
         }
@@ -65,7 +62,7 @@ namespace Library.DAL.Repositories
             get
             {
                 if (_houseRepository == null)
-                    _houseRepository = this.Repository<PublicationHouse>();
+                    _houseRepository = new PublicationHouseRepository<PublicationHouse>(_context);
                 return _houseRepository;
             }
         }
@@ -75,7 +72,7 @@ namespace Library.DAL.Repositories
             get
             {
                 if (_publicationHouseBookRepository == null)
-                    _publicationHouseBookRepository = this.Repository<PublicationHouseBook>();
+                    _publicationHouseBookRepository = new PublicationHouseBookRepository<PublicationHouseBook>(_context);
                 return _publicationHouseBookRepository;
             }
         }
@@ -85,7 +82,7 @@ namespace Library.DAL.Repositories
             get
             {
                 if (_bookAuthorRepository == null)
-                    _bookAuthorRepository = this.Repository<BookAuthor>();
+                    _bookAuthorRepository = new BookAuthorRepository<BookAuthor>(_context);
                 return _bookAuthorRepository;
             }
         }
@@ -101,16 +98,6 @@ namespace Library.DAL.Repositories
             GC.SuppressFinalize(this);
         }
 
-        public void Save()
-        {
-            _context.SaveChanges();
-        }
-
-        public async Task SaveAsync()
-        {
-            await _context.SaveChangesAsync();
-        }
-
         public virtual void Dispose(bool disposing)
         {
             if (!_disposed)
@@ -121,32 +108,6 @@ namespace Library.DAL.Repositories
                 }
             }
             _disposed = true;
-        }
-
-        private IGenericRepository<T> Repository<T>() where T : TEntity
-        {
-            if (repositories == null)
-            {
-                repositories = new Dictionary<string, object>();
-            }
-
-            var type = typeof(T).Name;
-
-            if (!repositories.ContainsKey(type))
-            {
-                var repositoryType = typeof(EntityRepository<>);
-                if (typeof(T) == typeof(PublicationHouseBook))
-                {
-                    repositoryType = typeof(EntityBookRepository<>);
-                }
-                if (typeof(T) == typeof(BookAuthor))
-                {
-                    repositoryType = typeof(EntityBookAuthorRepository<>);
-                }
-                var repositoryInstance = Activator.CreateInstance(repositoryType.MakeGenericType(typeof(T)), _context);
-                repositories.Add(type, repositoryInstance);
-            }
-            return (IGenericRepository<T>)repositories[type];
         }
     }
 }

@@ -5,11 +5,13 @@ import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { Injectable } from '@angular/core';
 import { Headers } from '@angular/http';
+import { Http } from '@angular/http';
 
+import { PostRegisterViewModel } from '../models/postRegisterViewModel';
 @Injectable()
 export class AccountService {
 
-    constructor(private router: Router, private titleService: Title) { }
+    constructor(private router: Router, private titleService: Title, private http: Http) { }
 
     jwtHelper: JwtHelper = new JwtHelper();
 
@@ -92,5 +94,12 @@ export class AccountService {
 
     getUserId() {
         return this.useJwtHelper().sub;
+    }
+
+    getToken(body) {
+        return this.http.post('/connect/token', body, { headers: this.contentHeaders() });
+    }
+    registration(registerModel : PostRegisterViewModel) {
+        return this.http.post('/api/account/register', JSON.stringify(registerModel), { headers: this.jsonHeaders() });  
     }
 }

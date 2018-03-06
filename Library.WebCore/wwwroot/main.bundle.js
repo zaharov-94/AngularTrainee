@@ -37,12 +37,11 @@ module.exports = webpackAsyncContext;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__("../../../http/esm2015/http.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_common_http__ = __webpack_require__("../../../common/esm2015/http.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_platform_browser_animations__ = __webpack_require__("../../../platform-browser/esm2015/animations.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ngx_cookie_service__ = __webpack_require__("../../../../ngx-cookie-service/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_routing__ = __webpack_require__("../../../../../src/app/app.routing.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_app_component__ = __webpack_require__("../../../../../src/app/components/app.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_authorization_auth_module__ = __webpack_require__("../../../../../src/app/components/authorization/auth.module.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_library_library_module__ = __webpack_require__("../../../../../src/app/components/library/library.module.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_account_service__ = __webpack_require__("../../../../../src/app/services/account.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_routing__ = __webpack_require__("../../../../../src/app/app.routing.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_app_component__ = __webpack_require__("../../../../../src/app/components/app.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_authorization_auth_module__ = __webpack_require__("../../../../../src/app/components/authorization/auth.module.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_library_library_module__ = __webpack_require__("../../../../../src/app/components/library/library.module.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_account_service__ = __webpack_require__("../../../../../src/app/services/account.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -59,29 +58,27 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_7__components_app_component__["a" /* AppComponent */]
+            __WEBPACK_IMPORTED_MODULE_6__components_app_component__["a" /* AppComponent */]
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_6__app_routing__["a" /* routing */],
+            __WEBPACK_IMPORTED_MODULE_5__app_routing__["a" /* routing */],
             __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["a" /* BrowserModule */],
             __WEBPACK_IMPORTED_MODULE_4__angular_platform_browser_animations__["a" /* BrowserAnimationsModule */],
             __WEBPACK_IMPORTED_MODULE_2__angular_http__["HttpModule"],
             __WEBPACK_IMPORTED_MODULE_3__angular_common_http__["a" /* HttpClientModule */],
             __WEBPACK_IMPORTED_MODULE_2__angular_http__["JsonpModule"],
-            __WEBPACK_IMPORTED_MODULE_8__components_authorization_auth_module__["AuthModule"],
-            __WEBPACK_IMPORTED_MODULE_9__components_library_library_module__["LibraryModule"]
+            __WEBPACK_IMPORTED_MODULE_7__components_authorization_auth_module__["AuthModule"],
+            __WEBPACK_IMPORTED_MODULE_8__components_library_library_module__["LibraryModule"]
         ],
         providers: [
-            __WEBPACK_IMPORTED_MODULE_10__services_account_service__["a" /* AccountService */],
-            __WEBPACK_IMPORTED_MODULE_5_ngx_cookie_service__["a" /* CookieService */]
+            __WEBPACK_IMPORTED_MODULE_9__services_account_service__["a" /* AccountService */]
         ],
-        bootstrap: [__WEBPACK_IMPORTED_MODULE_7__components_app_component__["a" /* AppComponent */]]
+        bootstrap: [__WEBPACK_IMPORTED_MODULE_6__components_app_component__["a" /* AppComponent */]]
     })
 ], AppModule);
 
@@ -164,8 +161,6 @@ module.exports = "<div class='container-fluid'>\r\n    <router-outlet></router-o
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm2015/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/esm2015/router.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ngx_cookie_service__ = __webpack_require__("../../../../ngx-cookie-service/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_account_service__ = __webpack_require__("../../../../../src/app/services/account.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -177,13 +172,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
-
-
 let AppComponent = class AppComponent {
-    constructor(router, cookie) {
+    constructor(router) {
         this.router = router;
-        this.cookie = cookie;
-        __WEBPACK_IMPORTED_MODULE_3__services_account_service__["a" /* AccountService */].userName = this.cookie.get("userName");
     }
     ngOnInit() {
     }
@@ -193,7 +184,7 @@ AppComponent = __decorate([
         selector: 'app-root',
         template: __webpack_require__("../../../../../src/app/components/app.component.html")
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */], __WEBPACK_IMPORTED_MODULE_2_ngx_cookie_service__["a" /* CookieService */]])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]])
 ], AppComponent);
 
 
@@ -245,16 +236,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__root_root_component__ = __webpack_require__("../../../../../src/app/components/authorization/root/root.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__login_login_component__ = __webpack_require__("../../../../../src/app/components/authorization/login/login.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__register_register_component__ = __webpack_require__("../../../../../src/app/components/authorization/register/register.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_notification_service__ = __webpack_require__("../../../../../src/app/services/notification.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_ngx_toastr__ = __webpack_require__("../../../../ngx-toastr/esm2015/ngx-toastr.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-
-
 
 
 
@@ -275,8 +262,7 @@ AuthModule = __decorate([
         imports: [
             __WEBPACK_IMPORTED_MODULE_1__angular_common__["b" /* CommonModule */],
             __WEBPACK_IMPORTED_MODULE_2__angular_forms__["c" /* FormsModule */],
-            __WEBPACK_IMPORTED_MODULE_6__account_routing__["a" /* routing */],
-            __WEBPACK_IMPORTED_MODULE_11_ngx_toastr__["a" /* ToastrModule */].forRoot()
+            __WEBPACK_IMPORTED_MODULE_6__account_routing__["a" /* routing */]
         ],
         declarations: [
             __WEBPACK_IMPORTED_MODULE_7__root_root_component__["a" /* RootComponent */],
@@ -285,7 +271,6 @@ AuthModule = __decorate([
         ],
         providers: [
             __WEBPACK_IMPORTED_MODULE_5__services_account_service__["a" /* AccountService */],
-            __WEBPACK_IMPORTED_MODULE_10__services_notification_service__["a" /* NotificationService */],
             {
                 provide: __WEBPACK_IMPORTED_MODULE_4_angular2_jwt__["AuthHttp"],
                 useFactory: authHttpServiceFactory,
@@ -307,7 +292,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "body {\n    padding-top: 40px;\n    padding-bottom: 40px;\n    background-color: #eee;\n}\n\n.form-auth {\n    max-width: 330px;\n    padding: 15px;\n    margin: 0 auto;\n}\n\n.form-auth .form-auth-heading,\n.form-auth .checkbox {\n    margin-bottom: 10px;\n}\n\n.form-auth .checkbox {\n    font-weight: normal;\n}\n\n.form-auth .form-control {\n    position: relative;\n    height: auto;\n    -webkit-box-sizing: border-box;\n    box-sizing: border-box;\n    padding: 10px;\n    font-size: 16px;\n}\n\n.form-auth .form-control:focus {\n        z-index: 2;\n    }\n\n.form-auth input[type=\"email\"] {\n    margin-bottom: -1px;\n    border-bottom-right-radius: 0;\n    border-bottom-left-radius: 0;\n}\n\n.form-auth input[type=\"password\"] {\n    margin-bottom: 10px;\n    border-top-left-radius: 0;\n    border-top-right-radius: 0;\n}\n", ""]);
+exports.push([module.i, "body {\n    padding-top: 40px;\n    padding-bottom: 40px;\n    background-color: #eee;\n}\n\n.form-auth {\n    max-width: 330px;\n    padding: 15px;\n    margin: 0 auto;\n}\n\n.form-auth .form-auth-heading,\n.form-auth .checkbox {\n    margin-bottom: 10px;\n}\n\n.form-auth .checkbox {\n    font-weight: normal;\n}\n\n.form-auth .form-control {\n    position: relative;\n    height: auto;\n    -webkit-box-sizing: border-box;\n    box-sizing: border-box;\n    padding: 10px;\n    font-size: 16px;\n}\n\n.form-auth .form-control:focus {\n        z-index: 2;\n    }\n\n.form-auth input[type=\"email\"] {\n    margin-bottom: -1px;\n    border-bottom-right-radius: 0;\n    border-bottom-left-radius: 0;\n}\n\n.form-auth input[type=\"password\"] {\n    margin-bottom: 10px;\n    border-top-left-radius: 0;\n    border-top-right-radius: 0;\n}\n\n", ""]);
 
 // exports
 
@@ -361,13 +346,10 @@ let LoginComponent = class LoginComponent {
     ngOnInit() {
         this.loginViewModel = new __WEBPACK_IMPORTED_MODULE_5__models_postLoginViewModel__["a" /* PostLoginViewModel */]();
     }
-    // post the user's login details to server, if authenticated token is returned, then token is saved to session storage
     login(event) {
         event.preventDefault();
         let body = 'username=' + this.loginViewModel.email + '&password=' + this.loginViewModel.password + '&grant_type=password';
-        this.http.post('http://localhost:59515/connect/token', body, { headers: this.authService.contentHeaders() })
-            .subscribe(response => {
-            // success, save the token to session storage
+        this.authService.getToken(body).subscribe(response => {
             this.authService.login(response.json());
             this.router.navigate(['']);
             this.titleService.setTitle('Home');
@@ -384,7 +366,7 @@ LoginComponent = __decorate([
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */],
         __WEBPACK_IMPORTED_MODULE_4__angular_http__["Http"],
-        __WEBPACK_IMPORTED_MODULE_3__angular_platform_browser__["d" /* Title */],
+        __WEBPACK_IMPORTED_MODULE_3__angular_platform_browser__["c" /* Title */],
         __WEBPACK_IMPORTED_MODULE_0__services_account_service__["a" /* AccountService */]])
 ], LoginComponent);
 
@@ -400,7 +382,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "body {\r\n    padding-top: 40px;\r\n    padding-bottom: 40px;\r\n    background-color: #eee;\r\n}\r\n\r\n.form-auth {\r\n    max-width: 400px;\r\n    padding: 15px;\r\n    margin: 0 auto;\r\n}\r\n\r\n.form-auth .form-auth-heading,\r\n.form-auth .checkbox {\r\n    margin-bottom: 10px;\r\n}\r\n\r\n.form-auth .checkbox {\r\n    font-weight: normal;\r\n}\r\n\r\n.form-auth .form-control {\r\n    position: relative;\r\n    height: auto;\r\n    -webkit-box-sizing: border-box;\r\n    box-sizing: border-box;\r\n    padding: 10px;\r\n    font-size: 16px;\r\n}\r\n\r\n.form-auth .form-control:focus {\r\n        z-index: 2;\r\n    }\r\n\r\n.form-auth input[type=\"email\"] {\r\n    margin-bottom: -1px;\r\n    border-bottom-right-radius: 0;\r\n    border-bottom-left-radius: 0;\r\n}\r\n\r\n.form-auth input[type=\"password\"] {\r\n    margin-bottom: 10px;\r\n    border-top-left-radius: 0;\r\n    border-top-right-radius: 0;\r\n}\r\n", ""]);
+exports.push([module.i, "body {\r\n    padding-top: 40px;\r\n    padding-bottom: 40px;\r\n    background-color: #eee;\r\n}\r\n\r\n.form-auth {\r\n    max-width: 400px;\r\n    padding: 15px;\r\n    margin: 0 auto;\r\n}\r\n\r\n.form-auth .form-auth-heading,\r\n.form-auth .checkbox {\r\n    margin-bottom: 10px;\r\n}\r\n\r\n.form-auth .checkbox {\r\n    font-weight: normal;\r\n}\r\n\r\n.form-auth .form-control {\r\n    position: relative;\r\n    height: auto;\r\n    -webkit-box-sizing: border-box;\r\n    box-sizing: border-box;\r\n    padding: 10px;\r\n    font-size: 16px;\r\n}\r\n\r\n.form-auth .form-control:focus {\r\n        z-index: 2;\r\n    }\r\n\r\n.form-auth input[type=\"email\"] {\r\n    margin-bottom: -1px;\r\n    border-bottom-right-radius: 0;\r\n    border-bottom-left-radius: 0;\r\n}\r\n\r\n.form-auth input[type=\"password\"] {\r\n    margin-bottom: 10px;\r\n    border-top-left-radius: 0;\r\n    border-top-right-radius: 0;\r\n}\r\n\r\n", ""]);
 
 // exports
 
@@ -413,7 +395,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/authorization/register/register.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\" *ngIf=\"show\" @easeInOut>\r\n    <form #registerForm=\"ngForm\" class=\"form-auth\">\r\n        <h2 class=\"form-auth-heading\">Registration</h2>\r\n        <br />\r\n        <div *ngIf=\"error\" class=\"alert alert-danger\">{{error}}</div>\r\n        <div class=\"form-group\">\r\n            <input id=\"name\" type=\"text\" required name=\"name\" class=\"form-control\" placeholder=\"Name\" [(ngModel)]=\"registerViewModel.name\">\r\n        </div>\r\n        <div class=\"form-group\">\r\n            <input type=\"text\" required name=\"email\" validateEmail class=\"form-control\" placeholder=\"Email address\" [(ngModel)]=\"registerViewModel.email\">\r\n        </div>\r\n        <div class=\"form-group\">\r\n            <input type=\"password\" required name=\"password\" class=\"form-control\" placeholder=\"Password\" [(ngModel)]=\"registerViewModel.password\">\r\n        </div>\r\n        <div class=\"form-group\">\r\n            <input type=\"password\" required name=\"confirmPassword\" class=\"form-control\" placeholder=\"Confirm password\" [(ngModel)]=\"registerViewModel.confirmPassword\">\r\n        </div>\r\n        <div class=\"form-group\">\r\n            <div class=\"row\">\r\n                <div class=\"col-sm-8\"><button type=\"submit\" class=\"btn btn-primary btn-block\" [disabled]=\"isRequesting\" (click)=\"register(registerForm)\">Sign Up</button></div>\r\n                <div class=\"col-sm-4\"><a [routerLink]=\"['/account/login']\" class=\"btn btn-block\">Cancel</a></div>\r\n            </div>\r\n        </div>\r\n    </form>\r\n</div> \r\n"
+module.exports = "<div class=\"row\" *ngIf=\"show\">\r\n    <form #registerForm=\"ngForm\" class=\"form-auth\">\r\n        <h2 class=\"form-auth-heading\">Registration</h2>\r\n        <br />\r\n        <div *ngIf=\"error\" class=\"alert alert-danger\">{{error}}</div>\r\n        <div class=\"form-group\">\r\n            <input id=\"name\" type=\"text\" required name=\"name\" class=\"form-control\" placeholder=\"Name\" [(ngModel)]=\"registerViewModel.name\">\r\n        </div>\r\n        <div class=\"form-group\">\r\n            <input type=\"text\" required name=\"email\" validateEmail class=\"form-control\" placeholder=\"Email address\" [(ngModel)]=\"registerViewModel.email\">\r\n        </div>\r\n        <div class=\"form-group\">\r\n            <input type=\"password\" required name=\"password\" class=\"form-control\" placeholder=\"Password\" [(ngModel)]=\"registerViewModel.password\">\r\n        </div>\r\n        <div class=\"form-group\">\r\n            <input type=\"password\" required name=\"confirmPassword\" class=\"form-control\" placeholder=\"Confirm password\"  validateEqual=\"password\" [(ngModel)]=\"registerViewModel.confirmPassword\">\r\n        </div>\r\n        <div class=\"form-group\">\r\n            <div class=\"row\">\r\n                <div class=\"col-sm-8\"><button type=\"submit\" class=\"btn btn-primary btn-block\" [disabled]=\"isRequesting\" (click)=\"register(registerForm)\">Sign Up</button></div>\r\n                <div class=\"col-sm-4\"><a [routerLink]=\"['/account/login']\" class=\"btn btn-block\">Cancel</a></div>\r\n            </div>\r\n        </div>\r\n    </form>\r\n</div> \r\n"
 
 /***/ }),
 
@@ -427,7 +409,6 @@ module.exports = "<div class=\"row\" *ngIf=\"show\" @easeInOut>\r\n    <form #re
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__("../../../http/esm2015/http.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_postRegisterViewModel__ = __webpack_require__("../../../../../src/app/models/postRegisterViewModel.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_core__ = __webpack_require__("../../../core/esm2015/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ngx_toastr__ = __webpack_require__("../../../../ngx-toastr/esm2015/ngx-toastr.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -442,15 +423,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
-//import { NotificationService } from './../../../services/notification.service';
 let RegisterComponent = class RegisterComponent {
-    constructor(router, http, authService, toastr
-        /* private notificationService: NotificationService*/ ) {
+    constructor(router, http, authService) {
         this.router = router;
         this.http = http;
         this.authService = authService;
-        this.toastr = toastr;
         this.error = '';
         this.show = false;
     }
@@ -459,55 +436,30 @@ let RegisterComponent = class RegisterComponent {
         this.show = true;
     }
     register(form) {
-        let body = {
-            'name': this.registerViewModel.name,
-            'email': this.registerViewModel.email,
-            'password': this.registerViewModel.password,
-            'confirmPassword': this.registerViewModel.confirmPassword
-        };
-        this.http.post('/api/account/register', JSON.stringify(body), { headers: this.authService.jsonHeaders() })
-            .subscribe(response => {
-            if (response.status == 200) {
-                this.router.navigate(['/account/login']);
-                this.toastr.info("Created Successfully", "User register");
-            }
-        }, error => {
-            this.error = error._body;
-        });
-        form.reset();
+        if (form.valid && (this.registerViewModel.confirmPassword === this.registerViewModel.password)) {
+            this.authService.registration(this.registerViewModel).subscribe(response => {
+                if (response.status == 200) {
+                    this.router.navigate(['/account/login']);
+                }
+            }, error => {
+                this.error = error._body;
+            });
+            form.reset();
+        }
+        if (this.registerViewModel.confirmPassword != this.registerViewModel.password) {
+            this.error = "Form not valid";
+        }
     }
 };
 RegisterComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_4__angular_core__["Component"])({
         selector: 'register',
         styles: [__webpack_require__("../../../../../src/app/components/authorization/register/register.component.css")],
-        template: __webpack_require__("../../../../../src/app/components/authorization/register/register.component.html"),
-        animations: [
-            Object(__WEBPACK_IMPORTED_MODULE_4__angular_core__["trigger"])('easeInOut', [
-                Object(__WEBPACK_IMPORTED_MODULE_4__angular_core__["transition"])(':enter', [
-                    Object(__WEBPACK_IMPORTED_MODULE_4__angular_core__["style"])({
-                        opacity: 0
-                    }),
-                    Object(__WEBPACK_IMPORTED_MODULE_4__angular_core__["animate"])("1s ease-in-out", Object(__WEBPACK_IMPORTED_MODULE_4__angular_core__["style"])({
-                        opacity: 1
-                    }))
-                ]),
-                Object(__WEBPACK_IMPORTED_MODULE_4__angular_core__["transition"])(':leave', [
-                    Object(__WEBPACK_IMPORTED_MODULE_4__angular_core__["style"])({
-                        opacity: 1
-                    }),
-                    Object(__WEBPACK_IMPORTED_MODULE_4__angular_core__["animate"])("1s ease-in-out", Object(__WEBPACK_IMPORTED_MODULE_4__angular_core__["style"])({
-                        opacity: 0
-                    }))
-                ])
-            ])
-        ]
+        template: __webpack_require__("../../../../../src/app/components/authorization/register/register.component.html")
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */],
         __WEBPACK_IMPORTED_MODULE_2__angular_http__["Http"],
-        __WEBPACK_IMPORTED_MODULE_0__services_account_service__["a" /* AccountService */],
-        __WEBPACK_IMPORTED_MODULE_5_ngx_toastr__["b" /* ToastrService */]
-        /* private notificationService: NotificationService*/ ])
+        __WEBPACK_IMPORTED_MODULE_0__services_account_service__["a" /* AccountService */]])
 ], RegisterComponent);
 
 
@@ -560,9 +512,9 @@ module.exports = "<h2>Authors</h2>\r\n<form novalidate #myForm=\"ngForm\">\r\n\r
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AuthorComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm2015/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_author_service__ = __webpack_require__("../../../../../src/app/services/author.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_account_service__ = __webpack_require__("../../../../../src/app/services/account.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_authorViewModel_postAuthorViewItem__ = __webpack_require__("../../../../../src/app/models/authorViewModel/postAuthorViewItem.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_account_service__ = __webpack_require__("../../../../../src/app/services/account.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_author_service__ = __webpack_require__("../../../../../src/app/services/author.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -636,7 +588,7 @@ AuthorComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         template: __webpack_require__("../../../../../src/app/components/library/author/author.component.html")
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__services_author_service__["a" /* AuthorDataService */], __WEBPACK_IMPORTED_MODULE_3__services_account_service__["a" /* AccountService */]])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__services_author_service__["a" /* AuthorDataService */], __WEBPACK_IMPORTED_MODULE_1__services_account_service__["a" /* AccountService */]])
 ], AuthorComponent);
 
 
@@ -656,11 +608,11 @@ module.exports = "<h2>Books</h2>\r\n<form novalidate #myForm=\"ngForm\">\r\n\r\n
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BookComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm2015/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_book_service__ = __webpack_require__("../../../../../src/app/services/book.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_publicationHouse_service__ = __webpack_require__("../../../../../src/app/services/publicationHouse.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_author_service__ = __webpack_require__("../../../../../src/app/services/author.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_forms__ = __webpack_require__("../../../forms/esm2015/forms.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_account_service__ = __webpack_require__("../../../../../src/app/services/account.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__("../../../forms/esm2015/forms.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_account_service__ = __webpack_require__("../../../../../src/app/services/account.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_book_service__ = __webpack_require__("../../../../../src/app/services/book.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_publicationHouse_service__ = __webpack_require__("../../../../../src/app/services/publicationHouse.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_author_service__ = __webpack_require__("../../../../../src/app/services/author.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -726,23 +678,23 @@ let BookComponent = class BookComponent {
     }
     addHandler({ sender }) {
         this.closeEditor(sender);
-        this.formGroup = new __WEBPACK_IMPORTED_MODULE_4__angular_forms__["b" /* FormGroup */]({
-            'id': new __WEBPACK_IMPORTED_MODULE_4__angular_forms__["a" /* FormControl */]({ value: 0, disabled: true }, __WEBPACK_IMPORTED_MODULE_4__angular_forms__["h" /* Validators */].required),
-            'name': new __WEBPACK_IMPORTED_MODULE_4__angular_forms__["a" /* FormControl */]('', __WEBPACK_IMPORTED_MODULE_4__angular_forms__["h" /* Validators */].required),
-            'authors': new __WEBPACK_IMPORTED_MODULE_4__angular_forms__["a" /* FormControl */]('', __WEBPACK_IMPORTED_MODULE_4__angular_forms__["h" /* Validators */].required),
-            'dateOfPublishing': new __WEBPACK_IMPORTED_MODULE_4__angular_forms__["a" /* FormControl */](new Date(Date.now()), __WEBPACK_IMPORTED_MODULE_4__angular_forms__["h" /* Validators */].required),
-            'publicationHouses': new __WEBPACK_IMPORTED_MODULE_4__angular_forms__["a" /* FormControl */]('', __WEBPACK_IMPORTED_MODULE_4__angular_forms__["h" /* Validators */].required)
+        this.formGroup = new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["b" /* FormGroup */]({
+            'id': new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormControl */]({ value: 0, disabled: true }, __WEBPACK_IMPORTED_MODULE_1__angular_forms__["h" /* Validators */].required),
+            'name': new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormControl */]('', __WEBPACK_IMPORTED_MODULE_1__angular_forms__["h" /* Validators */].required),
+            'authors': new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormControl */]('', __WEBPACK_IMPORTED_MODULE_1__angular_forms__["h" /* Validators */].required),
+            'dateOfPublishing': new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormControl */](new Date(Date.now()), __WEBPACK_IMPORTED_MODULE_1__angular_forms__["h" /* Validators */].required),
+            'publicationHouses': new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormControl */]('', __WEBPACK_IMPORTED_MODULE_1__angular_forms__["h" /* Validators */].required)
         });
         sender.addRow(this.formGroup);
     }
     editHandler({ sender, rowIndex, dataItem }) {
         this.closeEditor(sender);
-        this.formGroup = new __WEBPACK_IMPORTED_MODULE_4__angular_forms__["b" /* FormGroup */]({
-            'id': new __WEBPACK_IMPORTED_MODULE_4__angular_forms__["a" /* FormControl */]({ value: dataItem.id, disabled: true }, __WEBPACK_IMPORTED_MODULE_4__angular_forms__["h" /* Validators */].required),
-            'name': new __WEBPACK_IMPORTED_MODULE_4__angular_forms__["a" /* FormControl */](dataItem.name, __WEBPACK_IMPORTED_MODULE_4__angular_forms__["h" /* Validators */].required),
-            'authors': new __WEBPACK_IMPORTED_MODULE_4__angular_forms__["a" /* FormControl */](dataItem.authors, __WEBPACK_IMPORTED_MODULE_4__angular_forms__["h" /* Validators */].required),
-            'dateOfPublishing': new __WEBPACK_IMPORTED_MODULE_4__angular_forms__["a" /* FormControl */](new Date(dataItem.dateOfPublishing), __WEBPACK_IMPORTED_MODULE_4__angular_forms__["h" /* Validators */].required),
-            'publicationHouses': new __WEBPACK_IMPORTED_MODULE_4__angular_forms__["a" /* FormControl */](dataItem.publicationHouses, __WEBPACK_IMPORTED_MODULE_4__angular_forms__["h" /* Validators */].required)
+        this.formGroup = new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["b" /* FormGroup */]({
+            'id': new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormControl */]({ value: dataItem.id, disabled: true }, __WEBPACK_IMPORTED_MODULE_1__angular_forms__["h" /* Validators */].required),
+            'name': new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormControl */](dataItem.name, __WEBPACK_IMPORTED_MODULE_1__angular_forms__["h" /* Validators */].required),
+            'authors': new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormControl */](dataItem.authors, __WEBPACK_IMPORTED_MODULE_1__angular_forms__["h" /* Validators */].required),
+            'dateOfPublishing': new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormControl */](new Date(dataItem.dateOfPublishing), __WEBPACK_IMPORTED_MODULE_1__angular_forms__["h" /* Validators */].required),
+            'publicationHouses': new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormControl */](dataItem.publicationHouses, __WEBPACK_IMPORTED_MODULE_1__angular_forms__["h" /* Validators */].required)
         });
         this.editedRowIndex = rowIndex;
         sender.editRow(rowIndex, this.formGroup);
@@ -775,8 +727,8 @@ BookComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         template: __webpack_require__("../../../../../src/app/components/library/book/book.component.html")
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__services_book_service__["a" /* BookDataService */], __WEBPACK_IMPORTED_MODULE_2__services_publicationHouse_service__["a" /* PublicationHouseDataService */], __WEBPACK_IMPORTED_MODULE_5__services_account_service__["a" /* AccountService */],
-        __WEBPACK_IMPORTED_MODULE_3__services_author_service__["a" /* AuthorDataService */]])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__services_book_service__["a" /* BookDataService */], __WEBPACK_IMPORTED_MODULE_4__services_publicationHouse_service__["a" /* PublicationHouseDataService */], __WEBPACK_IMPORTED_MODULE_2__services_account_service__["a" /* AccountService */],
+        __WEBPACK_IMPORTED_MODULE_5__services_author_service__["a" /* AuthorDataService */]])
 ], BookComponent);
 
 
@@ -796,9 +748,9 @@ module.exports = "<h2>Brochures</h2>\r\n<form novalidate #myForm=\"ngForm\">\r\n
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BrochureComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm2015/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_brochure_service__ = __webpack_require__("../../../../../src/app/services/brochure.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_account_service__ = __webpack_require__("../../../../../src/app/services/account.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_brochureViewModel_postBrochureViewItem__ = __webpack_require__("../../../../../src/app/models/brochureViewModel/postBrochureViewItem.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_account_service__ = __webpack_require__("../../../../../src/app/services/account.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_brochure_service__ = __webpack_require__("../../../../../src/app/services/brochure.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -873,7 +825,7 @@ BrochureComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         template: __webpack_require__("../../../../../src/app/components/library/brochure/brochure.component.html")
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__services_brochure_service__["a" /* BrochureDataService */], __WEBPACK_IMPORTED_MODULE_3__services_account_service__["a" /* AccountService */]])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__services_brochure_service__["a" /* BrochureDataService */], __WEBPACK_IMPORTED_MODULE_1__services_account_service__["a" /* AccountService */]])
 ], BrochureComponent);
 
 
@@ -890,28 +842,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__("../../../common/esm2015/common.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__("../../../forms/esm2015/forms.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__("../../../http/esm2015/http.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_platform_browser_animations__ = __webpack_require__("../../../platform-browser/esm2015/animations.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__progress_kendo_angular_dropdowns__ = __webpack_require__("../../../../@progress/kendo-angular-dropdowns/dist/es2015/main.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__progress_kendo_angular_grid__ = __webpack_require__("../../../../@progress/kendo-angular-grid/dist/es2015/main.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__progress_kendo_angular_dateinputs__ = __webpack_require__("../../../../@progress/kendo-angular-dateinputs/dist/es2015/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__library_routing__ = __webpack_require__("../../../../../src/app/components/library/library.routing.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__root_root_component__ = __webpack_require__("../../../../../src/app/components/library/root/root.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__navigation_sidebar_sidebar_component__ = __webpack_require__("../../../../../src/app/components/navigation/sidebar/sidebar.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__navigation_navmenu_navmenu_component__ = __webpack_require__("../../../../../src/app/components/navigation/navmenu/navmenu.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__author_author_component__ = __webpack_require__("../../../../../src/app/components/library/author/author.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__book_book_component__ = __webpack_require__("../../../../../src/app/components/library/book/book.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__brochure_brochure_component__ = __webpack_require__("../../../../../src/app/components/library/brochure/brochure.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__magazine_magazine_component__ = __webpack_require__("../../../../../src/app/components/library/magazine/magazine.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__publication_publication_component__ = __webpack_require__("../../../../../src/app/components/library/publication/publication.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__publicationHouse_publicationHouse_component__ = __webpack_require__("../../../../../src/app/components/library/publicationHouse/publicationHouse.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__services_author_service__ = __webpack_require__("../../../../../src/app/services/author.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__services_book_service__ = __webpack_require__("../../../../../src/app/services/book.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__services_brochure_service__ = __webpack_require__("../../../../../src/app/services/brochure.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__services_magazine_service__ = __webpack_require__("../../../../../src/app/services/magazine.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__services_publication_service__ = __webpack_require__("../../../../../src/app/services/publication.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__services_publicationHouse_service__ = __webpack_require__("../../../../../src/app/services/publicationHouse.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__services_account_service__ = __webpack_require__("../../../../../src/app/services/account.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__auth_guard__ = __webpack_require__("../../../../../src/app/auth.guard.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__progress_kendo_angular_dropdowns__ = __webpack_require__("../../../../@progress/kendo-angular-dropdowns/dist/es2015/main.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__progress_kendo_angular_grid__ = __webpack_require__("../../../../@progress/kendo-angular-grid/dist/es2015/main.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__progress_kendo_angular_dateinputs__ = __webpack_require__("../../../../@progress/kendo-angular-dateinputs/dist/es2015/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__library_routing__ = __webpack_require__("../../../../../src/app/components/library/library.routing.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__root_root_component__ = __webpack_require__("../../../../../src/app/components/library/root/root.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__navigation_sidebar_sidebar_component__ = __webpack_require__("../../../../../src/app/components/navigation/sidebar/sidebar.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__navigation_navmenu_navmenu_component__ = __webpack_require__("../../../../../src/app/components/navigation/navmenu/navmenu.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__author_author_component__ = __webpack_require__("../../../../../src/app/components/library/author/author.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__book_book_component__ = __webpack_require__("../../../../../src/app/components/library/book/book.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__brochure_brochure_component__ = __webpack_require__("../../../../../src/app/components/library/brochure/brochure.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__magazine_magazine_component__ = __webpack_require__("../../../../../src/app/components/library/magazine/magazine.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__publication_publication_component__ = __webpack_require__("../../../../../src/app/components/library/publication/publication.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__publicationHouse_publicationHouse_component__ = __webpack_require__("../../../../../src/app/components/library/publicationHouse/publicationHouse.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__services_author_service__ = __webpack_require__("../../../../../src/app/services/author.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__services_book_service__ = __webpack_require__("../../../../../src/app/services/book.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__services_brochure_service__ = __webpack_require__("../../../../../src/app/services/brochure.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__services_magazine_service__ = __webpack_require__("../../../../../src/app/services/magazine.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__services_publication_service__ = __webpack_require__("../../../../../src/app/services/publication.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__services_publicationHouse_service__ = __webpack_require__("../../../../../src/app/services/publicationHouse.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__services_account_service__ = __webpack_require__("../../../../../src/app/services/account.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__auth_guard__ = __webpack_require__("../../../../../src/app/auth.guard.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -944,45 +895,43 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-
 let LibraryModule = class LibraryModule {
 };
 LibraryModule = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
         imports: [
             __WEBPACK_IMPORTED_MODULE_1__angular_common__["b" /* CommonModule */],
-            __WEBPACK_IMPORTED_MODULE_4__angular_platform_browser_animations__["a" /* BrowserAnimationsModule */],
             __WEBPACK_IMPORTED_MODULE_2__angular_forms__["c" /* FormsModule */],
             __WEBPACK_IMPORTED_MODULE_2__angular_forms__["g" /* ReactiveFormsModule */],
             __WEBPACK_IMPORTED_MODULE_3__angular_http__["HttpModule"],
             __WEBPACK_IMPORTED_MODULE_3__angular_http__["JsonpModule"],
-            __WEBPACK_IMPORTED_MODULE_8__library_routing__["a" /* routing */],
-            __WEBPACK_IMPORTED_MODULE_6__progress_kendo_angular_grid__["a" /* GridModule */],
-            __WEBPACK_IMPORTED_MODULE_5__progress_kendo_angular_dropdowns__["d" /* DropDownsModule */],
-            __WEBPACK_IMPORTED_MODULE_5__progress_kendo_angular_dropdowns__["c" /* DropDownListModule */],
-            __WEBPACK_IMPORTED_MODULE_7__progress_kendo_angular_dateinputs__["a" /* DateInputsModule */]
+            __WEBPACK_IMPORTED_MODULE_7__library_routing__["a" /* routing */],
+            __WEBPACK_IMPORTED_MODULE_5__progress_kendo_angular_grid__["a" /* GridModule */],
+            __WEBPACK_IMPORTED_MODULE_4__progress_kendo_angular_dropdowns__["d" /* DropDownsModule */],
+            __WEBPACK_IMPORTED_MODULE_4__progress_kendo_angular_dropdowns__["c" /* DropDownListModule */],
+            __WEBPACK_IMPORTED_MODULE_6__progress_kendo_angular_dateinputs__["a" /* DateInputsModule */]
         ],
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_9__root_root_component__["a" /* RootComponent */],
-            __WEBPACK_IMPORTED_MODULE_10__navigation_sidebar_sidebar_component__["a" /* SidebarMenuComponent */],
-            __WEBPACK_IMPORTED_MODULE_11__navigation_navmenu_navmenu_component__["a" /* NavMenuComponent */],
-            __WEBPACK_IMPORTED_MODULE_12__author_author_component__["a" /* AuthorComponent */],
-            __WEBPACK_IMPORTED_MODULE_13__book_book_component__["a" /* BookComponent */],
-            __WEBPACK_IMPORTED_MODULE_14__brochure_brochure_component__["a" /* BrochureComponent */],
-            __WEBPACK_IMPORTED_MODULE_15__magazine_magazine_component__["a" /* MagazineComponent */],
-            __WEBPACK_IMPORTED_MODULE_16__publication_publication_component__["a" /* PublicationComponent */],
-            __WEBPACK_IMPORTED_MODULE_17__publicationHouse_publicationHouse_component__["a" /* PublicationHouseComponent */]
+            __WEBPACK_IMPORTED_MODULE_8__root_root_component__["a" /* RootComponent */],
+            __WEBPACK_IMPORTED_MODULE_9__navigation_sidebar_sidebar_component__["a" /* SidebarMenuComponent */],
+            __WEBPACK_IMPORTED_MODULE_10__navigation_navmenu_navmenu_component__["a" /* NavMenuComponent */],
+            __WEBPACK_IMPORTED_MODULE_11__author_author_component__["a" /* AuthorComponent */],
+            __WEBPACK_IMPORTED_MODULE_12__book_book_component__["a" /* BookComponent */],
+            __WEBPACK_IMPORTED_MODULE_13__brochure_brochure_component__["a" /* BrochureComponent */],
+            __WEBPACK_IMPORTED_MODULE_14__magazine_magazine_component__["a" /* MagazineComponent */],
+            __WEBPACK_IMPORTED_MODULE_15__publication_publication_component__["a" /* PublicationComponent */],
+            __WEBPACK_IMPORTED_MODULE_16__publicationHouse_publicationHouse_component__["a" /* PublicationHouseComponent */]
         ],
         exports: [],
         providers: [
-            __WEBPACK_IMPORTED_MODULE_25__auth_guard__["a" /* AuthGuard */],
-            __WEBPACK_IMPORTED_MODULE_18__services_author_service__["a" /* AuthorDataService */],
-            __WEBPACK_IMPORTED_MODULE_19__services_book_service__["a" /* BookDataService */],
-            __WEBPACK_IMPORTED_MODULE_20__services_brochure_service__["a" /* BrochureDataService */],
-            __WEBPACK_IMPORTED_MODULE_21__services_magazine_service__["a" /* MagazineDataService */],
-            __WEBPACK_IMPORTED_MODULE_22__services_publication_service__["a" /* PublicationDataService */],
-            __WEBPACK_IMPORTED_MODULE_23__services_publicationHouse_service__["a" /* PublicationHouseDataService */],
-            __WEBPACK_IMPORTED_MODULE_24__services_account_service__["a" /* AccountService */]
+            __WEBPACK_IMPORTED_MODULE_24__auth_guard__["a" /* AuthGuard */],
+            __WEBPACK_IMPORTED_MODULE_17__services_author_service__["a" /* AuthorDataService */],
+            __WEBPACK_IMPORTED_MODULE_18__services_book_service__["a" /* BookDataService */],
+            __WEBPACK_IMPORTED_MODULE_19__services_brochure_service__["a" /* BrochureDataService */],
+            __WEBPACK_IMPORTED_MODULE_20__services_magazine_service__["a" /* MagazineDataService */],
+            __WEBPACK_IMPORTED_MODULE_21__services_publication_service__["a" /* PublicationDataService */],
+            __WEBPACK_IMPORTED_MODULE_22__services_publicationHouse_service__["a" /* PublicationHouseDataService */],
+            __WEBPACK_IMPORTED_MODULE_23__services_account_service__["a" /* AccountService */]
         ]
     })
 ], LibraryModule);
@@ -1046,9 +995,9 @@ module.exports = "<h2>Magazines</h2>\r\n<form novalidate #myForm=\"ngForm\">\r\n
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MagazineComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm2015/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_magazine_service__ = __webpack_require__("../../../../../src/app/services/magazine.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__("../../../forms/esm2015/forms.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_account_service__ = __webpack_require__("../../../../../src/app/services/account.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__("../../../forms/esm2015/forms.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_account_service__ = __webpack_require__("../../../../../src/app/services/account.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_magazine_service__ = __webpack_require__("../../../../../src/app/services/magazine.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1089,21 +1038,21 @@ let MagazineComponent = class MagazineComponent {
     }
     addHandler({ sender }) {
         this.closeEditor(sender);
-        this.formGroup = new __WEBPACK_IMPORTED_MODULE_2__angular_forms__["b" /* FormGroup */]({
-            'id': new __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormControl */]({ value: 0, disabled: true }, __WEBPACK_IMPORTED_MODULE_2__angular_forms__["h" /* Validators */].required),
-            'name': new __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormControl */]('', __WEBPACK_IMPORTED_MODULE_2__angular_forms__["h" /* Validators */].required),
-            'number': new __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormControl */](0, __WEBPACK_IMPORTED_MODULE_2__angular_forms__["h" /* Validators */].required),
-            'dateOfPublishing': new __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormControl */](new Date(2000, 1, 1), __WEBPACK_IMPORTED_MODULE_2__angular_forms__["h" /* Validators */].required)
+        this.formGroup = new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["b" /* FormGroup */]({
+            'id': new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormControl */]({ value: 0, disabled: true }, __WEBPACK_IMPORTED_MODULE_1__angular_forms__["h" /* Validators */].required),
+            'name': new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormControl */]('', __WEBPACK_IMPORTED_MODULE_1__angular_forms__["h" /* Validators */].required),
+            'number': new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormControl */](0, __WEBPACK_IMPORTED_MODULE_1__angular_forms__["h" /* Validators */].required),
+            'dateOfPublishing': new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormControl */](new Date(2000, 1, 1), __WEBPACK_IMPORTED_MODULE_1__angular_forms__["h" /* Validators */].required)
         });
         sender.addRow(this.formGroup);
     }
     editHandler({ sender, rowIndex, dataItem }) {
         this.closeEditor(sender);
-        this.formGroup = new __WEBPACK_IMPORTED_MODULE_2__angular_forms__["b" /* FormGroup */]({
-            'id': new __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormControl */]({ value: dataItem.id, disabled: true }, __WEBPACK_IMPORTED_MODULE_2__angular_forms__["h" /* Validators */].required),
-            'name': new __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormControl */](dataItem.name, __WEBPACK_IMPORTED_MODULE_2__angular_forms__["h" /* Validators */].required),
-            'number': new __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormControl */](dataItem.number, __WEBPACK_IMPORTED_MODULE_2__angular_forms__["h" /* Validators */].required),
-            'dateOfPublishing': new __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormControl */](new Date(dataItem.dateOfPublishing), __WEBPACK_IMPORTED_MODULE_2__angular_forms__["h" /* Validators */].required)
+        this.formGroup = new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["b" /* FormGroup */]({
+            'id': new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormControl */]({ value: dataItem.id, disabled: true }, __WEBPACK_IMPORTED_MODULE_1__angular_forms__["h" /* Validators */].required),
+            'name': new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormControl */](dataItem.name, __WEBPACK_IMPORTED_MODULE_1__angular_forms__["h" /* Validators */].required),
+            'number': new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormControl */](dataItem.number, __WEBPACK_IMPORTED_MODULE_1__angular_forms__["h" /* Validators */].required),
+            'dateOfPublishing': new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormControl */](new Date(dataItem.dateOfPublishing), __WEBPACK_IMPORTED_MODULE_1__angular_forms__["h" /* Validators */].required)
         });
         this.editedRowIndex = rowIndex;
         sender.editRow(rowIndex, this.formGroup);
@@ -1136,7 +1085,7 @@ MagazineComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         template: __webpack_require__("../../../../../src/app/components/library/magazine/magazine.component.html")
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__services_magazine_service__["a" /* MagazineDataService */], __WEBPACK_IMPORTED_MODULE_3__services_account_service__["a" /* AccountService */]])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__services_magazine_service__["a" /* MagazineDataService */], __WEBPACK_IMPORTED_MODULE_2__services_account_service__["a" /* AccountService */]])
 ], MagazineComponent);
 
 
@@ -1553,10 +1502,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 let AccountService = class AccountService {
-    constructor(router, titleService) {
+    constructor(router, titleService, http) {
         this.router = router;
         this.titleService = titleService;
+        this.http = http;
         this.jwtHelper = new __WEBPACK_IMPORTED_MODULE_0_angular2_jwt__["JwtHelper"]();
     }
     // for requesting secure data using json
@@ -1629,10 +1580,16 @@ let AccountService = class AccountService {
     getUserId() {
         return this.useJwtHelper().sub;
     }
+    getToken(body) {
+        return this.http.post('/connect/token', body, { headers: this.contentHeaders() });
+    }
+    registration(registerModel) {
+        return this.http.post('/api/account/register', JSON.stringify(registerModel), { headers: this.jsonHeaders() });
+    }
 };
 AccountService = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_3__angular_core__["Injectable"])(),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */], __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["d" /* Title */]])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */], __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["c" /* Title */], __WEBPACK_IMPORTED_MODULE_4__angular_http__["Http"]])
 ], AccountService);
 
 
@@ -1846,60 +1803,6 @@ MagazineDataService = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["Http"], __WEBPACK_IMPORTED_MODULE_2__services_account_service__["a" /* AccountService */]])
 ], MagazineDataService);
-
-
-
-/***/ }),
-
-/***/ "../../../../../src/app/services/notification.service.ts":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NotificationService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm2015/core.js");
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-let NotificationService = class NotificationService {
-    constructor() {
-        this._notifier = alertify;
-    }
-    /*
-    Opens a confirmation dialog using the alertify.js lib
-    */
-    openConfirmationDialog(message, okCallback) {
-        this._notifier.confirm(message, function (e) {
-            if (e) {
-                okCallback();
-            }
-            else {
-            }
-        });
-    }
-    /*
-    Prints a success message using the alertify.js lib
-    */
-    printSuccessMessage(message) {
-        this._notifier.success(message);
-    }
-    /*
-    Prints an error message using the alertify.js lib
-    */
-    printErrorMessage(message) {
-        this._notifier.error(message);
-    }
-};
-NotificationService = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-    __metadata("design:paramtypes", [])
-], NotificationService);
 
 
 

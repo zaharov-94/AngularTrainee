@@ -16,6 +16,7 @@ namespace Library.BLL.MapperProfiles
                 cfg.AddProfile<BookViewItemToBookViewModel>();
                 cfg.AddProfile<BrochureToBrochureViewModel>();
                 cfg.AddProfile<MagazineToMagazineViewModel>();
+                cfg.AddProfile<BookToBookViewItem>();
             });
         }
     }

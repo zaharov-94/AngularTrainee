@@ -1,7 +1,5 @@
 using AspNet.Security.OpenIdConnect.Primitives;
-using AutoMapper;
 using Library.BLL.MapperProfiles;
-using Library.BLL.Services;
 using Library.DAL.Context;
 using Library.WebCore.Provider;
 using Microsoft.AspNetCore.Authentication;
@@ -21,13 +19,12 @@ using System.IO;
 
 namespace Library.WebCore
 {
-  public class Startup
+    public class Startup
     {
-
         public Startup(IConfiguration configuration)
         {
-          Configuration = configuration;
-          
+            Configuration = configuration;
+
         }
 
         public IConfiguration Configuration { get; }
@@ -139,9 +136,9 @@ namespace Library.WebCore
             app.UseMvc();
             app.Run(async (context) =>
             {
-              context.Response.ContentType = "text/html";
-              await context.Response.SendFileAsync(Path.Combine(env.WebRootPath, "index.html"));
+                context.Response.ContentType = "text/html";
+                await context.Response.SendFileAsync(Path.Combine(env.WebRootPath, "index.html"));
             });
-    } 
+        }
     }
 }

@@ -31,7 +31,6 @@
     <None Remove="src\app\models\authorViewModel\getAuthorViewModel.ts" />
     <None Remove="src\app\models\authorViewModel\postAuthorViewItem.ts" />
     <None Remove="src\app\models\bookViewModel\postBookViewItem.ts" />
-    <None Remove="src\app\models\interfaces.ts" />
     <None Remove="src\app\models\publicationHouse.model.ts" />
     <None Remove="src\app\models\publicationHouseViewModel\getPublicationHouseViewModel.ts" />
     <None Remove="src\app\models\publicationHouseViewModel\postPublicationHouseViewItem.ts" />
@@ -88,7 +87,6 @@
     <TypeScriptCompile Include="src\app\models\authorViewModel\getAuthorViewItem.ts" />
     <TypeScriptCompile Include="src\app\models\authorViewModel\getAuthorViewModel.ts" />
     <TypeScriptCompile Include="src\app\models\authorViewModel\postAuthorViewItem.ts" />
-    <TypeScriptCompile Include="src\app\models\interfaces.ts" />
     <TypeScriptCompile Include="src\app\models\publicationHouseViewModel\postPublicationHouseViewItem.ts" />
     <TypeScriptCompile Include="src\app\models\publicationHouseViewModel\getPublicationHouseViewModel.ts" />
     <TypeScriptCompile Include="src\app\models\publicationHouseViewModel\getPublicationHouseViewItem.ts" />
