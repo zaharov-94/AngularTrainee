@@ -1,14 +1,14 @@
 import { Component, OnInit, Inject } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { State, process } from '@progress/kendo-data-query';
+
 import { PublicationHouseDataService } from '../../../services/publicationHouse.service';
 import { GetPublicationHouseViewItem } from '../../../models/publicationHouseViewModel/getPublicationHouseViewItem';
 import { PostPublicationHouseViewItem } from '../../../models/publicationHouseViewModel/postPublicationHouseViewItem';
 import { GetPublicationHouseViewModel } from '../../../models/publicationHouseViewModel/getPublicationHouseViewModel';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+
 import { AccountService } from '../../../services/account.service';
 
-import { State, process } from '@progress/kendo-data-query';
-
-import { map } from 'rxjs/operators/map';
 @Component({
     templateUrl: './publicationHouse.component.html'
 })
@@ -24,11 +24,11 @@ export class PublicationHouseComponent implements OnInit {
         take: 10
     };
 
-    constructor(private publicationHouseDataService: PublicationHouseDataService) { }
+    constructor(private publicationHouseDataService: PublicationHouseDataService, private accountService: AccountService) { }
 
     ngOnInit() {
         this.load();
-        this.isAdmin = AccountService.isAdmin;
+        this.isAdmin = this.accountService.isAdmin();
     }
 
     load() {

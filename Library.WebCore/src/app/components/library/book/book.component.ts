@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DatePipe } from '@angular/common';
-import { BookDataService } from '../../../services/book.service';
-import { PublicationHouseDataService } from '../../../services/publicationHouse.service';
-import { AuthorDataService } from '../../../services/author.service';
+import { State } from '@progress/kendo-data-query';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+
 import { GetBookViewItem } from '../../../models/bookViewModel/getBookViewItem';
 import { GetBookViewModel } from '../../../models/bookViewModel/getBookViewModel';
 import { PostBookViewItem } from '../../../models/bookViewModel/postBookViewItem';
@@ -10,12 +10,11 @@ import { GetPublicationHouseViewModel } from '../../../models/publicationHouseVi
 import { GetPublicationHouseViewItem } from '../../../models/publicationHouseViewModel/getPublicationHouseViewItem';
 import { GetAuthorViewModel } from '../../../models/authorViewModel/getAuthorViewModel';
 import { GetAuthorViewItem } from '../../../models/authorViewModel/getAuthorViewItem';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { AccountService } from '../../../services/account.service';
-import { Observable } from 'rxjs/Observable';
 
-import { GridDataResult } from '@progress/kendo-angular-grid';
-import { State } from '@progress/kendo-data-query';
+import { AccountService } from '../../../services/account.service';
+import { BookDataService } from '../../../services/book.service';
+import { PublicationHouseDataService } from '../../../services/publicationHouse.service';
+import { AuthorDataService } from '../../../services/author.service';
 
 @Component({
     templateUrl: './book.component.html'
@@ -27,10 +26,9 @@ export class BookComponent implements OnInit {
     private editedRowIndex: number;
     private editedItem: PostBookViewItem;
 
-    public isAdmin = AccountService.isAdmin;
-    public LoggedIn = AccountService.isLoggedIn;
-    //-----------------------------
-    //public view: Observable<GridDataResult>;
+    public isAdmin = this.accountService.isAdmin();
+    public LoggedIn = this.accountService.isAuthenticated();
+
     public formGroup: FormGroup;
 
     public gridState: State = {
@@ -39,7 +37,7 @@ export class BookComponent implements OnInit {
         take: 10
     };
 
-    constructor(private bookDataService: BookDataService, private publicationHouseDataService: PublicationHouseDataService,
+    constructor(private bookDataService: BookDataService, private publicationHouseDataService: PublicationHouseDataService, private accountService: AccountService,
         private authorDataService: AuthorDataService) { }
 
     ngOnInit() {

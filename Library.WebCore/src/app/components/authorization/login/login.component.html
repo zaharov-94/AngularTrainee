@@ -1,14 +1,14 @@
 <div *ngIf="brandNew" class="alert alert-success" role="alert" style="text-align:center">
     <strong>All set!</strong> Please login with your account
 </div>
-<form #f="ngForm" (ngSubmit)="login(f)" class="form-auth">
+<form #f="ngForm" (ngSubmit)="login($event)" class="form-auth">
     <h2 class="form-auth-heading">Login</h2>
     <div class="form-group">
-        <input id="email" type="text" required name="email" [ngModel]="loginModel.email" class="form-control"
+        <input type="email" id="email" name="email" [(ngModel)]="loginViewModel.email" class="form-control"
                placeholder="Email address">
     </div>
     <div class="form-group">
-        <input id="password" type="password" required name="password" [ngModel]="loginModel.password" class="form-control"
+        <input id="password" type="password" required name="password" [(ngModel)]="loginViewModel.password" class="form-control"
                placeholder="Password">
     </div>
     <div class="form-group">

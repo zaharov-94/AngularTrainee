@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 
 namespace Library.DAL
@@ -26,6 +27,7 @@ namespace Library.DAL
                 ex.TargetSite.DeclaringType, ex.Message);
                 File.WriteAllText(pathToLog, fullText);
             }
+            Debug.WriteLine(string.Format("[{0:dd.MM.yyy HH:mm:ss.fff}] [{1}()] {2}\r\n", DateTime.Now, ex.TargetSite.DeclaringType, ex.Message));
         }
     }
 }

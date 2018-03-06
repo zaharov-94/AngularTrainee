@@ -1,14 +1,14 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { AuthorDataService } from '../../../services/author.service';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AccountService } from '../../../services/account.service';
+import { State, process } from '@progress/kendo-data-query';
+
 import { GetAuthorViewItem } from '../../../models/authorViewModel/getAuthorViewItem';
 import { PostAuthorViewItem } from '../../../models/authorViewModel/postAuthorViewItem';
 import { GetAuthorViewModel } from '../../../models/authorViewModel/getAuthorViewModel';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { AccountService } from '../../../services/account.service';
 
-import { State, process } from '@progress/kendo-data-query';
+import { AuthorDataService } from '../../../services/author.service';
 
-import { map } from 'rxjs/operators/map';
 @Component({
     templateUrl: './author.component.html'
 })
@@ -16,6 +16,7 @@ export class AuthorComponent implements OnInit {
     public authors: GetAuthorViewItem[];
     private editedRowIndex: number;
     private editedItem: PostAuthorViewItem;
+    public formGroup: FormGroup;
     public isAdmin: boolean;
 
     public gridState: State = {
@@ -24,11 +25,11 @@ export class AuthorComponent implements OnInit {
         take: 10
     };
 
-    constructor(private authorDataService: AuthorDataService) { }
+    constructor(private authorDataService: AuthorDataService, private accountService: AccountService) { }
 
     ngOnInit() {
         this.load();
-        this.isAdmin = AccountService.isAdmin;
+        this.isAdmin = this.accountService.isAdmin();
     }
 
     load() {

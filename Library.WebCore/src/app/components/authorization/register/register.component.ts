@@ -1,45 +1,45 @@
-import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { AccountService } from './../../../services/account.service';
 import { Router } from '@angular/router';
-
+import { Http } from '@angular/http';
 import { PostRegisterViewModel } from '../../../models/postRegisterViewModel';
-
-import { AccountService } from '../../../services/account.service';
+import { Component, OnInit} from '@angular/core';
 
 @Component({
     selector: 'register',
-    templateUrl: './register.component.html',
-    styleUrls: ['./register.component.css']
+    styleUrls: ['./register.component.css'],
+    templateUrl: './register.component.html'
 })
-export class RegisterComponent implements OnInit {
 
-    errors: string;
-    isRequesting: boolean;
-    submitted: boolean = false;
+export class RegisterComponent {
+    registerViewModel: PostRegisterViewModel;
+    error = '';
+    show: boolean = false;
 
-    constructor(private accountService: AccountService, private router: Router) {
-    }
+    constructor(public router: Router,
+        public http: Http,
+        private authService: AccountService) { }
 
     ngOnInit() {
-        this.accountService.logout();
-        AccountService.isAdmin = null;
-        AccountService.isLoggedIn = false;
+        this.registerViewModel = new PostRegisterViewModel();
+        this.show = true;
     }
 
-    register({ value, valid }: { value: PostRegisterViewModel, valid: boolean }) {
-        this.submitted = true;
-        this.isRequesting = true;
-        this.errors = '';
-        if (!valid) {
-            return;
-        }
-        this.accountService.register(value)
-            .finally(() => this.isRequesting = false)
-            .subscribe(
-            result => {
-                if (result) {
-                    this.router.navigate(['/account/login'], { queryParams: { brandNew: true, email: value.email } });
+    register(form: NgForm): void {
+        if (form.valid && (this.registerViewModel.confirmPassword === this.registerViewModel.password)) {
+            this.authService.registration(this.registerViewModel).subscribe(response => {
+                if (response.status == 200) {
+                    this.router.navigate(['/account/login'])
                 }
             },
-            errors => this.errors = "Entered data not correct!");
+            error => {
+                this.error = error._body;
+            });
+
+            form.reset();
+        }
+        if (this.registerViewModel.confirmPassword != this.registerViewModel.password) {
+            this.error = "Form not valid";
+        }
     }
 }

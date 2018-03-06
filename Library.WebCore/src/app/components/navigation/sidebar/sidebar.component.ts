@@ -8,11 +8,11 @@ import { AccountService } from '../../../services/account.service';
     styleUrls: ['./sidebar.component.css']
 })
 export class SidebarMenuComponent implements OnInit {
-    constructor() { }
+    constructor(private accountService: AccountService) { }
 
     public userName: string;
 
     ngOnInit() {
-        this.userName = AccountService.userName;
+        this.userName = this.accountService.getUserName();
     }
 }

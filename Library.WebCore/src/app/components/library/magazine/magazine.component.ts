@@ -1,16 +1,14 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MagazineDataService } from '../../../services/magazine.service';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { State, process } from '@progress/kendo-data-query';
+
 import { GetMagazineViewItem } from '../../../models/magazineViewModel/getMagazineViewItem';
 import { PostMagazineViewItem } from '../../../models/magazineViewModel/postMagazineViewItem';
 import { GetMagazineViewModel } from '../../../models/magazineViewModel/getMagazineViewModel';
-import { Observable } from 'rxjs/Observable';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+
 import { AccountService } from '../../../services/account.service';
+import { MagazineDataService } from '../../../services/magazine.service';
 
-import { GridDataResult } from '@progress/kendo-angular-grid';
-import { State, process } from '@progress/kendo-data-query';
-
-import { map } from 'rxjs/operators/map';
 @Component({
     templateUrl: './magazine.component.html'
 })
@@ -21,18 +19,17 @@ export class MagazineComponent implements OnInit {
     public formGroup: FormGroup;
     public isAdmin: boolean;
 
-    public view: Observable<GridDataResult>;
     public gridState: State = {
         sort: [],
         skip: 0,
         take: 10
     };
 
-    constructor(private magazineDataService: MagazineDataService) { }
+    constructor(private magazineDataService: MagazineDataService, private accountService: AccountService) { }
 
     ngOnInit() {
         this.load();
-        this.isAdmin = AccountService.isAdmin;
+        this.isAdmin = this.accountService.isAdmin();
     }
 
     load() {

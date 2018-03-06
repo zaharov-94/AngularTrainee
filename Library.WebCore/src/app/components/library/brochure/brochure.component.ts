@@ -1,15 +1,14 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { BrochureDataService } from '../../../services/brochure.service';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AccountService } from '../../../services/account.service';
+import { State } from '@progress/kendo-data-query';
+
 import { GetBrochureViewItem } from '../../../models/brochureViewModel/getBrochureViewItem';
 import { PostBrochureViewItem } from '../../../models/brochureViewModel/postBrochureViewItem';
 import { GetBrochureViewModel } from '../../../models/brochureViewModel/getBrochureViewModel';
-import { Observable } from 'rxjs/Observable';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { AccountService } from '../../../services/account.service';
 
-import { State, process } from '@progress/kendo-data-query';
+import { BrochureDataService } from '../../../services/brochure.service';
 
-import { map } from 'rxjs/operators/map';
 @Component({
     templateUrl: './brochure.component.html'
 })
@@ -26,11 +25,11 @@ export class BrochureComponent implements OnInit {
         take: 10
     };
 
-    constructor(private brochureDataService: BrochureDataService) { }
+    constructor(private brochureDataService: BrochureDataService, private accountService: AccountService) { }
 
     ngOnInit() {
         this.load();
-        this.isAdmin = AccountService.isAdmin;
+        this.isAdmin = this.accountService.isAdmin();
     }
 
     load() {

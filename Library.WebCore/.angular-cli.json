@@ -18,9 +18,10 @@
       "tsconfig": "tsconfig.app.json",
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
-      "styles": [
-        "styles.css"
-      ],
+        "styles": [
+            "styles.css",
+            "../node_modules/ngx-toastr/toastr.css"
+        ],
       "scripts": [],
       "environmentSource": "environments/environment.ts",
       "environments": {
